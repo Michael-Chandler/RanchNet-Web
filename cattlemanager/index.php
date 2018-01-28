@@ -251,7 +251,7 @@
                 curl_close($ch);
 
                 // get php object
-                $obj = json_decode($result, true);
+                $obj = json_decode($result);
 
                 // table template head
                 echo "<div class=\"card mb-3\">";
@@ -308,7 +308,7 @@
                                 echo "</tfoot>";
                                 echo "<tbody>";
                                 if (count($obj->line)) {
-							        foreach ($obj->line as $idx =>$line) {
+							        foreach ($obj->line as $idx => $line) {
                                         echo "<tr>";
                                             echo "<td>$line->cattleId</td>";
                                             echo "<td>$line->cattleId</td>";
