@@ -307,33 +307,31 @@
                                     echo "</tr>";
                                 echo "</tfoot>";
                                 echo "<tbody>";
-                                if (count($obj->line)) {
-							        foreach ($obj->line as $idx => $line) {
-                                        echo "<tr>";
-                                            echo "<td>$line->cattleId</td>";
-                                            echo "<td>$line->cattleName</td>";
-                                            echo "<td>$line->cattleSex</td>";
-                                            echo "<td>$line->cattleTag</td>";
-                                            echo "<td>$line->cattleRegisteredNumber</td>";
-                                            echo "<td>$line->cattleElectronicId</td>";
-                                            echo "<td>$line->cattleAnimalType</td>";
-                                            echo "<td>$line->cattleSireName</td>";
-                                            echo "<td>$line->cattleDamName</td>";
-                                            echo "<td>$line->cattleDamRegisteredNumber</td>";
-                                            echo "<td>$line->cattleSireRegisteredNumber</td>";
-                                            echo "<td>$line->cattleDatOfBirth</td>";
-                                            echo "<td>$line->cattleContraception</td>";
-                                            echo "<td>$line->cattleBreeder</td>";
-                                            echo "<td>$line->cattlePregnant</td>";
-                                            echo "<td>$line->cattleHeight</td>";
-                                            echo "<td>$line->cattleWeight</td>";
-                                            echo "<td>$line->pastureId</td>";
-                                            echo "<td>$line->userId</td>";
-                                        echo "</tr>";
-									}
+							    foreach ($obj as $line) {
+                                    echo "<tr>";
+                                        echo "<td>$line->cattleId</td>";
+                                        echo "<td>$line->cattleName</td>";
+                                        echo "<td>$line->cattleSex</td>";
+                                        echo "<td>$line->cattleTag</td>";
+                                        echo "<td>$line->cattleRegisteredNumber</td>";
+                                        echo "<td>$line->cattleElectronicId</td>";
+                                        echo "<td>$line->cattleAnimalType</td>";
+                                        echo "<td>$line->cattleSireName</td>";
+                                        echo "<td>$line->cattleDamName</td>";
+                                        echo "<td>$line->cattleDamRegisteredNumber</td>";
+                                        echo "<td>$line->cattleSireRegisteredNumber</td>";
+                                        echo "<td>$line->cattleDatOfBirth</td>";
+                                        echo "<td>$line->cattleContraception</td>";
+                                        echo "<td>$line->cattleBreeder</td>";
+                                        echo "<td>$line->cattlePregnant</td>";
+                                        echo "<td>$line->cattleHeight</td>";
+                                        echo "<td>$line->cattleWeight</td>";
+                                        echo "<td>$line->pastureId</td>";
+                                        echo "<td>$line->userId</td>";
+                                    echo "</tr>";
+                                }
                                 echo "</tbody>";
                             echo "</table>";
-								}
                         echo "</div>";
                     echo "</div>";
                 echo "</div>";
