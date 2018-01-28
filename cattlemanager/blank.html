@@ -233,29 +233,8 @@
       </ol>
       <div class="row">
         <div class="col-12">
-            <h1 class="page-header">RanchNet API Sample (CattleManager page)</h1>
-            <?php
-                // set up vars
-                $base_url = "http://ec2-52-14-44-201.us-east-2.compute.amazonaws.com/cattle?token=";
-                $config = include('../config.php');
-                $token = $config->token;
-                $query = "&cattleSex=M";
-                $URL = $base_url . $token . $query;
-
-                // using cURL
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_URL, $URL);
-                $result = curl_exec($ch);
-                curl_close($ch);
-
-                // get php object
-                $obj = json_decode($result, true);
-
-                var_dump($obj);
-                echo "hi";
-            ?>
+          <h1>Blank</h1>
+          <p>This is an example of a blank page that you can use as a starting point for creating new ones.</p>
         </div>
       </div>
     </div>
