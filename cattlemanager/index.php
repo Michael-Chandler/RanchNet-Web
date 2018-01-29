@@ -320,7 +320,7 @@
                                         echo "<td>$line->cattleDamName</td>";
                                         echo "<td>$line->cattleDamRegisteredNumber</td>";
                                         echo "<td>$line->cattleSireRegisteredNumber</td>";
-                                        echo "<td>$line->cattleDatOfBirth</td>";
+                                        echo "<td>$line->cattleDateOfBirth</td>";
                                         echo "<td>$line->cattleContraception</td>";
                                         echo "<td>$line->cattleBreeder</td>";
                                         echo "<td>$line->cattlePregnant</td>";
