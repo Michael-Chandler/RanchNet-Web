@@ -1,13 +1,14 @@
 <html>
     <?php
     include_once '../scripts/config.php';
-    if(isset($_POST["inputEmail"]) && isset($_POST["inputPassword"])){
-    $_SESSION["auth"] = "True";
-    }
     if(isset($_SESSION["auth"])){
-    header("Location: ".URL."cattlemanager");
+        header("Location: ".WEB_URL."/cattlemanager");
     }
-    echo "sessionauth: ". $_SESSION["auth"];
+    elseif(isset($_POST["inputEmail"]) && isset($_POST["inputPassword"])){
+        //TODO: Perform lookup of email and password hash to auth user.
+        $_SESSION["auth"] = "True";
+        header("Location: ".WEB_URL."/cattlemanager");
+    }
     ?>
     <head>
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -23,7 +24,7 @@
                     <span id="reauth-email" class="reauth-email"></span>
                     <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required 
                                                                                                autofocus>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" 
+                    <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" 
                                                                                    required>
                     <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
                 </form>
