@@ -1,6 +1,4 @@
-<html>
-    <body>
-        Settings
-    </body>
-</html>
+<body>
+Settings
+</body>
 

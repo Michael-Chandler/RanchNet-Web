@@ -1,6 +1,4 @@
-<html>
-    <body>
-        Reports
-    </body>
-</html>
+<body>
+Reports
+</body>
 

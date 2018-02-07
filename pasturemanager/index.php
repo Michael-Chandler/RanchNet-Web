@@ -1,6 +1,4 @@
-<html>
-    <body>
-        PastureManager
-    </body>
-</html>
+<body>
+PastureManager
+</body>
 
