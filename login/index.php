@@ -6,8 +6,26 @@
     }
     elseif(isset($_POST["inputEmail"]) && isset($_POST["inputPassword"])){
         //TODO: Perform lookup of email and password hash to auth user.
-        $_SESSION["auth"] = "True";
-        header("Location: ".WEB_URL."/cattlemanager");
+        // set up vars
+        $URL = API_URL
+        ."users"
+        ."?token=".API_SECRET
+        ."&userEmail=".strtolower($_POST["inputEmail"]);
+        
+        // using cURL
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL, $URL);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        $obj = json_decode($result, true);
+        if(password_verify($_POST["inputPassword"], $obj[0]['userHash'])){
+            $_SESSION["auth"] = "True";
+            $_SESSION["userId"] = $obj[0]['userId'];
+            header("Location: ".WEB_URL."/cattlemanager");
+        }
+        echo "<h3 class=\"text-center\">Login Attempt Failed</h3>";
     }
     ?>
     <head>

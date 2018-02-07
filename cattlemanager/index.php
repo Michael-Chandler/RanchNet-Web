@@ -2,6 +2,9 @@
 <html lang="en">
 <?php
   include_once '../scripts/config.php';
+  if(!isset($_SESSION["auth"])){
+        header("Location: ".WEB_URL."/login");
+  }
 ?>
 <head>
   <meta charset="utf-8">
@@ -23,7 +26,7 @@
   
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+    <a class="navbar-brand" href="index.html">RanchNet</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -228,9 +231,6 @@
     <div class="container-fluid">
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="index.html">Dashboard</a>
-        </li>
         <li class="breadcrumb-item active">Cattle Manager</li>
       </ol>
       <div class="row">
@@ -271,7 +271,7 @@
                                         $URL = API_URL
                                         ."cattle"
                                         ."?token=".API_SECRET
-                                        ."&cattleSex=M";
+                                        ."&userId=".$_SESSION["userId"];
                         
                                         // using cURL
                                         $ch = curl_init();
