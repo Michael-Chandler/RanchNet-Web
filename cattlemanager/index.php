@@ -236,108 +236,82 @@
       <div class="row">
         <div class="col-12">
             <h1 class="page-header">RanchNet API Sample (Cattle Manager page)</h1>
-            <?php
-                // set up vars
-                $base_url = "http://ec2-52-14-44-201.us-east-2.compute.amazonaws.com/cattle?token=";
-                $config = include('../config.php');
-                $token = $config->token;
-                $query = "&cattleSex=M";
-                $URL = $base_url . $token . $query;
-
-                // using cURL
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_URL, $URL);
-                $result = curl_exec($ch);
-                curl_close($ch);
-
-                // get php object
-                $obj = json_decode($result);
-
-                // table template head
-                echo "<div class=\"card mb-3\">";
-                    echo "<div class=\"card-header\">";
-                        echo "<i class=\"fa fa-table\"></i> Cattle Table</div>";
-                    echo "<div class=\"card-body\">";
-                        echo "<div class=\"table-responsive\">";
-                            echo "<table class=\"table table-bordered\" id=\"dataTable\" width=\"100%\" cellspacing=\"0\">";
-                                echo "<thead>";
-                                    echo "<tr>";
-                                        echo "<th>ID</th>";
-                                        echo "<th>Name</th>";
-                                        echo "<th>Sex</th>";
-                                        echo "<th>Tag</th>";
-                                        echo "<th>Registered Number</th>";
-                                        echo "<th>Electronic ID</th>";
-                                        echo "<th>Animal Type</th>";
-                                        echo "<th>Sire Name</th>";
-                                        echo "<th>Dam Name</th>";
-                                        echo "<th>Dam Registered Number</th>";
-                                        echo "<th>Sire Registered Number</th>";
-                                        echo "<th>Date of Birth</th>";
-                                        echo "<th>Contraception</th>";
-                                        echo "<th>Breeder</th>";
-                                        echo "<th>Pregnant</th>";
-                                        echo "<th>Height</th>";
-                                        echo "<th>Weight</th>";
-                                        echo "<th>Pasture ID</th>";
-                                        echo "<th>User ID</th>";
-                                    echo "</tr>";
-                                echo "</thead>";
-                                echo "<tfoot>";
-                                    echo "<tr>";
-                                        echo "<th>ID</th>";
-                                        echo "<th>Name</th>";
-                                        echo "<th>Sex</th>";
-                                        echo "<th>Tag</th>";
-                                        echo "<th>Registered Number</th>";
-                                        echo "<th>Electronic ID</th>";
-                                        echo "<th>Animal Type</th>";
-                                        echo "<th>Sire Name</th>";
-                                        echo "<th>Dam Name</th>";
-                                        echo "<th>Dam Registered Number</th>";
-                                        echo "<th>Sire Registered Number</th>";
-                                        echo "<th>Date of Birth</th>";
-                                        echo "<th>Contraception</th>";
-                                        echo "<th>Breeder</th>";
-                                        echo "<th>Pregnant</th>";
-                                        echo "<th>Height</th>";
-                                        echo "<th>Weight</th>";
-                                        echo "<th>Pasture ID</th>";
-                                        echo "<th>User ID</th>";
-                                    echo "</tr>";
-                                echo "</tfoot>";
-                                echo "<tbody>";
-							    foreach ($obj as $line) {
-                                    echo "<tr>";
-                                        echo "<td>$line->cattleId</td>";
-                                        echo "<td>$line->cattleName</td>";
-                                        echo "<td>$line->cattleSex</td>";
-                                        echo "<td>$line->cattleTag</td>";
-                                        echo "<td>$line->cattleRegisteredNumber</td>";
-                                        echo "<td>$line->cattleElectronicId</td>";
-                                        echo "<td>$line->cattleAnimalType</td>";
-                                        echo "<td>$line->cattleSireName</td>";
-                                        echo "<td>$line->cattleDamName</td>";
-                                        echo "<td>$line->cattleDamRegisteredNumber</td>";
-                                        echo "<td>$line->cattleSireRegisteredNumber</td>";
-                                        echo "<td>$line->cattleDateOfBirth</td>";
-                                        echo "<td>$line->cattleContraception</td>";
-                                        echo "<td>$line->cattleBreeder</td>";
-                                        echo "<td>$line->cattlePregnant</td>";
-                                        echo "<td>$line->cattleHeight</td>";
-                                        echo "<td>$line->cattleWeight</td>";
-                                        echo "<td>$line->pastureId</td>";
-                                        echo "<td>$line->userId</td>";
-                                    echo "</tr>";
-                                }
-                                echo "</tbody>";
-                            echo "</table>";
-                        echo "</div>";
-                    echo "</div>";
-                echo "</div>";
-            ?>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i> Cattle Table</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Sex</th>
+                                        <th>Tag</th>
+                                        <th>Registered Number</th>
+                                        <th>Electronic ID</th>
+                                        <th>Animal Type</th>
+                                        <th>Sire Name</th>
+                                        <th>Dam Name</th>
+                                        <th>Dam Registered Number</th>
+                                        <th>Sire Registered Number</th>
+                                        <th>Date of Birth</th>
+                                        <th>Contraception</th>
+                                        <th>Breeder</th>
+                                        <th>Pregnant</th>
+                                        <th>Height</th>
+                                        <th>Weight</th>
+                                        <th>Pasture ID</th>
+                                        <th>User ID</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                        <?php
+                                        // set up vars
+                                        $URL = API_URL
+                                        ."cattle"
+                                        ."?token=".API_SECRET
+                                        ."&cattleSex=M";
+                        
+                                        // using cURL
+                                        $ch = curl_init();
+                                        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                                        curl_setopt($ch, CURLOPT_URL, $URL);
+                                        $result = curl_exec($ch);
+                                        curl_close($ch);
+                        
+                                        // get php object
+                                        $obj = json_decode($result);
+        							                  foreach ($obj as $line) {
+                                            echo "<tr>";
+                                                echo "<td>$line->cattleId</td>";
+                                                echo "<td>$line->cattleName</td>";
+                                                echo "<td>$line->cattleSex</td>";
+                                                echo "<td>$line->cattleTag</td>";
+                                                echo "<td>$line->cattleRegisteredNumber</td>";
+                                                echo "<td>$line->cattleElectronicId</td>";
+                                                echo "<td>$line->cattleAnimalType</td>";
+                                                echo "<td>$line->cattleSireName</td>";
+                                                echo "<td>$line->cattleDamName</td>";
+                                                echo "<td>$line->cattleDamRegisteredNumber</td>";
+                                                echo "<td>$line->cattleSireRegisteredNumber</td>";
+                                                echo "<td>$line->cattleDateOfBirth</td>";
+                                                echo "<td>$line->cattleContraception</td>";
+                                                echo "<td>$line->cattleBreeder</td>";
+                                                echo "<td>$line->cattlePregnant</td>";
+                                                echo "<td>$line->cattleHeight</td>";
+                                                echo "<td>$line->cattleWeight</td>";
+                                                echo "<td>$line->pastureId</td>";
+                                                echo "<td>$line->userId</td>";
+                                            echo "</tr>\n";
+                                        }
+                                        ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
         </div>
       </div>
     </div>
