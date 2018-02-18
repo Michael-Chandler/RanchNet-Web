@@ -15,7 +15,7 @@ $result = curl_exec($ch);
 curl_close($ch);
 
 // get php object (associative array)
-$data - array();
+$data = array();
 while($obj = json_decode($result, true)) {
 	$sub_array = array();
 	$sub_array[] = '<div data-id"'.$obj["pastureId"].'" data-column="pastureId">' . $obj["pastureId"] . '</div>';
