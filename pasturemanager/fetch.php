@@ -1,4 +1,5 @@
 <?php
+include_once('../auth.php');
 
 // set up vars
 $URL = API_URL
