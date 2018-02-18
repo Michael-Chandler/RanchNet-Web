@@ -13,8 +13,6 @@ include_once('../auth.php');
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom fonts for this template-->
 <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<!-- Page level plugin CSS-->
-<link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 <!-- Custom styles for this template-->
 <link href="css/sb-admin.css" rel="stylesheet">
 <!-- Extra stuff -->
@@ -197,7 +195,7 @@ include_once('../auth.php');
 							</div>
 							
 							<!-- Table -->
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="userTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -257,7 +255,7 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 		fetch_data();
 		
 		function fetch_data() {
-			var dataTable = $('#dataTable').DataTable({
+			var dataTable = $('#userTable').DataTable({
 				"processing" : true,
 				"serverSide" : true,
 				"order" : [],
