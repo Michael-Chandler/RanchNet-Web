@@ -196,7 +196,7 @@ include_once('../auth.php');
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>User ID</th>
-										<th></th>
+   					<th></th>
                                     </tr>
                                 </thead>
                             </table>
@@ -255,7 +255,7 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 				"serverSide" : true,
 				"order" : [],
 				"ajax" : {
-					url:"../pasturemanager/fetch.php",
+					url:"fetch.php",
 					type:"POST"
 				}
 			});
