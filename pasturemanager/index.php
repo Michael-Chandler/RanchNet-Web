@@ -15,11 +15,6 @@ include_once('../auth.php');
 <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <!-- Custom styles for this template-->
 <link href="css/sb-admin.css" rel="stylesheet">
-<!-- Extra stuff -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -181,29 +176,44 @@ include_once('../auth.php');
             <div class="col-12">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i> Pasture Table</div>
+                        <i class="fa fa-table"></i>Pasture Table</div>
                     <div class="card-body">
                         <div class="table-responsive">
-						
-							<!-- Add Button and alert message -->
-							<br />
-						    <div align="right">
-								<button type="button" name="add" id="add" class="btn btn-info">Add</button>
-							</div>
-							<br />
-							<div id="alert message">
-							</div>
-							
-							<!-- Table -->
-                            <table class="table table-bordered" id="userTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>User ID</th>
-   					<th></th>
                                     </tr>
                                 </thead>
+                                <tbody>
+<?php
+// set up vars
+$URL = API_URL
+    ."pastures"
+    ."?token=".API_SECRET
+    ."&userId=".$_SESSION["userId"];
+
+// using cURL
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_URL, $URL);
+$result = curl_exec($ch);
+curl_close($ch);
+
+// get php object
+$obj = json_decode($result);
+foreach ($obj as $line) {
+    echo "<tr>";
+    echo "<td>$line->pastureId</td>";
+	echo "<td>$line->pastureName</td>";
+    echo "<td>$line->userId</td>";
+    echo "</tr>\n";
+}
+?>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -261,21 +271,3 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 
 </body>
 
-<script type="text/javascript" language="javascript" >
-	$(document).ready(function() {
-		
-		fetch_data();
-		
-		function fetch_data() {
-			var dataTable = $('#userTable').DataTable({
-				"processing" : true,
-				"serverSide" : true,
-				"order" : [],
-				"ajax" : {
-					url:"fetch.php",
-					type:"POST"
-				}
-			});
-		}
-	});
-</script>
