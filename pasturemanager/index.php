@@ -1,5 +1,32 @@
 <?php
 include_once('../auth.php');
+include_once('process.php');
+
+// get record to be updated
+if(isset($_GET["edit"])) {
+	$pastureId = $_GET["edit"];
+	$edit_state = true;
+	
+	// set up vars
+	$URL = API_URL
+		."pastures"
+		."?token=".API_SECRET
+		."&pastureId=".$pastureId
+		."&userId=".$_SESSION["userId"];
+	// using cURL
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, $URL);
+	$result = curl_exec($ch);
+	curl_close($ch);
+	// get php object
+	$obj = json_decode($result);
+	foreach ($obj as $line) {
+		$pastureName = $line->pastureName;
+	}
+}
+
 ?>
 <head>
 <meta charset="utf-8">
@@ -180,6 +207,7 @@ include_once('../auth.php');
                     <div class="card-body">
                         <div class="table-responsive">
 							
+							<!-- New pasture message (needs  -->
 							<?php if(isset($_SESSION['msg'])): ?>
 								<div class="msg">
 									<?php
@@ -221,8 +249,8 @@ foreach ($obj as $line) {
     echo "<td>$line->pastureId</td>";
 	echo "<td>$line->pastureName</td>";
     echo "<td>$line->userId</td>";
-	echo "<td><a href=".">Edit</a></td>";		// Edit link
-	echo "<td><a href=".">Delete</a></td>";		// Delete link
+	echo "<td><a class="edit_btn" href="index.php?edit=<?php echo $line->pastureId; ?>">Edit</a></td>";		// Edit link
+	echo "<td><a class="del_btn" href=".">Delete</a></td>";		// Delete link
     echo "</tr>\n";
 }
 ?>
@@ -236,14 +264,20 @@ foreach ($obj as $line) {
 		
 		 <!-- Input Form -->
 		<form method="POST" action="process.php">
+		<input type="hidden" name="pastureId" value="<?php echo $pastureId; ?>">
 			<div class="input-group">
 				<label>Pasture Name</label>
-				<input type="text" name="pastureName" maxlength="64">
+				<input type="text" name="pastureName" maxlength="64" value="<?php echo $pastureName; ?>">
 			</div>
 			<div class="input-group">
+			<?php if($edit_state == false): ?>
 				<button type="submit" name="add" class="btn">Add Pasture</button>
+			<?php else: ?>
+				<button type="submit" name="update" class="btn">Update Pasture</button>
+			<?php endif ?>
 			</div>
 		</form>
+		
     </div>
 </div>
 <!-- /.container-fluid-->
