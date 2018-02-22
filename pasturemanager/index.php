@@ -244,16 +244,15 @@ curl_close($ch);
 
 // get php object
 $obj = json_decode($result);
-foreach ($obj as $line) {
-    echo "<tr>";
-    echo "<td>$line->pastureId</td>";
-	echo "<td>$line->pastureName</td>";
-    echo "<td>$line->userId</td>";
-	echo "<td><a class="edit_btn" href="index.php?edit=<?php echo $line->pastureId; ?>">Edit</a></td>";		// Edit link
-	echo "<td><a class="del_btn" href=".">Delete</a></td>";		// Delete link
-    echo "</tr>\n";
-}
-?>
+foreach ($obj as $line) { ?>
+    <tr>
+    <td><?php echo "$line->pastureId"; ?></td>
+	<td><?php echo "$line->pastureName"; ?></td>
+    <td><?php echo "$line->userId"; ?></td>
+	<td><a class="edit_btn" href="index.php?edit=<?php echo $line->pastureId; ?>">Edit</a></td>";		// Edit link
+	<td><a class="del_btn" href=".">Delete</a></td>";		// Delete link
+    </tr>\n";
+<?php } ?>
                                 </tbody>
                             </table>
                         </div>
