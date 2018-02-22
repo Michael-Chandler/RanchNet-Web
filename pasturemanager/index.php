@@ -179,6 +179,16 @@ include_once('../auth.php');
                         <i class="fa fa-table"></i>Pasture Table</div>
                     <div class="card-body">
                         <div class="table-responsive">
+							
+							<?php if(isset($_SESSION['msg'])): ?>
+								<div class="msg">
+									<?php
+										echo $_SESSION["msg"];
+										unset($_SESSION["msg"]);
+									?>
+								</div>
+							<?php endif ?>
+						
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -212,7 +222,7 @@ foreach ($obj as $line) {
 	echo "<td>$line->pastureName</td>";
     echo "<td>$line->userId</td>";
 	echo "<td><a href=".">Edit</a></td>";		// Edit link
-	echo "<td><a href=".">Delete</a></td>";	// Delete link
+	echo "<td><a href=".">Delete</a></td>";		// Delete link
     echo "</tr>\n";
 }
 ?>
@@ -223,6 +233,17 @@ foreach ($obj as $line) {
                 </div>
             </div>
         </div>
+		
+		 <!-- Input Form -->
+		<form method="POST" action="process.php">
+			<div class="input-group">
+				<label>Pasture Name</label>
+				<input type="text" name="pastureName" maxlength="64">
+			</div>
+			<div class="input-group">
+				<button type="submit" name="add" class="btn">Add Pasture</button>
+			</div>
+		</form>
     </div>
 </div>
 <!-- /.container-fluid-->
@@ -271,18 +292,6 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 <script src="js/sb-admin.min.js"></script>
   </div>
   <!-- /.content-wrapper-->
-  
-  
-  <!-- Input Form -->
-  <form method="POST" action="process.php">
-	<div class="input-group">
-		<label>Pasture Name</label>
-		<input type="text" name="pastureName" maxlength="64">
-	</div>
-	<div class="input-group">
-		<button type="submit" name="add" class="btn">Add Pasture</button>
-	</div>
-  </form>
   
 </body>
 

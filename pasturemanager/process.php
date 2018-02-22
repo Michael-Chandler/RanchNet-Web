@@ -24,6 +24,8 @@ if(isset($_POST["add"])) {
 	$result = curl_exec($curl);
 	curl_close($curl);
 
+	$_SESSION["msg"] = "New Pasture saved";
+
 	// return to pasture page
 	header("Location: ".WEB_URL."/pasturemanager");
 }
