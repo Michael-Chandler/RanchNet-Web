@@ -23,6 +23,9 @@ if(isset($_POST["add"])) {
 	curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
 	$result = curl_exec($curl);
 	curl_close($curl);
+
+	// return to pasture page
+	header("Location: ".WEB_URL."/pasturemanager");
 }
 
 ?>
