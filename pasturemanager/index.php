@@ -249,8 +249,8 @@ foreach ($obj as $line) { ?>
     <td><?php echo "$line->pastureId"; ?></td>
 	<td><?php echo "$line->pastureName"; ?></td>
     <td><?php echo "$line->userId"; ?></td>
-	<td><a class="edit_btn" href="index.php?edit=<?php echo $line->pastureId; ?>">Edit</a></td>";		// Edit link
-	<td><a class="del_btn" href=".">Delete</a></td>";		// Delete link
+	<td><a class="edit_btn" href="index.php?edit=<?php echo $line->pastureId; ?>">Edit</a></td>";
+	<td><a class="del_btn" href=".">Delete</a></td>";
     </tr>\n";
 <?php } ?>
                                 </tbody>

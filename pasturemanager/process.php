@@ -39,14 +39,14 @@ if(isset($_POST["update"])) {
 	// PUT request to API (starting URL)
 	$URL = API_URL
 		."pastures"
-		."?token=".API_SECRET;
+		."?token=".API_SECRET
+		."&pastureId=".$pastureId;
 	
 	#cURL stuff
 	$ch = curl_init($URL);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 	$data = array(
-			"pastureId" => $pastureId,
 			"pastureName" => $pastureName,
 			"userId" => $_SESSION["userId"]
 	);
