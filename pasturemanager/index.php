@@ -211,8 +211,8 @@ foreach ($obj as $line) {
     echo "<td>$line->pastureId</td>";
 	echo "<td>$line->pastureName</td>";
     echo "<td>$line->userId</td>";
-	echo "<td><a href="\#">Edit</a></td>";		// Edit link
-	echo "<td><a href="\#">Delete</a></td>";	// Delete link
+	echo "<td><a href=".">Edit</a></td>";		// Edit link
+	echo "<td><a href=".">Delete</a></td>";	// Delete link
     echo "</tr>\n";
 }
 ?>
