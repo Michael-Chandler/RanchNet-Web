@@ -47,7 +47,7 @@ if(isset($_POST["update"])) {
 	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 	$data = array(
 			"pastureId" => $pastureId,
-			"pastureName" => $pastureName
+			"pastureName" => $pastureName,
 			"userId" => $_SESSION["userId"]
 	);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
