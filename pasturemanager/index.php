@@ -185,6 +185,7 @@ include_once('../auth.php');
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>User ID</th>
+										<th colspan="2">Action</th>		<!-- Edit and Delete columns -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -210,6 +211,8 @@ foreach ($obj as $line) {
     echo "<td>$line->pastureId</td>";
 	echo "<td>$line->pastureName</td>";
     echo "<td>$line->userId</td>";
+	echo "<td><a href="\#">Edit</a></td>";		// Edit link
+	echo "<td><a href="\#">Delete</a></td>";	// Delete link
     echo "</tr>\n";
 }
 ?>
@@ -268,6 +271,19 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 <script src="js/sb-admin.min.js"></script>
   </div>
   <!-- /.content-wrapper-->
-
+  
+  
+  <!-- Input Form -->
+  <form method="POST" action="process.php">
+	<div class="input-group">
+		<label>Pasture Name</label>
+		<input type="text" name="pastureName" maxlength="64">
+	</div>
+	<div class="input-group">
+		<button type="submit" name="add" class="btn">Add Pasture</button>
+	</div>
+  </form>
+  
 </body>
+
 
