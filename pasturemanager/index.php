@@ -2,7 +2,7 @@
 include_once('../auth.php');
 include_once('process.php');
 
-// get record to be updated
+// get record to be updated -> fills the form and changes the Add button to update
 if(isset($_GET["edit"])) {
 	$pastureId = $_GET["edit"];
 	$edit_state = true;
@@ -203,7 +203,7 @@ if(isset($_GET["edit"])) {
             <div class="col-12">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i>Pasture Table</div>
+                        <i class="fa fa-table"></i> Pasture Table</div>
                     <div class="card-body">
                         <div class="table-responsive">
 							
@@ -250,7 +250,7 @@ foreach ($obj as $line) { ?>
 	<td><?php echo "$line->pastureName"; ?></td>
     <td><?php echo "$line->userId"; ?></td>
 	<td><a class="edit_btn" href="index.php?edit=<?php echo $line->pastureId; ?>">Edit</a></td>
-	<td><a class="del_btn" href=".">Delete</a></td>
+	<td><a class="del_btn" href="process.php?del=<?php echo $line->pastureId; ?>">Delete</a></td>
     </tr>
 <?php } ?>
                                 </tbody>
@@ -327,5 +327,6 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
   <!-- /.content-wrapper-->
   
 </body>
+
 
 

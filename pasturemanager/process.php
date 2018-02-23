@@ -6,10 +6,11 @@ $pastureName = "";
 $pastureId = 0;
 $edit_state = false;
 
+// POST - creates new record
 if(isset($_POST["add"])) {
 	$pastureName = $_POST["pastureName"];
 	
-	// POST request to API 
+	// POST request to API (starting URL)
 	$URL = API_URL
 		."pastures"
 		."?token=".API_SECRET;
@@ -26,12 +27,14 @@ if(isset($_POST["add"])) {
 	$result = curl_exec($curl);
 	curl_close($curl);
 	
-	$_SESSION["msg"] = "New Pasture saved";
+	
+	$_SESSION["msg"] = "New Pasture added";
 	
 	// return to pasture page
 	header("Location: ".WEB_URL."/pasturemanager");
 }
 
+// PUT - updates chosen record
 if(isset($_POST["update"])) {
 	$pastureName = $_POST["pastureName"];
 	$pastureId = $_POST["pastureId"];
@@ -61,4 +64,30 @@ if(isset($_POST["update"])) {
 	header("Location: ".WEB_URL."/pasturemanager");
 }
 
+if(isset($_GET["del"])) {
+	$pastureId = $_GET["del"];
+	$userId = $_SESSION["userId"];
+	
+	// DELETE request to API (starting URL)
+	$URL = API_URL
+		."pastures"
+		."?token=".API_SECRET
+		."&pastureId=".$pastureId
+		."&userId=".$userId;
+		
+	//cURL stuff
+	$ch = curl_init($URL);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+	$result = curl_exec($ch);
+	curl_close($ch);
+	
+	
+	$_SESSION["msg"] = "Pasture deleted";
+	
+	// return to pasture page
+	header("Location: ".WEB_URL."/pasturemanager");
+}
+
 ?>
+
