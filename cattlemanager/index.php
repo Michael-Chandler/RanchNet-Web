@@ -1,5 +1,47 @@
 <?php
 include_once('../auth.php');
+include_once('process.php');
+
+// get record to be updated -> fills the form and changes the Add button to updated
+if(isset($_GET["edit"])) {
+	$cattleId = $_GET["edit"];
+	$edit_state = true;
+	
+	// set up vars
+	$URL = API_URL
+		."cattle"
+		."?token=".API_SECRET
+		."&cattleId=".$cattleId
+		."$userId=".$_SESSION["userId"];
+	// using cURL
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, $URL);
+	$result = curl_exec($ch);
+	curl_close($ch);
+	// get php object
+	$obj = json_decode($result);
+	foreach($obj as $line) {
+		$catttleName = $line->cattleName;
+		$cattleSex = $line->cattleSex;
+		$cattleTag = $line->cattleTag;
+		$cattleRegisteredNumber = $line->cattleRegisteredNumber;
+		$cattleElectronicId = $line->cattleElectronicId;
+		$cattleAnimalType = $line->cattleAnimalType;
+		$cattleSire = $line->cattleSireName;
+		$cattleDamName = $line->cattleDamName;
+		$cattleDamRegisteredNumber = $line->cattleDamRegisteredNumber;
+		$cattleSireRegisteredNumber = $line->cattleSireRegisteredNumber;
+		$cattleDateOfBirth = $line->cattleDateOfBirth;
+		$cattleContraception = $line->cattleContraception;
+		$cattleBreeder = $line->cattleBreeder;
+		$cattlePregnant = $line->cattlePregnant;
+		$cattleHeight = $line->cattleHeight;
+		$cattleWeight = $line->cattleWeight;
+		$pastureId = $line->pastureId;
+	}
+}
 ?>
 <head>
 <meta charset="utf-8">
@@ -179,6 +221,16 @@ include_once('../auth.php');
                         <i class="fa fa-table"></i> Cattle Table</div>
                     <div class="card-body">
                         <div class="table-responsive">
+						
+							<?php if(isset($_SESSION["msg"])): ?>
+								<div class="msg">
+									<?php
+										echo $_SESSION["msg"];
+										unset($_SESSION["msg"]);
+									?>
+								</div>
+							<?php endif ?>
+							
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -201,6 +253,7 @@ include_once('../auth.php');
                                         <th>Weight</th>
                                         <th>Pasture ID</th>
                                         <th>User ID</th>
+										<th colspan="2">Action</th>		<!-- Edit and Delete columns -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -221,30 +274,31 @@ curl_close($ch);
 
 // get php object
 $obj = json_decode($result);
-foreach ($obj as $line) {
-    echo "<tr>";
-    echo "<td>$line->cattleId</td>";
-    echo "<td>$line->cattleName</td>";
-    echo "<td>$line->cattleSex</td>";
-    echo "<td>$line->cattleTag</td>";
-    echo "<td>$line->cattleRegisteredNumber</td>";
-    echo "<td>$line->cattleElectronicId</td>";
-    echo "<td>$line->cattleAnimalType</td>";
-    echo "<td>$line->cattleSireName</td>";
-    echo "<td>$line->cattleDamName</td>";
-    echo "<td>$line->cattleDamRegisteredNumber</td>";
-    echo "<td>$line->cattleSireRegisteredNumber</td>";
-    echo "<td>$line->cattleDateOfBirth</td>";
-    echo "<td>$line->cattleContraception</td>";
-    echo "<td>$line->cattleBreeder</td>";
-    echo "<td>$line->cattlePregnant</td>";
-    echo "<td>$line->cattleHeight</td>";
-    echo "<td>$line->cattleWeight</td>";
-    echo "<td>$line->pastureId</td>";
-    echo "<td>$line->userId</td>";
-    echo "</tr>\n";
-}
-?>
+foreach ($obj as $line) { ?>
+    <tr>
+    <td><?php echo "$line->cattleId"; ?></td>
+    <td><?php echo "$line->cattleName</td>"; ?></td>
+    <td><?php echo "$line->cattleSex</td>"; ?></td>
+    <td><?php echo "$line->cattleTag</td>"; ?></td>
+    <td><?php echo "$line->cattleRegisteredNumber</td>"; ?></td>
+    <td><?php echo "$line->cattleElectronicId</td>"; ?></td>
+    <td><?php echo "$line->cattleAnimalType</td>"; ?></td>
+    <td><?php echo "$line->cattleSireName</td>"; ?></td>
+    <td><?php echo "$line->cattleDamName</td>"; ?></td>
+    <td><?php echo "$line->cattleDamRegisteredNumber</td>"; ?></td>
+    <td><?php echo "$line->cattleSireRegisteredNumber</td>"; ?></td>
+    <td><?php echo "$line->cattleDateOfBirth</td>"; ?></td>
+    <td><?php echo "$line->cattleContraception</td>"; ?></td>
+    <td><?php echo "$line->cattleBreeder</td>"; ?></td>
+    <td><?php echo "$line->cattlePregnant</td>"; ?></td>
+    <td><?php echo "$line->cattleHeight</td>"; ?></td>
+    <td><?php echo "$line->cattleWeight</td>"; ?></td>
+    <td><?php echo "$line->pastureId</td>"; ?></td>
+    <td><?php echo "$line->userId</td>"; ?></td>
+	<td><a class="edit_btn" href="index.php?edit=<?php echo $line->cattleId; ?>">Edit</a></td>
+	<td><a class="del_btn" href="process.php?del=<?php echo $line->cattleId; ?>">Delete</a></td>
+    </tr>
+<?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -252,6 +306,73 @@ foreach ($obj as $line) {
                 </div>
             </div>
         </div>
+		
+		<!-- Input Form -->
+		<form method="POST" action="process.php">
+		<input type ="hidden" name="cattleId" value="<?php echo $cattleId; ?>">
+			<div class="input-group">
+				<label>Name: </label>
+				<input type="text" name="cattleName" maxlength="64" value="<?php echo $cattleName; ?>">
+				<label>Sex: </label>
+				<select name="cattleSex">
+					<?php if($cattleSex == "M"): ?>
+						<option value="M" selected>M</option>
+						<option value="F">F</option>
+					<?php endif ?>
+					<?php if($cattleSex == "F"): ?>
+						<option value="M">M</option>
+						<option value="F" selected>F</option>
+					<?php endif ?>
+				</select>
+				<label>Tag: </label>
+				<input type="text" name="cattleTag" maxlength="128" value="<?php echo $cattleTag; ?>">
+				<label>Registered Number: </label>
+				<input type="text" name="cattleRegisteredNumber" maxlength="128" value="<?php echo $cattleRegisteredNumber; ?>">
+				<label>Electronic ID: </label>
+				<input type="text" name="cattleElectronicId" maxlength="128" value="<?php echo $cattleElectronicId; ?>">
+				<label>Animal Type: </label>
+				<input type="text" name="cattleAnimalType" maxlength="128" value="<?php echo $cattleAnimalType; ?>">
+				<label>Sire Name: </label>
+				<input type="text" name="cattleSireName" maxlength="64" value="<?php echo $cattleSireName; ?>">
+				<label>Dam Name: </label>
+				<input type="text" name="cattleDamName" maxlength="64" value="<?php echo $cattleDamName; ?>">
+				<label>Dam Registered Number: </label>
+				<input type="text" name="cattleDamRegisteredNumber" maxlength="128" value="<?php echo $cattleDamRegisteredNumber; ?>">
+				<label>Sire Registered Number: </label>
+				<input type="text" name="cattleSireRegisteredNumber" maxlength="128" value="<?php echo $cattleSireRegisteredNumber; ?>">
+				<label>Date of Birth: </label>
+				<input type="date" name="cattleDateOfBirth" value="<?php echo $cattleDateOfBirth; ?>">
+				<label>Contraception: </label>
+				<input type="text" name="cattleContraception" maxlength="64" value="<?php echo $cattleContraception; ?>">
+				<label>Breeder: </label>
+				<input type="text" name="cattleBreeder" maxlength="64" value="<?php echo $cattleBreeder; ?>">
+				<label>Pregnant: </label>
+				<select name="cattlePregnant">
+					<?php if($cattlePregnant == 0): ?>
+						<option value="0" selected>M</option>
+						<option value="1">F</option>
+					<?php endif ?>
+					<?php if($cattlePregnant == 1): ?>
+						<option value="0">M</option>
+						<option value="1" selected>F</option>
+					<?php endif ?>
+				</select>
+				<label>Height: </label>
+				<input type="text" name="cattleHeight" maxlength="64" value="<?php echo $cattleHeight; ?>">
+				<label>Weight: </label>
+				<input type="text" name="cattleWeight" maxlength="64" value="<?php echo $cattleWeight; ?>">
+				<label>Pasture ID: </label>
+				<input type="text" name="pastureId" maxlength="11" value="<?php echo $pastureId; ?>">
+			</div>
+			<div class="input-group">
+			<?php if($edit_state == false): ?>
+				<button type="submit" name="add" class="btn">Add Cattle</button>
+			<?php else: ?>
+				<button type="submit" name="update" class="btn">Update Cattle</button>
+			<?php endif ?>
+			</div>
+		</form>
+		
     </div>
 </div>
 <!-- /.container-fluid-->
@@ -302,3 +423,4 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
   <!-- /.content-wrapper-->
 
 </body>
+
