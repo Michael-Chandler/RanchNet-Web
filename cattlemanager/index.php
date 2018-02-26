@@ -23,7 +23,7 @@ if(isset($_GET["edit"])) {
 	// get php object
 	$obj = json_decode($result);
 	foreach($obj as $line) {
-		$catttleName = $line->cattleName;
+		$cattleName = $line->cattleName;
 		$cattleSex = $line->cattleSex;
 		$cattleTag = $line->cattleTag;
 		$cattleRegisteredNumber = $line->cattleRegisteredNumber;
@@ -313,6 +313,8 @@ foreach ($obj as $line) { ?>
 			<div class="input-group">
 				<label>Name: </label>
 				<input type="text" name="cattleName" maxlength="64" value="<?php echo $cattleName; ?>">
+			</div>
+			<div class="input-group">
 				<label>Sex: </label>
 				<select name="cattleSex">
 					<?php if($cattleSex == "M"): ?>
@@ -324,28 +326,52 @@ foreach ($obj as $line) { ?>
 						<option value="F" selected>F</option>
 					<?php endif ?>
 				</select>
+			</div>
+			<div class="input-group">
 				<label>Tag: </label>
 				<input type="text" name="cattleTag" maxlength="128" value="<?php echo $cattleTag; ?>">
+			</div>
+			<div class="input-group">
 				<label>Registered Number: </label>
 				<input type="text" name="cattleRegisteredNumber" maxlength="128" value="<?php echo $cattleRegisteredNumber; ?>">
+			</div>
+			<div class="input-group">
 				<label>Electronic ID: </label>
 				<input type="text" name="cattleElectronicId" maxlength="128" value="<?php echo $cattleElectronicId; ?>">
+			</div>
+			<div class="input-group">
 				<label>Animal Type: </label>
 				<input type="text" name="cattleAnimalType" maxlength="128" value="<?php echo $cattleAnimalType; ?>">
+			</div>
+			<div class="input-group">
 				<label>Sire Name: </label>
 				<input type="text" name="cattleSireName" maxlength="64" value="<?php echo $cattleSireName; ?>">
+			</div>
+			<div class="input-group">
 				<label>Dam Name: </label>
 				<input type="text" name="cattleDamName" maxlength="64" value="<?php echo $cattleDamName; ?>">
+			</div>
+			<div class="input-group">
 				<label>Dam Registered Number: </label>
 				<input type="text" name="cattleDamRegisteredNumber" maxlength="128" value="<?php echo $cattleDamRegisteredNumber; ?>">
+			</div>
+			<div class="input-group">
 				<label>Sire Registered Number: </label>
 				<input type="text" name="cattleSireRegisteredNumber" maxlength="128" value="<?php echo $cattleSireRegisteredNumber; ?>">
+			</div>
+			<div class="input-group">
 				<label>Date of Birth: </label>
 				<input type="date" name="cattleDateOfBirth" value="<?php echo $cattleDateOfBirth; ?>">
+			</div>
+			<div class="input-group">
 				<label>Contraception: </label>
 				<input type="text" name="cattleContraception" maxlength="64" value="<?php echo $cattleContraception; ?>">
+			</div>
+			<div class="input-group">
 				<label>Breeder: </label>
 				<input type="text" name="cattleBreeder" maxlength="64" value="<?php echo $cattleBreeder; ?>">
+			</div>
+			<div class="input-group">
 				<label>Pregnant: </label>
 				<select name="cattlePregnant">
 					<?php if($cattlePregnant == 0): ?>
@@ -357,10 +383,16 @@ foreach ($obj as $line) { ?>
 						<option value="1" selected>F</option>
 					<?php endif ?>
 				</select>
+			</div>
+			<div class="input-group">
 				<label>Height: </label>
 				<input type="text" name="cattleHeight" maxlength="64" value="<?php echo $cattleHeight; ?>">
+			</div>
+			<div class="input-group">
 				<label>Weight: </label>
 				<input type="text" name="cattleWeight" maxlength="64" value="<?php echo $cattleWeight; ?>">
+			</div>
+			<div class="input-group">
 				<label>Pasture ID: </label>
 				<input type="text" name="pastureId" maxlength="11" value="<?php echo $pastureId; ?>">
 			</div>
