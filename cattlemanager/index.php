@@ -320,8 +320,7 @@ foreach ($obj as $line) { ?>
 					<?php if($cattleSex == "M"): ?>
 						<option value="M" selected>M</option>
 						<option value="F">F</option>
-					<?php endif ?>
-					<?php if($cattleSex == "F"): ?>
+					<?php else: ?>
 						<option value="M">M</option>
 						<option value="F" selected>F</option>
 					<?php endif ?>
@@ -375,12 +374,11 @@ foreach ($obj as $line) { ?>
 				<label>Pregnant: </label>
 				<select name="cattlePregnant">
 					<?php if($cattlePregnant == 0): ?>
-						<option value="0" selected>M</option>
-						<option value="1">F</option>
-					<?php endif ?>
-					<?php if($cattlePregnant == 1): ?>
-						<option value="0">M</option>
-						<option value="1" selected>F</option>
+						<option value="0" selected>0</option>
+						<option value="1">1</option>
+					<?php else: ?>
+						<option value="0">0</option>
+						<option value="1" selected>1</option>
 					<?php endif ?>
 				</select>
 			</div>
