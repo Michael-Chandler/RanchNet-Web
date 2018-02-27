@@ -188,7 +188,7 @@ if(isset($_GET["edit"])) {
             </div>
             </li>
             <li class="nav-item">
-            <form class="form-inline my-2 my-lg-0 mr-lg-2">
+            <!-- <form class="form-inline my-2 my-lg-0 mr-lg-2">
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="Search for...">
                     <span class="input-group-append">
@@ -197,7 +197,7 @@ if(isset($_GET["edit"])) {
                         </button>
                     </span>
                 </div>
-            </form>
+            </form> -->
             </li>
             <li class="nav-item">
             <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
@@ -453,4 +453,5 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
   <!-- /.content-wrapper-->
 
 </body>
+
 
