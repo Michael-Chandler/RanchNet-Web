@@ -229,6 +229,73 @@ if(isset($_GET["edit"])) {
                     <div class="card-header">
                         <i class="fa fa-table"></i> Cattle Table</div>
                     <div class="card-body">
+                        <!-- Input Form -->
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Cattle</button>
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <h2>Add Cattle</h2>
+                                <form method="POST" action="process.php">
+                                <input type ="hidden" name="cattleId" value="<?php echo $cattleId; ?>">                                        
+                                <label for="cattleName" class="form-control-label">Name: </label>
+                                        <input type="text" class="form-control" id="cattleName" name="cattleName" maxlength="64" value="<?php echo $cattleName; ?>">                                    
+                                        <label for="cattleSex" class="form-control-label">Sex: </label>
+                                        <select class="form-control" id="cattleSex" name="cattleSex">
+                                            <?php if($cattleSex == "M"): ?>
+                                                <option value="M" selected>M</option>
+                                                <option value="F">F</option>
+                                            <?php else: ?>
+                                                <option value="M">M</option>
+                                                <option value="F" selected>F</option>
+                                            <?php endif ?>
+                                        </select>                                        <label for="cattleTag" class="form-control-label">Tag: </label>
+                                        <input type="text" class="form-control" id="cattleTag" name="cattleTag" maxlength="128" value="<?php echo $cattleTag; ?>">                                                                            <label for="cattleRegisteredNumber" class="form-control-label">Registered Number: </label>
+                                        <input type="text" class="form-control" id="cattleRegisteredNumber" name="cattleRegisteredNumber" maxlength="128" value="<?php echo $cattleRegisteredNumber; ?>">                                    
+                                        <label for="cattleElectronicId" class="form-control-label">Electronic ID: </label>
+                                        <input type="text" class="form-control" id="cattleElectronicId" name="cattleElectronicId" maxlength="128" value="<?php echo $cattleElectronicId; ?>">                                    
+                                        <label for="cattleAnimalType" class="form-control-label">Animal Type: </label>
+                                        <input type="text" class="form-control" id="cattleAnimalType" name="cattleAnimalType" maxlength="128" value="<?php echo $cattleAnimalType; ?>">                                    
+                                        <label for="cattleSireName" class="form-control-label">Sire Name: </label>
+                                        <input type="text" class="form-control" id="cattleSireName" name="cattleSireName" maxlength="64" value="<?php echo $cattleSireName; ?>">                                    
+                                        <label for="cattleDamName" class="form-control-label">Dam Name: </label>
+                                        <input type="text" class="form-control" id="cattleDamName" name="cattleDamName" maxlength="64" value="<?php echo $cattleDamName; ?>">                                    
+                                        <label for="cattleDamRegisteredNumber" class="form-control-label">Dam Registered Number: </label>
+                                        <input type="text" class="form-control" id="cattleDamRegisteredNumber" name="cattleDamRegisteredNumber" maxlength="128" value="<?php echo $cattleDamRegisteredNumber; ?>">                                    
+                                        <label for="cattleSireRegisteredNumber" class="form-control-label">Sire Registered Number: </label>
+                                        <input type="text" class="form-control" id="cattleSireRegisteredNumber" name="cattleSireRegisteredNumber" maxlength="128" value="<?php echo $cattleSireRegisteredNumber; ?>">                                    
+                                        <label for="cattleDateOfBirth" class="form-control-label">Date of Birth: </label>
+                                        <input type="date" class="form-control" id="cattleDateOfBirth" name="cattleDateOfBirth" value="<?php echo $cattleDateOfBirth; ?>">                                    
+                                        <label for="cattleContraception" class="form-control-label">Contraception: </label>
+                                        <input type="text" class="form-control" id="cattleContraception" name="cattleContraception" maxlength="64" value="<?php echo $cattleContraception; ?>">                                    
+                                        <label for="cattleBreeder" class="form-control-label">Breeder: </label>
+                                        <input type="text" class="form-control" id="cattleBreeder" name="cattleBreeder" maxlength="64" value="<?php echo $cattleBreeder; ?>">                                    
+                                        <label for="cattlePregnant" class="form-control-label">Pregnant: </label>
+                                        <select class="form-control" id="cattlePregnant" name="cattlePregnant">
+                                            <?php if($cattlePregnant == 0): ?>
+                                                <option value="0" selected>0</option>
+                                                <option value="1">1</option>
+                                            <?php else: ?>
+                                                <option value="0">0</option>
+                                                <option value="1" selected>1</option>
+                                            <?php endif ?>
+                                        </select>                                    
+                                        <label for="cattleHeight" class="form-control-label">Height: </label>
+                                        <input type="text" class="form-control" id="cattleHeight" name="cattleHeight" maxlength="64" value="<?php echo $cattleHeight; ?>">                                    
+                                        <label for="cattleWeight" class="form-control-label">Weight: </label>
+                                        <input type="text" class="form-control" id="cattleWeight" name="cattleWeight" maxlength="64" value="<?php echo $cattleWeight; ?>">                                    
+                                        <label for="pastureId" class="form-control-label">Pasture ID: </label>
+                                        <input type="text" class="form-control" id="pastureId" name="pastureId" maxlength="11" value="<?php echo $pastureId; ?>">                                    
+                                    <?php if($edit_state == false): ?>
+                                        <button type="submit" class="form-control" id="add" name="add" class="btn">Add Cattle</button>
+                                        
+                                    <?php else: ?>
+                                        <button type="submit" class="form-control" id="update" name="update" class="btn">Update Cattle</button>
+                                    <?php endif ?>
+                                        <a href="/cattlemanager" id="cancel" name="cancel" class="form-control btn">Cancel</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         <div class="table-responsive">
 						
 							<?php if(isset($_SESSION["msg"])): ?>
@@ -316,102 +383,6 @@ foreach ($obj as $line) { ?>
             </div>
         </div>
 		
-		<!-- Input Form -->
-		<form method="POST" action="process.php">
-		<input type ="hidden" name="cattleId" value="<?php echo $cattleId; ?>">
-			<div class="input-group">
-				<label>Name: </label>
-				<input type="text" name="cattleName" maxlength="64" value="<?php echo $cattleName; ?>">
-			</div>
-			<div class="input-group">
-				<label>Sex: </label>
-				<select name="cattleSex">
-					<?php if($cattleSex == "M"): ?>
-						<option value="M" selected>M</option>
-						<option value="F">F</option>
-					<?php else: ?>
-						<option value="M">M</option>
-						<option value="F" selected>F</option>
-					<?php endif ?>
-				</select>
-			</div>
-			<div class="input-group">
-				<label>Tag: </label>
-				<input type="text" name="cattleTag" maxlength="128" value="<?php echo $cattleTag; ?>">
-			</div>
-			<div class="input-group">
-				<label>Registered Number: </label>
-				<input type="text" name="cattleRegisteredNumber" maxlength="128" value="<?php echo $cattleRegisteredNumber; ?>">
-			</div>
-			<div class="input-group">
-				<label>Electronic ID: </label>
-				<input type="text" name="cattleElectronicId" maxlength="128" value="<?php echo $cattleElectronicId; ?>">
-			</div>
-			<div class="input-group">
-				<label>Animal Type: </label>
-				<input type="text" name="cattleAnimalType" maxlength="128" value="<?php echo $cattleAnimalType; ?>">
-			</div>
-			<div class="input-group">
-				<label>Sire Name: </label>
-				<input type="text" name="cattleSireName" maxlength="64" value="<?php echo $cattleSireName; ?>">
-			</div>
-			<div class="input-group">
-				<label>Dam Name: </label>
-				<input type="text" name="cattleDamName" maxlength="64" value="<?php echo $cattleDamName; ?>">
-			</div>
-			<div class="input-group">
-				<label>Dam Registered Number: </label>
-				<input type="text" name="cattleDamRegisteredNumber" maxlength="128" value="<?php echo $cattleDamRegisteredNumber; ?>">
-			</div>
-			<div class="input-group">
-				<label>Sire Registered Number: </label>
-				<input type="text" name="cattleSireRegisteredNumber" maxlength="128" value="<?php echo $cattleSireRegisteredNumber; ?>">
-			</div>
-			<div class="input-group">
-				<label>Date of Birth: </label>
-				<input type="date" name="cattleDateOfBirth" value="<?php echo $cattleDateOfBirth; ?>">
-			</div>
-			<div class="input-group">
-				<label>Contraception: </label>
-				<input type="text" name="cattleContraception" maxlength="64" value="<?php echo $cattleContraception; ?>">
-			</div>
-			<div class="input-group">
-				<label>Breeder: </label>
-				<input type="text" name="cattleBreeder" maxlength="64" value="<?php echo $cattleBreeder; ?>">
-			</div>
-			<div class="input-group">
-				<label>Pregnant: </label>
-				<select name="cattlePregnant">
-					<?php if($cattlePregnant == 0): ?>
-						<option value="0" selected>0</option>
-						<option value="1">1</option>
-					<?php else: ?>
-						<option value="0">0</option>
-						<option value="1" selected>1</option>
-					<?php endif ?>
-				</select>
-			</div>
-			<div class="input-group">
-				<label>Height: </label>
-				<input type="text" name="cattleHeight" maxlength="64" value="<?php echo $cattleHeight; ?>">
-			</div>
-			<div class="input-group">
-				<label>Weight: </label>
-				<input type="text" name="cattleWeight" maxlength="64" value="<?php echo $cattleWeight; ?>">
-			</div>
-			<div class="input-group">
-				<label>Pasture ID: </label>
-				<input type="text" name="pastureId" maxlength="11" value="<?php echo $pastureId; ?>">
-			</div>
-			<div class="input-group">
-			<?php if($edit_state == false): ?>
-				<button type="submit" name="add" class="btn">Add Cattle</button>
-			<?php else: ?>
-				<button type="submit" name="update" class="btn">Update Cattle</button>
-			<?php endif ?>
-			</div>
-		</form>
-		
     </div>
 </div>
 <!-- /.container-fluid-->
@@ -465,6 +436,17 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin.min.js"></script>
+
+<!-- Edit usage -->
+<?php
+if(isset($_GET["edit"])) {
+echo '<script type="text/javascript">';
+echo '    $(window).on(\'load\',function(){';
+echo '        $(\'#myModal\').modal(\'show\');';
+echo '    });';
+echo '</script>';
+}
+?>
 
 <!-- DataTable usage -->
 <script>
