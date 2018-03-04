@@ -44,6 +44,7 @@ if(isset($_GET["edit"])) {
 }
 ?>
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -385,10 +386,8 @@ foreach ($obj as $line) { ?>
                 </div>
             </div>
         </div>
-		
     </div>
 </div>
-<!-- /.container-fluid-->
 
 <footer class="sticky-footer">
     <div class="container">
@@ -424,6 +423,9 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
         </div>
     </div>
 </div>
+
+<!-- jQuery -->
+<script src="vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
@@ -461,9 +463,6 @@ echo '</script>';
         });
     });
 </script>
-
-  </div>
-  <!-- /.content-wrapper-->
 
 </body>
 </html>
