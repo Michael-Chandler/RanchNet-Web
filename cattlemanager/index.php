@@ -58,6 +58,9 @@ if(isset($_GET["edit"])) {
 <!-- Bootstrap core CSS-->
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+<!-- DataTables CDN -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+
 <!-- Page level plugin CSS-->
 <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
@@ -425,9 +428,15 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
     </div>
 </div>
 
+<!-- jQuery -->
+<script src="vendor/jquery/jquery.min.js"></script>
+
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- DataTables CDN -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 
 <!-- Page level plugin JavaScript-->
 <script src="vendor/datatables/jquery.dataTables.js"></script>
@@ -453,6 +462,16 @@ echo '</script>';
 }
 ?>
 
+<!-- Initialize DataTable -->
+<script>
+    $(document).ready(function() {
+        $("#table").DataTable({
+            responsive: true
+        });
+    });
+</script>
+
 </body>
 </html>
+
 
