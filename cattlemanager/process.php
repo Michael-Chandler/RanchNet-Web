@@ -40,7 +40,6 @@ if(isset($_POST["add"])) {
 	$cattleHeight = $_POST["cattleHeight"];
 	$cattleWeight = $_POST["cattleWeight"];
 	$pastureId = $_POST["pastureId"];
-	$userId = $_SESSION["userId"];
 	
 	// POST request to API (starting URL)
 	$URL = API_URL
@@ -56,7 +55,7 @@ if(isset($_POST["add"])) {
 					"cattleSireRegisteredNumber" => $cattleSireRegisteredNumber, "cattleDateOfBirth" => $cattleDateOfBirth, "cattleContraception" => $cattleContraception, 
 					"cattleBreeder" => $cattleBreeder, "cattlePregnant" => $cattlePregnant, "cattleHeight" => $cattleHeight, 
 					"cattleWeight" => $cattleWeight, "pastureId" => $pastureId, 
-					"userId" => $userId
+					"userId" => $_SESSION["userId"]
 	);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($curl, CURLOPT_POST, true);
@@ -69,6 +68,7 @@ if(isset($_POST["add"])) {
 	
 	// return to pasture page
 	header("Location: ".WEB_URL."/cattlemanager");
+	die();
 }
 
 // PUT - updates chosen record
@@ -91,7 +91,6 @@ if(isset($_POST["update"])) {
 	$cattleHeight = $_POST["cattleHeight"];
 	$cattleWeight = $_POST["cattleWeight"];
 	$pastureId = $_POST["pastureId"];
-	$userId = $_SESSION["userId"];
 	
 	// PUT request to API (starting URL)
 	$URL = API_URL
@@ -110,7 +109,7 @@ if(isset($_POST["update"])) {
 			"cattleSireRegisteredNumber" => $cattleSireRegisteredNumber, "cattleDateOfBirth" => $cattleDateOfBirth, "cattleContraception" => $cattleContraception, 
 			"cattleBreeder" => $cattleBreeder, "cattlePregnant" => $cattlePregnant, "cattleHeight" => $cattleHeight, 
 			"cattleWeight" => $cattleWeight, "pastureId" => $pastureId, 
-			"userId" => $userId
+			"userId" => $_SESSION["userId"]
 	);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 	$result = curl_exec($ch);
@@ -121,6 +120,7 @@ if(isset($_POST["update"])) {
 	
 	// return to pasture page
 	header("Location: ".WEB_URL."/cattlemanager");
+	die();
 }
 
 // DELETE - deletes chosen record
