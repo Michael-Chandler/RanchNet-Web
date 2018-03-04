@@ -59,7 +59,7 @@ if(isset($_GET["edit"])) {
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Page level plugin CSS-->
-  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+<link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
 <!-- Custom fonts for this template-->
 <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -216,6 +216,7 @@ if(isset($_GET["edit"])) {
         </ul>
     </div>
 </nav>
+
 <div class="content-wrapper">
     <div class="container-fluid">
         <h1 class="page-header">Cattle Manager</h1>
@@ -424,9 +425,6 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
     </div>
 </div>
 
-<!-- jQuery -->
-<script src="vendor/jquery/jquery.min.js"></script>
-
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -454,15 +452,6 @@ echo '    });';
 echo '</script>';
 }
 ?>
-
-<!-- DataTable usage -->
-<script>
-    $(document).ready(function() {
-        $('#table').DataTable({
-            responsive: true
-        });
-    });
-</script>
 
 </body>
 </html>
