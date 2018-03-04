@@ -43,6 +43,9 @@ if(isset($_GET["edit"])) {
 	}
 }
 ?>
+
+<html lang="en">
+
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,11 +57,8 @@ if(isset($_GET["edit"])) {
 <!-- Bootstrap core CSS-->
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- DataTables CSS -->
-<link href="vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-
-<!-- DataTables Responsive CSS -->
-<link href="vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+<!-- Page level plugin CSS-->
+  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
 <!-- Custom fonts for this template-->
 <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -229,15 +229,17 @@ if(isset($_GET["edit"])) {
                     <div class="card-header">
                         <i class="fa fa-table"></i> Cattle Table</div>
                     <div class="card-body">
+					
                         <!-- Input Form -->
                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Cattle</button>
                         <div id="myModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                 <h2>Add Cattle</h2>
-                                <form method="POST" action="process.php">
-                                <input type ="hidden" name="cattleId" value="<?php echo $cattleId; ?>">                                        
-                                <label for="cattleName" class="form-control-label">Name: </label>
+									<form method="POST" action="process.php">
+										<input type ="hidden" name="cattleId" value="<?php echo $cattleId; ?>">
+										<label type="text" class="form-control-label">User ID: <?php echo $_SESSION["userId"]; ?> </label>
+										<label for="cattleName" class="form-control-label">Name: </label>
                                         <input type="text" class="form-control" id="cattleName" name="cattleName" maxlength="64" value="<?php echo $cattleName; ?>">                                    
                                         <label for="cattleSex" class="form-control-label">Sex: </label>
                                         <select class="form-control" id="cattleSex" name="cattleSex">
@@ -248,7 +250,8 @@ if(isset($_GET["edit"])) {
                                                 <option value="M">M</option>
                                                 <option value="F" selected>F</option>
                                             <?php endif ?>
-                                        </select>                                        <label for="cattleTag" class="form-control-label">Tag: </label>
+                                        </select>                                        
+										<label for="cattleTag" class="form-control-label">Tag: </label>
                                         <input type="text" class="form-control" id="cattleTag" name="cattleTag" maxlength="128" value="<?php echo $cattleTag; ?>">                                                                            <label for="cattleRegisteredNumber" class="form-control-label">Registered Number: </label>
                                         <input type="text" class="form-control" id="cattleRegisteredNumber" name="cattleRegisteredNumber" maxlength="128" value="<?php echo $cattleRegisteredNumber; ?>">                                    
                                         <label for="cattleElectronicId" class="form-control-label">Electronic ID: </label>
@@ -264,7 +267,7 @@ if(isset($_GET["edit"])) {
                                         <label for="cattleSireRegisteredNumber" class="form-control-label">Sire Registered Number: </label>
                                         <input type="text" class="form-control" id="cattleSireRegisteredNumber" name="cattleSireRegisteredNumber" maxlength="128" value="<?php echo $cattleSireRegisteredNumber; ?>">                                    
                                         <label for="cattleDateOfBirth" class="form-control-label">Date of Birth: </label>
-                                        <input type="date" class="form-control" id="cattleDateOfBirth" name="cattleDateOfBirth" value="<?php echo $cattleDateOfBirth; ?>">                                    
+                                        <input type="date" class="form-control" id="cattleDateOfBirth" name="cattleDateOfBirth" value="<?php echo date($cattleDateOfBirth); ?>">                                    
                                         <label for="cattleContraception" class="form-control-label">Contraception: </label>
                                         <input type="text" class="form-control" id="cattleContraception" name="cattleContraception" maxlength="64" value="<?php echo $cattleContraception; ?>">                                    
                                         <label for="cattleBreeder" class="form-control-label">Breeder: </label>
@@ -285,17 +288,17 @@ if(isset($_GET["edit"])) {
                                         <input type="text" class="form-control" id="cattleWeight" name="cattleWeight" maxlength="64" value="<?php echo $cattleWeight; ?>">                                    
                                         <label for="pastureId" class="form-control-label">Pasture ID: </label>
                                         <input type="text" class="form-control" id="pastureId" name="pastureId" maxlength="11" value="<?php echo $pastureId; ?>">                                    
-                                    <?php if($edit_state == false): ?>
-                                        <button type="submit" class="form-control" id="add" name="add" class="btn">Add Cattle</button>
-                                        
-                                    <?php else: ?>
-                                        <button type="submit" class="form-control" id="update" name="update" class="btn">Update Cattle</button>
-                                    <?php endif ?>
+										<?php if($edit_state == false): ?>
+											<button type="submit" class="form-control" id="add" name="add" class="btn">Add Cattle</button>
+										<?php else: ?>
+											<button type="submit" class="form-control" id="update" name="update" class="btn">Update Cattle</button>
+										<?php endif ?>
                                         <a href="/cattlemanager" id="cancel" name="cancel" class="form-control btn">Cancel</a>
                                     </form>
                                 </div>
                             </div>
                         </div>
+						
                         <div class="table-responsive">
 						
 							<?php if(isset($_SESSION["msg"])): ?>
@@ -307,7 +310,7 @@ if(isset($_GET["edit"])) {
 								</div>
 							<?php endif ?>
 							
-                            <table class="table table-striped table-bordered table-hover" id="dataTable" width="100%">
+                            <table class="table table-striped table-bordered table-hover" id="table" width="100%">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -426,16 +429,18 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- DataTables JavaScript -->
-<script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script src="vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-<script src="vendor/datatables-responsive/dataTables.responsive.js"></script>
+<!-- Page level plugin JavaScript-->
+<script src="vendor/datatables/jquery.dataTables.js"></script>
+<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin.min.js"></script>
+
+<!-- Custom scripts for table pages-->
+<script src="js/sb-admin-datatables.min.js"></script>
 
 <!-- Edit usage -->
 <?php
@@ -451,7 +456,7 @@ echo '</script>';
 <!-- DataTable usage -->
 <script>
     $(document).ready(function() {
-        $('#dataTable').DataTable({
+        $('#table').DataTable({
             responsive: true
         });
     });
@@ -461,3 +466,5 @@ echo '</script>';
   <!-- /.content-wrapper-->
 
 </body>
+</html>
+
