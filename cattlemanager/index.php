@@ -58,14 +58,11 @@ if(isset($_GET["edit"])) {
 <!-- Bootstrap core CSS-->
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- DataTables CDN -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+<!-- Custom fonts for this template-->
+<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <!-- Page level plugin CSS-->
 <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-
-<!-- Custom fonts for this template-->
-<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <!-- Custom styles for this template-->
 <link href="css/sb-admin.css" rel="stylesheet">
@@ -228,8 +225,6 @@ if(isset($_GET["edit"])) {
             <li class="breadcrumb-item active">Cattle Manager</li>
         </ol>
         -->
-        <div class="row">
-            <div class="col-12">
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-table"></i> Cattle Table</div>
@@ -238,6 +233,9 @@ if(isset($_GET["edit"])) {
                         <!-- Input Form -->
                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Cattle</button>
                         <div id="myModal" class="modal fade" role="dialog">
+						<?php
+							include_once('../auth.php');
+						?>
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                 <h2>Add Cattle</h2>
@@ -405,11 +403,9 @@ foreach ($obj as $line) { ?>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
     </div>
-</div>
 
+<!-- Copyright footer -->
 <footer class="sticky-footer">
     <div class="container">
         <div class="text-center">
@@ -445,22 +441,16 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
     </div>
 </div>
 
-<!-- jQuery -->
-<script src="vendor/jquery/jquery.min.js"></script>
-
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- DataTables CDN -->
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Page level plugin JavaScript-->
 <script src="vendor/datatables/jquery.dataTables.js"></script>
 <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin.min.js"></script>
@@ -479,16 +469,10 @@ echo '</script>';
 }
 ?>
 
-<!-- Initialize DataTable -->
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#table").DataTable({
-            responsive: true
-        });
-    });
-</script>
+</div>
 
 </body>
 </html>
+
 
 

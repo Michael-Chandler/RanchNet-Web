@@ -68,7 +68,6 @@ if(isset($_POST["add"])) {
 	
 	// return to pasture page
 	header("Location: ".WEB_URL."/cattlemanager");
-	die();
 }
 
 // PUT - updates chosen record
@@ -120,7 +119,6 @@ if(isset($_POST["update"])) {
 	
 	// return to pasture page
 	header("Location: ".WEB_URL."/cattlemanager");
-	die();
 }
 
 // DELETE - deletes chosen record
@@ -150,4 +148,5 @@ if(isset($_GET["del"])) {
 }
 
 ?>
+
 
