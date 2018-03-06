@@ -233,9 +233,6 @@ if(isset($_GET["edit"])) {
                         <!-- Input Form -->
                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Cattle</button>
                         <div id="myModal" class="modal fade" role="dialog">
-						<?php
-							include_once('../auth.php');
-						?>
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                 <h2>Add Cattle</h2>
@@ -473,6 +470,5 @@ echo '</script>';
 
 </body>
 </html>
-
 
 
