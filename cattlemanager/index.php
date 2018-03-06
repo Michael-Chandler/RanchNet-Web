@@ -327,7 +327,7 @@ if(isset($_GET["edit"])) {
 								</div>
 							<?php endif ?>
 							
-                            <table class="table table-striped table-bordered table-hover" id="table" width="100%">
+                            <table class="table table-striped table-bordered table-hover" id="dataTable" width="100%">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
