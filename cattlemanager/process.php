@@ -23,23 +23,23 @@ $pastureId = 0;
 
 // POST - creates a new record
 if(isset($_POST["add"])) {
-	$cattleName = $_POST["cattleName"];
-	$cattleSex = $_POST["cattleSex"];
-	$cattleTag = $_POST["cattleTag"];
-	$cattleRegisteredNumber = $_POST["cattleRegisteredNumber"];
-	$cattleElectronicId = $_POST["cattleElectronicId"];
-	$cattleAnimalType = $_POST["cattleAnimalType"];
-	$cattleSire = $_POST["cattleSire"];
-	$cattleDamName = $_POST["cattleDamName"];
-	$cattleDamRegisteredNumber = $_POST["cattleDamRegisteredNumber"];
-	$cattleSireRegisteredNumber = $_POST["cattleSireRegisteredNumber"];
-	$cattleDateOfBirth = $_POST["cattleDateOfBirth"];
-	$cattleContraception = $_POST["cattleContraception"];
-	$cattleBreeder = $_POST["cattleBreeder"];
-	$cattlePregnant = $_POST["cattlePregnant"];
-	$cattleHeight = $_POST["cattleHeight"];
-	$cattleWeight = $_POST["cattleWeight"];
-	$pastureId = $_POST["pastureId"];
+	$cattleName = urlencode($_POST["cattleName"]);
+	$cattleSex = urlencode($_POST["cattleSex"]);
+	$cattleTag = urlencode($_POST["cattleTag"]);
+	$cattleRegisteredNumber = urlencode($_POST["cattleRegisteredNumber"]);
+	$cattleElectronicId = urlencode($_POST["cattleElectronicId"]);
+	$cattleAnimalType = urlencode($_POST["cattleAnimalType"]);
+	$cattleSire = urlencode($_POST["cattleSire"]);
+	$cattleDamName = urlencode($_POST["cattleDamName"]);
+	$cattleDamRegisteredNumber = urlencode($_POST["cattleDamRegisteredNumber"]);
+	$cattleSireRegisteredNumber = urlencode($_POST["cattleSireRegisteredNumber"]);
+	$cattleDateOfBirth = urlencode($_POST["cattleDateOfBirth"]);
+	$cattleContraception = urlencode($_POST["cattleContraception"]);
+	$cattleBreeder = urlencode($_POST["cattleBreeder"]);
+	$cattlePregnant = urlencode($_POST["cattlePregnant"]);
+	$cattleHeight = urlencode($_POST["cattleHeight"]);
+	$cattleWeight = urlencode($_POST["cattleWeight"]);
+	$pastureId = urlencode($_POST["pastureId"]);
 	
 	// POST request to API (starting URL)
 	$URL = API_URL
@@ -47,7 +47,7 @@ if(isset($_POST["add"])) {
 		."?token=".API_SECRET;
 	
 	// cURL stuff
-	$curl = curl_init($URL);
+	$curl = curl_init();
 	$curl_post_data = array(
 					"cattleName" => $cattleName, "cattleSex" => $cattleSex, "cattleTag" => $cattleTag, 
 					"cattleRegisteredNumber" => $cattleRegisteredNumber, "cattleElectronicId" => $cattleElectronicId, "cattleAnimalType" => $cattleAnimalType, 
@@ -55,11 +55,18 @@ if(isset($_POST["add"])) {
 					"cattleSireRegisteredNumber" => $cattleSireRegisteredNumber, "cattleDateOfBirth" => $cattleDateOfBirth, "cattleContraception" => $cattleContraception, 
 					"cattleBreeder" => $cattleBreeder, "cattlePregnant" => $cattlePregnant, "cattleHeight" => $cattleHeight, 
 					"cattleWeight" => $cattleWeight, "pastureId" => $pastureId, 
-					"userId" => $_SESSION["userId"]
+					"userId" => urlencode($_SESSION["userId"])
 	);
-	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($curl, CURLOPT_POST, true);
+	
+	// url-ify the data for POST request
+	foreach($curl_post_data as $key=>$value) {
+		$post_string .= $key."=".$value."&";
+	}
+	// set URL, number of vars, POST data
+	curl_setopt($curl, CURLOPT_URL, $URL);
+	curl_setopt($curl, CURLOPT_POST, count($curl_post_data));
 	curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
+	// exec and close connection
 	$result = curl_exec($curl);
 	curl_close($curl);
 	
@@ -148,5 +155,6 @@ if(isset($_GET["del"])) {
 }
 
 ?>
+
 
 
