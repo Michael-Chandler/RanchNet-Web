@@ -71,7 +71,7 @@ if(isset($_POST["add"])) {
 	
 	// php object
 	$obj = json_decode($result);
-	echo $obj;
+	echo "RESULT HERE: " . $obj;
 	
 	// check result and go back to cattlemanager index page
 	/*if($err) {
@@ -82,10 +82,6 @@ if(isset($_POST["add"])) {
 		$_SESSION["msg"] = "New Cattle added";
 		header("Location: ".WEB_URL."/cattlemanager");
 	}*/
-	
-	
-	
-	
 }
 
 // PUT - updates chosen record
