@@ -67,14 +67,6 @@ if(isset($_GET["edit"])) {
 	<!-- Custom styles for this template-->
 	<link href="css/sb-admin.css" rel="stylesheet">
 	
-	<!-- Load DataTables stuff -->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	
-	<!-- Load more stuff 
-	<script src="vendor/datatables/jquery.dataTables.js"></script> 
-	<script src="vendor/datatables/dataTables.bootstrap4.js"></script>-->
-	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -228,10 +220,7 @@ if(isset($_GET["edit"])) {
 <div class="content-wrapper">
     <div class="container-fluid">
         <h1 class="page-header">Cattle Manager</h1>
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Cattle Manager</li>
-        </ol>
+				<!-- DataTables card -->
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-table"></i> Cattle Table</div>
@@ -334,7 +323,7 @@ if(isset($_GET["edit"])) {
 								</div>
 							<?php endif ?>
 							
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-striped table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -356,7 +345,8 @@ if(isset($_GET["edit"])) {
                                         <th>Weight</th>
                                         <th>Pasture ID</th>
                                         <th>User ID</th>
-										<th colspan="2">Action</th>		<!-- Edit and Delete columns -->
+										<th>Edit</th>
+										<th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -408,6 +398,7 @@ foreach ($obj as $line) { ?>
                     </div>
                 </div>
     </div>
+	<!-- /.container-fluid-->
 
 <!-- Copyright footer -->
 <footer class="sticky-footer">
@@ -445,16 +436,16 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
     </div>
 </div>
 
-<!-- Bootstrap core JavaScript
-<script src="vendor/jquery/jquery.min.js"></script>-->
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<!-- Page level plugin JavaScript 
+<!-- Page level plugin JavaScript-->
 <script src="vendor/datatables/jquery.dataTables.js"></script> 
-<script src="vendor/datatables/dataTables.bootstrap4.js"></script>-->
+<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin.min.js"></script>
@@ -474,6 +465,7 @@ echo '</script>';
 ?>
 
 </div>
+<!-- /.content-wrapper-->
 
 </body>
 </html>

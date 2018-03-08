@@ -29,27 +29,25 @@ if(isset($_GET["edit"])) {
 
 ?>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>RanchNet</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>RanchNet</title>
 
-<!-- Bootstrap core CSS-->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Bootstrap core CSS-->
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- DataTables CSS -->
-<link href="vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+	<!-- Custom fonts for this template-->
+	<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-<!-- DataTables Responsive CSS -->
-<link href="vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+	<!-- Page level plugin CSS-->
+	<link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
-<!-- Custom fonts for this template-->
-<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-<!-- Custom styles for this template-->
-<link href="css/sb-admin.css" rel="stylesheet">
+	<!-- Custom styles for this template-->
+	<link href="css/sb-admin.css" rel="stylesheet">
+	
 
 </head>
 
@@ -203,13 +201,7 @@ if(isset($_GET["edit"])) {
 <div class="content-wrapper">
     <div class="container-fluid">
         <h1 class="page-header">Pasture Manager</h1>
-        <!-- Breadcrumbs
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Cattle Manager</li>
-        </ol>
-        -->
-        <div class="row">
-            <div class="col-12">
+				<!-- DataTables card-->
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-table"></i> Pasture Table</div>
@@ -232,7 +224,8 @@ if(isset($_GET["edit"])) {
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>User ID</th>
-										<th colspan="2">Action</th>		<!-- Edit and Delete columns -->
+										<th>Edit</th>
+										<th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -267,8 +260,7 @@ foreach ($obj as $line) { ?>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+				
 		
 		 <!-- Input Form -->
 		<form method="POST" action="process.php">
@@ -287,8 +279,7 @@ foreach ($obj as $line) { ?>
 		</form>
 		
     </div>
-</div>
-<!-- /.container-fluid-->
+	<!-- /.container-fluid-->
 
 <footer class="sticky-footer">
     <div class="container">
@@ -349,7 +340,7 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
     });
 </script>
 
-  </div>
-  <!-- /.content-wrapper-->
+</div>
+<!-- /.content-wrapper-->
   
 </body>
