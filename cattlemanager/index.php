@@ -66,6 +66,11 @@ if(isset($_GET["edit"])) {
 
 	<!-- Custom styles for this template-->
 	<link href="css/sb-admin.css" rel="stylesheet">
+	
+	<!-- jQuery from Google CDN AND DataTables CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -443,8 +448,8 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<!-- Page level plugin JavaScript-->
-<script src="vendor/datatables/jquery.dataTables.js"></script>
+<!-- Page level plugin JavaScript
+<script src="vendor/datatables/jquery.dataTables.js"></script> -->
 <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Custom scripts for all pages-->
@@ -468,5 +473,6 @@ echo '</script>';
 
 </body>
 </html>
+
 
 
