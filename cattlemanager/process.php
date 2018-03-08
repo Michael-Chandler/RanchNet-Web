@@ -74,11 +74,11 @@ if(isset($_POST["add"])) {
 	
 	// check result and go back to cattlemanager index page
 	if($err) {
-		$_SESSION["msg"] = "cURL ERROR #:" . $err . $obj;
+		$_SESSION["msg"] = "cURL ERROR #:" . $err;
 		header("Location: ".WEB_URL."/cattlemanager");
 	}
 	else {
-		$_SESSION["msg"] = "New Cattle added" . $obj;
+		$_SESSION["msg"] = "New Cattle added";
 		header("Location: ".WEB_URL."/cattlemanager");
 	}
 }
