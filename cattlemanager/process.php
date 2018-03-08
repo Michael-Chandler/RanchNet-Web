@@ -57,24 +57,26 @@ if(isset($_POST["add"])) {
 					"cattleWeight" => $cattleWeight, "pastureId" => $pastureId, 
 					"userId" => urlencode($_SESSION["userId"])
 	);
-	
-	// url-ify the data for POST request
-	foreach($curl_post_data as $key=>$value) {
-		$post_string .= $key."=".$value."&";
-	}
 	// set URL, number of vars, POST data
 	curl_setopt($curl, CURLOPT_URL, $URL);
-	curl_setopt($curl, CURLOPT_POST, count($curl_post_data));
-	curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
+	curl_setopt($curl, CURLOPT_POST, 1);
+	curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($curl_post_data);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	// exec and close connection
 	$result = curl_exec($curl);
+	$err = curl_error($curl);
 	curl_close($curl);
 	
+	if($result == "OK") {
+		$_SESSION["msg"] = "New Cattle added";
+		header("Location: ".WEB_URL."/cattlemanager");
+	}
+	else {
+		$_SESSION["msg"] = "cURL ERROR #:" . $err;
+		header("Location: ".WEB_URL."/cattlemanager");
+	}
 	
-	$_SESSION["msg"] = "New Cattle added";
 	
-	// return to pasture page
-	header("Location: ".WEB_URL."/cattlemanager");
 }
 
 // PUT - updates chosen record
