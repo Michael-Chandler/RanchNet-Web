@@ -58,21 +58,30 @@ if(isset($_POST["add"])) {
 					"userId" => urlencode($_SESSION["userId"])
 	);
 	// set URL, number of vars, POST data
-	curl_setopt($curl, CURLOPT_URL, $URL);
-	curl_setopt($curl, CURLOPT_POST, 1);
-	curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($curl_post_data));
-	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt_array($curl, array(
+		CURLOPT_URL => $URL,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => "",
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 30,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => "POST",
+		CURLOPT_POSTFIELDS => $curl_post_data,
+	));
+	
 	// exec and close connection
 	$result = curl_exec($curl);
 	$err = curl_error($curl);
+	
 	curl_close($curl);
 	
-	if($result == "OK") {
-		$_SESSION["msg"] = "New Cattle added";
+	// check result and go back to cattlemanager index page
+	if($err) {
+		$_SESSION["msg"] = "cURL ERROR #:" . $err;
 		header("Location: ".WEB_URL."/cattlemanager");
 	}
 	else {
-		$_SESSION["msg"] = "cURL ERROR #:" . $err;
+		$_SESSION["msg"] = "New Cattle added";
 		header("Location: ".WEB_URL."/cattlemanager");
 	}
 	
