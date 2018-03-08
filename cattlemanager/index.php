@@ -48,25 +48,24 @@ if(isset($_GET["edit"])) {
 <html lang="en">
 
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>RanchNet</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>RanchNet</title>
 
-<!-- Bootstrap core CSS-->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Bootstrap core CSS-->
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Custom fonts for this template-->
-<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!-- Custom fonts for this template-->
+	<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-<!-- Page level plugin CSS-->
-<link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+	<!-- Page level plugin CSS-->
+	<link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
-<!-- Custom styles for this template-->
-<link href="css/sb-admin.css" rel="stylesheet">
-
+	<!-- Custom styles for this template-->
+	<link href="css/sb-admin.css" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -220,11 +219,10 @@ if(isset($_GET["edit"])) {
 <div class="content-wrapper">
     <div class="container-fluid">
         <h1 class="page-header">Cattle Manager</h1>
-        <!-- Breadcrumbs
+        <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item active">Cattle Manager</li>
         </ol>
-        -->
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-table"></i> Cattle Table</div>
@@ -327,7 +325,7 @@ if(isset($_GET["edit"])) {
 								</div>
 							<?php endif ?>
 							
-                            <table class="table table-striped table-bordered table-hover" id="dataTable" width="100%">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
