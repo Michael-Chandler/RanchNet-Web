@@ -218,7 +218,7 @@ if(isset($_GET["edit"])) {
 								</div>
 							<?php endif ?>
 						
-                            <table class="table table-striped table-bordered table-hover" id="dataTable" width="100%">
+                            <table class="table table-striped table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -320,25 +320,18 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- DataTables JavaScript -->
-<script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script src="vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-<script src="vendor/datatables-responsive/dataTables.responsive.js"></script>
-
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Page level plugin JavaScript-->
+<script src="vendor/datatables/jquery.dataTables.js"></script> 
+<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin.min.js"></script>
 
-<!-- DataTable usage -->
-<script>
-    $(document).ready(function() {
-        $('#dataTable').DataTable({
-            responsive: true
-        });
-    });
-</script>
+<!-- Custom scripts for table pages-->
+<script src="js/sb-admin-datatables.min.js"></script>
 
 </div>
 <!-- /.content-wrapper-->
