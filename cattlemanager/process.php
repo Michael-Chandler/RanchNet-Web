@@ -60,7 +60,7 @@ if(isset($_POST["add"])) {
 	// set URL, number of vars, POST data
 	curl_setopt($curl, CURLOPT_URL, $URL);
 	curl_setopt($curl, CURLOPT_POST, 1);
-	curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($curl_post_data);
+	curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($curl_post_data));
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	// exec and close connection
 	$result = curl_exec($curl);
