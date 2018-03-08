@@ -71,17 +71,16 @@ if(isset($_POST["add"])) {
 	
 	// php object
 	$obj = json_decode($result);
-	echo "RESULT HERE: " . $obj;
 	
 	// check result and go back to cattlemanager index page
-	/*if($err) {
-		$_SESSION["msg"] = "cURL ERROR #:" . $err;
+	if($err) {
+		$_SESSION["msg"] = "cURL ERROR #:" . $err . $obj;
 		header("Location: ".WEB_URL."/cattlemanager");
 	}
 	else {
-		$_SESSION["msg"] = "New Cattle added";
+		$_SESSION["msg"] = "New Cattle added" . $obj;
 		header("Location: ".WEB_URL."/cattlemanager");
-	}*/
+	}
 }
 
 // PUT - updates chosen record
