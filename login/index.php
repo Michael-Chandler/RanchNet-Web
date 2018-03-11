@@ -1,7 +1,7 @@
 <?php
 include_once '../scripts/config.php';
 if(isset($_SESSION["auth"])){
-    header("Location: ".WEB_URL."/cattlemanager");
+    // header("Location: ".WEB_URL."/cattlemanager");
 }
 elseif(isset($_POST["inputEmail"]) && isset($_POST["inputPassword"])){
     //TODO: Perform lookup of email and password hash to auth user.
@@ -25,6 +25,8 @@ elseif(isset($_POST["inputEmail"]) && isset($_POST["inputPassword"])){
         header("Location: ".WEB_URL."/cattlemanager");
     }
     echo "<h3 class=\"text-center\">Login Attempt Failed</h3>";
+	
+	var_dump(Password_Hash($_POST[inputPassword], PASSWORD_DEFAULT));
 }
 ?>
 <head>
@@ -52,4 +54,5 @@ elseif(isset($_POST["inputEmail"]) && isset($_POST["inputPassword"])){
 </div>
 <script src="js/index.js"></script>
 </body>
+
 
