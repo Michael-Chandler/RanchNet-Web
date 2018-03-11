@@ -27,8 +27,6 @@ elseif(isset($_POST["inputEmail"]) && isset($_POST["inputPassword"])){
         //header("Location: ".WEB_URL."/cattlemanager");
     }
     echo "<h3 class=\"text-center\">Login Attempt Failed</h3>";
-	
-	var_dump(Password_Hash($_POST[inputPassword], PASSWORD_DEFAULT));
 }
 ?>
 <head>
