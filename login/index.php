@@ -20,9 +20,11 @@ elseif(isset($_POST["inputEmail"]) && isset($_POST["inputPassword"])){
     curl_close($ch);
     $obj = json_decode($result, true);
     if(password_verify($_POST["inputPassword"], $obj[0]['userHash'])){
+		var_dump(Password_Hash($_POST[inputPassword], PASSWORD_DEFAULT));
+		
         $_SESSION["auth"] = "True";
         $_SESSION["userId"] = $obj[0]['userId'];
-        header("Location: ".WEB_URL."/cattlemanager");
+        //header("Location: ".WEB_URL."/cattlemanager");
     }
     echo "<h3 class=\"text-center\">Login Attempt Failed</h3>";
 	
