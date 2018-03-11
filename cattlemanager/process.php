@@ -48,7 +48,7 @@ if(isset($_POST["add"])) {
 	
 	// cURL stuff
 	$curl = curl_init();
-	$curl_post_data = array(
+	$curl_post = http_build_query(array(
 					"cattleName" => $cattleName, "cattleSex" => $cattleSex, "cattleTag" => $cattleTag, 
 					"cattleRegisteredNumber" => $cattleRegisteredNumber, "cattleElectronicId" => $cattleElectronicId, "cattleAnimalType" => $cattleAnimalType, 
 					"cattleSire" => $cattleSire, "cattleDamName" => $cattleDamName, "cattleDamRegisteredNumber" => $cattleDamRegisteredNumber, 
@@ -56,7 +56,10 @@ if(isset($_POST["add"])) {
 					"cattleBreeder" => $cattleBreeder, "cattlePregnant" => $cattlePregnant, "cattleHeight" => $cattleHeight, 
 					"cattleWeight" => $cattleWeight, "pastureId" => $pastureId, 
 					"userId" => urlencode($_SESSION["userId"])
-	);
+	));
+	// Remove Empty Fields
+	$curl_post_data = preg_replace('/[^\=\&]*\=[^\&]{0}\&/','',$curl_post);
+	
 	// set cURL opts
 	curl_setopt($curl, CURLOPT_URL, $URL);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -81,6 +84,7 @@ if(isset($_POST["add"])) {
 		$_SESSION["msg"] = "New Cattle added";
 		header("Location: ".WEB_URL."/cattlemanager");
 	}
+	var_dump($curl_post_data);
 }
 
 // PUT - updates chosen record
@@ -114,7 +118,7 @@ if(isset($_POST["update"])) {
 	$ch = curl_init($URL);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-	$data = array(
+	$raw_data = http_build_query(array(
 			"cattleName" => $cattleName, "cattleSex" => $cattleSex, "cattleTag" => $cattleTag, 
 			"cattleRegisteredNumber" => $cattleRegisteredNumber, "cattleElectronicId" => $cattleElectronicId, "cattleAnimalType" => $cattleAnimalType, 
 			"cattleSire" => $cattleSire, "cattleDamName" => $cattleDamName, "cattleDamRegisteredNumber" => $cattleDamRegisteredNumber, 
@@ -122,8 +126,11 @@ if(isset($_POST["update"])) {
 			"cattleBreeder" => $cattleBreeder, "cattlePregnant" => $cattlePregnant, "cattleHeight" => $cattleHeight, 
 			"cattleWeight" => $cattleWeight, "pastureId" => $pastureId, 
 			"userId" => $_SESSION["userId"]
-	);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+	));
+	// Remove Empty Fields
+	$data = preg_replace('/[^\=\&]*\=[^\&]{0}\&/','',$raw_data);
+	
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 	$result = curl_exec($ch);
 	curl_close($ch);
 	
