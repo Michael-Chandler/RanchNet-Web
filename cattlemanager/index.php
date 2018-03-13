@@ -29,7 +29,7 @@ if(isset($_GET["edit"])) {
 		$cattleRegisteredNumber = $line->cattleRegisteredNumber;
 		$cattleElectronicId = $line->cattleElectronicId;
 		$cattleAnimalType = $line->cattleAnimalType;
-		$cattleSire = $line->cattleSireName;
+		$cattleSireName = $line->cattleSireName;
 		$cattleDamName = $line->cattleDamName;
 		$cattleDamRegisteredNumber = $line->cattleDamRegisteredNumber;
 		$cattleSireRegisteredNumber = $line->cattleSireRegisteredNumber;
@@ -518,6 +518,7 @@ echo '</script>';
 
 </body>
 </html>
+
 
 
 

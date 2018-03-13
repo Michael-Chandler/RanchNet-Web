@@ -9,7 +9,7 @@ $cattleTag = "";
 $cattleRegisteredNumber = "";
 $cattleElectronicId = "";
 $cattleAnimalType = "";
-$cattleSire = "";
+$cattleSireName = "";
 $cattleDamName = "";
 $cattleDamRegisteredNumber = "";
 $cattleSireRegisteredNumber = "";
@@ -29,7 +29,7 @@ if(isset($_POST["add"])) {
 	$cattleRegisteredNumber = urlencode($_POST["cattleRegisteredNumber"]);
 	$cattleElectronicId = urlencode($_POST["cattleElectronicId"]);
 	$cattleAnimalType = urlencode($_POST["cattleAnimalType"]);
-	$cattleSire = urlencode($_POST["cattleSire"]);
+	$cattleSireName = urlencode($_POST["cattleSireName"]);
 	$cattleDamName = urlencode($_POST["cattleDamName"]);
 	$cattleDamRegisteredNumber = urlencode($_POST["cattleDamRegisteredNumber"]);
 	$cattleSireRegisteredNumber = urlencode($_POST["cattleSireRegisteredNumber"]);
@@ -51,7 +51,7 @@ if(isset($_POST["add"])) {
 	$curl_post_data = http_build_query(array_filter(array(
 					"cattleName" => $cattleName, "cattleSex" => $cattleSex, "cattleTag" => $cattleTag, 
 					"cattleRegisteredNumber" => $cattleRegisteredNumber, "cattleElectronicId" => $cattleElectronicId, "cattleAnimalType" => $cattleAnimalType, 
-					"cattleSire" => $cattleSire, "cattleDamName" => $cattleDamName, "cattleDamRegisteredNumber" => $cattleDamRegisteredNumber, 
+					"cattleSireName" => $cattleSireName, "cattleDamName" => $cattleDamName, "cattleDamRegisteredNumber" => $cattleDamRegisteredNumber, 
 					"cattleSireRegisteredNumber" => $cattleSireRegisteredNumber, "cattleDateOfBirth" => $cattleDateOfBirth, "cattleContraception" => $cattleContraception, 
 					"cattleBreeder" => $cattleBreeder, "cattlePregnant" => $cattlePregnant, "cattleHeight" => $cattleHeight, 
 					"cattleWeight" => $cattleWeight, "pastureId" => $pastureId, 
@@ -85,7 +85,7 @@ if(isset($_POST["update"])) {
 	$cattleRegisteredNumber = $_POST["cattleRegisteredNumber"];
 	$cattleElectronicId = $_POST["cattleElectronicId"];
 	$cattleAnimalType = $_POST["cattleAnimalType"];
-	$cattleSire = $_POST["cattleSire"];
+	$cattleSireName = $_POST["cattleSireName"];
 	$cattleDamName = $_POST["cattleDamName"];
 	$cattleDamRegisteredNumber = $_POST["cattleDamRegisteredNumber"];
 	$cattleSireRegisteredNumber = $_POST["cattleSireRegisteredNumber"];
@@ -110,7 +110,7 @@ if(isset($_POST["update"])) {
 	$data = http_build_query(array_filter(array(
 			"cattleName" => $cattleName, "cattleSex" => $cattleSex, "cattleTag" => $cattleTag, 
 			"cattleRegisteredNumber" => $cattleRegisteredNumber, "cattleElectronicId" => $cattleElectronicId, "cattleAnimalType" => $cattleAnimalType, 
-			"cattleSire" => $cattleSire, "cattleDamName" => $cattleDamName, "cattleDamRegisteredNumber" => $cattleDamRegisteredNumber, 
+			"cattleSireName" => $cattleSireName, "cattleDamName" => $cattleDamName, "cattleDamRegisteredNumber" => $cattleDamRegisteredNumber, 
 			"cattleSireRegisteredNumber" => $cattleSireRegisteredNumber, "cattleDateOfBirth" => $cattleDateOfBirth, "cattleContraception" => $cattleContraception, 
 			"cattleBreeder" => $cattleBreeder, "cattlePregnant" => $cattlePregnant, "cattleHeight" => $cattleHeight, 
 			"cattleWeight" => $cattleWeight, "pastureId" => $pastureId, 
@@ -155,6 +155,7 @@ if(isset($_GET["del"])) {
 }
 
 ?>
+
 
 
 
