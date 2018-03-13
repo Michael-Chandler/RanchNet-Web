@@ -191,7 +191,6 @@ include_once('process.php');
 						</div>
 					</div>
 					<button type="submit" class="btn btn-secondary form-control" id="pair" name="pair">Pair Up</button>
-					<br>
 					<button type="reset" class="btn btn-secondary form-control" value="Reset">Clear Fields</button>
 				</form>
 				<br>

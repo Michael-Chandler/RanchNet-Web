@@ -3,12 +3,12 @@ include_once('../auth.php');
 
 // initialize form vars
 $bullName = "";
-$bullDam = "";
-$bullSire = "";
+$bullDam = "bull's Dam";
+$bullSire = "bull's Sire";
 
 $cowName = "";
-$cowDam = "";
-$cowSire = "";
+$cowDam = "cow's Dam";
+$cowSire = "cow's Sire";
 
 if(isset($_POST["pair"])) {
 	$bullName = $_POST["bullName"];
@@ -56,13 +56,15 @@ if(isset($_POST["pair"])) {
 	
 	// check parents
 	if(($bullDam == $cowDam) || ($bullSire == $cowSire)) {
-		$_SESSION["res"] = "NEGATIVE";
+		$_SESSION["res"] = "NG Bull's Damn: " . $bullDam . ", Cow's Dam: " . $cowDam . ", Bull's Sire: " . $bullSire . ", Cow's Sire: " . $cowSire;
 	}
 	else {
-		$_SESSION["res"] = "POSITIVE";
+		$_SESSION["res"] = "PS Bull's Damn: " . $bullDam . ", Cow's Dam: " . $cowDam . ", Bull's Sire: " . $bullSire . ", Cow's Sire: " . $cowSire;
 	}
 	
 	header("Location: ".WEB_URL."/reports/pair.php");
 }
 
 ?>
+
+
