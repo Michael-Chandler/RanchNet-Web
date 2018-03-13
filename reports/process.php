@@ -56,10 +56,10 @@ if(isset($_POST["pair"])) {
 	
 	// check parents
 	if(($bullDam == $cowDam) || ($bullSire == $cowSire)) {
-		$_SESSION["res"] = "NG Bull's Damn: " . $bullDam . ", Cow's Dam: " . $cowDam . ", Bull's Sire: " . $bullSire . ", Cow's Sire: " . $cowSire;
+		$_SESSION["res"] = "NEGATIVE";
 	}
 	else {
-		$_SESSION["res"] = "PS Bull's Damn: " . $bullDam . ", Cow's Dam: " . $cowDam . ", Bull's Sire: " . $bullSire . ", Cow's Sire: " . $cowSire;
+		$_SESSION["res"] = "POSITIVE";
 	}
 	
 	header("Location: ".WEB_URL."/reports/pair.php");

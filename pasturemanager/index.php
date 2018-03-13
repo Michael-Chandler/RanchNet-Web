@@ -80,7 +80,7 @@ if(isset($_GET["edit"])) {
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
                 <li>
-                <a href="../reports/example1">Example Report 1</a>
+                <a href="../reports/pair.php">Pairing</a>
                 </li>
                 <li>
                 <a href="../reports/example2">Example Report 2</a>
@@ -337,3 +337,4 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 <!-- /.content-wrapper-->
   
 </body>
+
