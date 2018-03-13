@@ -15,43 +15,43 @@ if(isset($_POST["pair"])) {
 	$cowName = $_POST["cowName"];
 	
 	// cURL stuff for bull's parents
-	$URL = API_URL
+	$bURL = API_URL
 		."cattle"
 		."?token=".API_SECRET
 		."&userId=".$_SESSION["userId"]
 		."&cattleName=".$bullName;
 		
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_URL, $URL);
-	$result = curl_exec($ch);
-	curl_close($ch);
+	$bullCH = curl_init();
+	curl_setopt($bullCH, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($bullCH, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($bullCH, CURLOPT_URL, $bURL);
+	$bResult = curl_exec($bullCH);
+	curl_close($bullCH);
 	
-	$obj = json_decode($result);
-	foreach($obj as $line) {
-		$bullDam = $line->cattleDamName;
+	$bull = json_decode($bResult);
+	foreach($bull as $line) {
 		$bullSire = $line->cattleSireName;
+		$bullDam = $line->cattleDamName;
 	}
 	
 	// cURL stuff for cow's parents
-	$URL = API_URL
+	$cURL = API_URL
 		."cattle"
 		."?token=".API_SECRET
 		."&userId=".$_SESSION["userId"]
 		."&cattleName=".$cowName;
 		
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_URL, $URL);
-	$result = curl_exec($ch);
-	curl_close($ch);
+	$cowCH = curl_init();
+	curl_setopt($cowCH, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($cowCH, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($cowCH, CURLOPT_URL, $cURL);
+	$cResult = curl_exec($cowCH);
+	curl_close($cowCH);
 	
-	$obj = json_decode($result);
-	foreach($obj as $line) {
-		$cowDam = $line->cattleDamName;
-		$cowSire = $line->cattleSireName;
+	$cow = json_decode($cResult);
+	foreach($cow as $row) {
+		$cowSire = $row->cattleSireName;
+		$cowDam = $row->cattleDamName;
 	}
 	
 	// check parents

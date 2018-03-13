@@ -181,12 +181,12 @@ include_once('process.php');
 					<div class="form-group">
 						<div class="form-row">
 							<div class="col-md-6">
-								<label for="exampleInputName">Bull name</label>
-								<input class="form-control" id="bullName" type="text" aria-describedby="nameHelp" placeholder="Enter bull name">
+								<label for="bullName">Bull name</label>
+								<input class="form-control" id="bullName" name="bullName" type="text" aria-describedby="nameHelp" placeholder="Enter bull name">
 							</div>
 							<div class="col-md-6">
-								<label for="exampleInputLastName">Cow name</label>
-								<input class="form-control" id="cowName" type="text" aria-describedby="nameHelp" placeholder="Enter cow name">
+								<label for="cowName">Cow name</label>
+								<input class="form-control" id="cowName" name="cowName" type="text" aria-describedby="nameHelp" placeholder="Enter cow name">
 							</div>
 						</div>
 					</div>
