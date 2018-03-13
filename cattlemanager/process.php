@@ -64,24 +64,16 @@ if(isset($_POST["add"])) {
 	curl_setopt($curl, CURLOPT_POST, true);
 	curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
 	
-	
 	// exec and see if there are any errors and close connection
 	$result = curl_exec($curl);
 	$err = curl_error($curl);
 	curl_close($curl);
 	
-	// php object
-	$obj = json_decode($result);
 	
-	// check result and go back to cattlemanager index page
-	if($err) {
-		$_SESSION["msg"] = "cURL ERROR #:" . $err;
-		header("Location: ".WEB_URL."/cattlemanager");
-	}
-	else {
-		$_SESSION["msg"] = "New Cattle added";
-		header("Location: ".WEB_URL."/cattlemanager");
-	}
+	$_SESSION["msg"] = "New Cattle added";
+	
+	// return to cattle page
+	header("Location: ".WEB_URL."/cattlemanager");
 }
 
 // PUT - updates chosen record
@@ -132,7 +124,7 @@ if(isset($_POST["update"])) {
 	
 	$_SESSION["msg"] = "Cattle updated";
 	
-	// return to pasture page
+	// return to cattle page
 	header("Location: ".WEB_URL."/cattlemanager");
 }
 
@@ -158,7 +150,7 @@ if(isset($_GET["del"])) {
 	
 	$_SESSION["msg"] = "Cattle deleted";
 	
-	// return to pasture page
+	// return to cattle page
 	header("Location: ".WEB_URL."/cattlemanager");
 }
 
