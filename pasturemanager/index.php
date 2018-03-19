@@ -80,10 +80,10 @@ if(isset($_GET["edit"])) {
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
                 <li>
-                <a href="../reports/pair.php">Pairing</a>
+                <a href="../reports/pair">Pair Up</a>
                 </li>
                 <li>
-                <a href="../reports/example2">Example Report 2</a>
+                <a href="../reports/bullsweight">Weight of all Bulls</a>
                 </li>
             </ul>
             </li>

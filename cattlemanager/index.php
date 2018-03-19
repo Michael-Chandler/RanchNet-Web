@@ -98,10 +98,10 @@ if(isset($_GET["edit"])) {
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
                 <li>
-                <a href="../reports/pair.php">Pairing</a>
+                <a href="../reports/pair">Pair Up</a>
                 </li>
                 <li>
-                <a href="../reports/example2">Example Report 2</a>
+                <a href="../reports/bullsweight">Weight of all Bulls</a>
                 </li>
             </ul>
             </li>
@@ -291,7 +291,7 @@ if(isset($_GET["edit"])) {
 											</div>
 										</div>
 										<!-- Dam input -->
-										<div class="form-group">>
+										<div class="form-group">
 											<div class="form-row">
 												<div class="col-md-4">
 													<label for="cattleDamName" class="form-control-label">Dam Name: </label>

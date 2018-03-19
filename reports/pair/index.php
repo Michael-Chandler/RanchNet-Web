@@ -54,10 +54,10 @@ include_once('process.php');
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
                 <li>
-                <a href="../reports/pair.php">Pairing</a>
+                <a href="../reports/pair">Pair Up</a>
                 </li>
                 <li>
-                <a href="../reports/example2">Example Report 2</a>
+                <a href="../reports/bullsweight">Weight of all Bulls</a>
                 </li>
             </ul>
             </li>
@@ -173,10 +173,12 @@ include_once('process.php');
     </div>
 </nav>
 
-	<div class="container">
+<div class="content-wrapper">
+	<div class="container-fluid">
 		<div class="card card-register mx-auto mt-5">
 			<div class="card-header">Pair Cattles</div>
 			<div class="card-body">
+			
 				<form method="POST" action="process.php">
 					<div class="form-group">
 						<div class="form-row">
@@ -193,9 +195,11 @@ include_once('process.php');
 					<button type="submit" class="btn btn-secondary form-control" id="pair" name="pair">Pair Up</button>
 					<button type="reset" class="btn btn-secondary form-control" value="Reset">Clear Fields</button>
 				</form>
+				
 				<br>
 				<br>
 				<br>
+				
 				<div class="text-center mt-4 mb-5">
 					<?php if(isset($_SESSION["res"])): ?>
 						<h4>RESULT</h4>
@@ -259,6 +263,7 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin.min.js"></script>
 
+</div>
 
 </body>
 </html>
