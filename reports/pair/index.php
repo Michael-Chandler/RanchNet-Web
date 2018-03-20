@@ -54,10 +54,10 @@ include_once('process.php');
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
                 <li>
-                <a href="reports/pair">Pair Up</a>
+                <a href="../reports/pair">Pair Up</a>
                 </li>
                 <li>
-                <a href="reports/bullsweight">Weight of all Bulls</a>
+                <a href="../reports/bullsweight">Weight of all Bulls</a>
                 </li>
             </ul>
             </li>

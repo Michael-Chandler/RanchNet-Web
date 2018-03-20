@@ -52,10 +52,10 @@ include_once('../auth.php');
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
                 <li>
-                <a href="reports/pair">Pair Up</a>
+                <a href="../reports/pair">Pair Up</a>
                 </li>
                 <li>
-                <a href="reports/bullsweight">Weight of all Bulls</a>
+                <a href="../reports/bullsweight">Weight of all Bulls</a>
                 </li>
             </ul>
             </li>
@@ -259,7 +259,7 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     
 	<!-- Page level plugin JavaScript-->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/chart.js/Chart.js"></script>
     
 	<!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
