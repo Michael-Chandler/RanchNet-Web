@@ -206,8 +206,8 @@ curl_close($ch);
 // get php object
 $obj = json_decode($result);
 foreach($obj as $line) {
-	array_push($cattleArray, $line->cattleTag);
-	array_push($weightArray, $line->cattleWeight);
+	$cattleArray[] = $line->cattleTag;
+	$weightArray[] = $line->cattleWeight;
 }
 ?>
 					<p><?php var_dump($cattleArray); ?></p>
