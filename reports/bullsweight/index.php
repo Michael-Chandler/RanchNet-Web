@@ -210,6 +210,8 @@ foreach($obj as $line) {
 	array_push($weightArray, $line->cattleWeight);
 }
 ?>
+					<p><?php var_dump($cattleArray); ?></p>
+					<p><?php var_dump($weightArray); ?></p>
 				</div>
 			</div>
 			
@@ -268,16 +270,16 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
     <script src="js/sb-admin-charts.js"></script>
 	
 	<!-- Charts.js usage -->
-	<script type="text/javascript">
+	<script>
 		var canvas = document.getElementById("barChart");
 		var myBarChart = new Chart(canvas, {
-			type: "bar",
+			type: 'bar',
 			data: {
 				labels: <?php echo json_encode($cattleArray); ?>,
 				datasets: [{
-					label: "Weight of all Bulls",
-					backgroundColor: "rgba(2,117,216,1)",
-					borderColor: "rgba(2,117,216,1)",
+					label: 'Weight of all Bulls',
+					backgroundColor: 'rgba(2,117,216,1)',
+					borderColor: 'rgba(2,117,216,1)',
 					data: <?php echo json_encode($weightArray); ?>
 				}]
 			},
