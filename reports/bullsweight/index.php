@@ -210,6 +210,7 @@ foreach($obj as $line) {
 	$weightArray[] = $line->cattleWeight;
 }
 ?>
+					<p><?php var_dump($obj); ?></p>
 					<p><?php var_dump($cattleArray); ?></p>
 					<p><?php var_dump($weightArray); ?></p>
 				</div>
