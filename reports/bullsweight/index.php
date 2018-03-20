@@ -34,13 +34,13 @@ include_once('../auth.php');
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cattle Manager">
-            <a class="nav-link" href="../cattlemanager">
+            <a class="nav-link" href="/cattlemanager">
                 <i class="fa fa-fw fa-dashboard"></i>
                 <span class="nav-link-text">Cattle Manager</span>
             </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pasture Manager">
-            <a class="nav-link" href="../pasturemanager">
+            <a class="nav-link" href="/pasturemanager">
                 <i class="fa fa-fw fa-map"></i>
                 <span class="nav-link-text">Pasture Manager</span>
             </a>
@@ -52,10 +52,10 @@ include_once('../auth.php');
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
                 <li>
-                <a href="../reports/pair">Pair Up</a>
+                <a href="../pair">Pair Up</a>
                 </li>
                 <li>
-                <a href="../reports/bullsweight">Weight of all Bulls</a>
+                <a href="../bullsweight">Weight of all Bulls</a>
                 </li>
             </ul>
             </li>
@@ -270,39 +270,38 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 	<!-- Charts.js usage -->
 	<script type="text/javascript">
 		var canvas = document.getElementById("barChart");
-		var data = {
-			labels: <?php echo json_encode($cattleArray); ?>,
-			datasets: [{
-				label: "Weight of all Bulls",
-				backgroundColor: "rgba(2,117,216,1)",
-				borderColor: "rgba(2,117,216,1)",
-				data: <?php echo json_encode($weightArray); ?>
-			}]
-		};
-		var option = {
-			scales: {
-				yAxes: [{
-					stacked: true,
-					gridLines: {
-						display: true
-					}
-				}],
-				xAxes: [{
-					gridLines: {
-						display: false
-					}
+		var myBarChart = new Chart(canvas, {
+			type: "bar",
+			data: {
+				labels: <?php echo json_encode($cattleArray); ?>,
+				datasets: [{
+					label: "Weight of all Bulls",
+					backgroundColor: "rgba(2,117,216,1)",
+					borderColor: "rgba(2,117,216,1)",
+					data: <?php echo json_encode($weightArray); ?>
 				}]
 			},
-			legend: {
-				display: false
-			},
-			animation: {
-				duration: 1000
+			options: {
+				scales: {
+					yAxes: [{
+						stacked: true,
+						gridLines: {
+							display: true
+						}
+					}],
+					xAxes: [{
+						gridLines: {
+							display: false
+						}
+					}]
+				},
+				legend: {
+					display: false
+				},
+				animation: {
+					duration: 1000
+				}
 			}
-		};
-		var myBarChart = Chart.Bar(canvas, {
-			data: data,
-			options: option
 		});
 	</script>
 	

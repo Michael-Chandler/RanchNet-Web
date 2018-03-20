@@ -36,13 +36,13 @@ include_once('process.php');
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cattle Manager">
-            <a class="nav-link" href="../cattlemanager">
+            <a class="nav-link" href="/cattlemanager">
                 <i class="fa fa-fw fa-dashboard"></i>
                 <span class="nav-link-text">Cattle Manager</span>
             </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pasture Manager">
-            <a class="nav-link" href="../pasturemanager">
+            <a class="nav-link" href="/pasturemanager">
                 <i class="fa fa-fw fa-map"></i>
                 <span class="nav-link-text">Pasture Manager</span>
             </a>
@@ -54,10 +54,10 @@ include_once('process.php');
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
                 <li>
-                <a href="../reports/pair">Pair Up</a>
+                <a href="../pair">Pair Up</a>
                 </li>
                 <li>
-                <a href="../reports/bullsweight">Weight of all Bulls</a>
+                <a href="../bullsweight">Weight of all Bulls</a>
                 </li>
             </ul>
             </li>
