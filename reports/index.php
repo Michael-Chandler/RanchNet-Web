@@ -262,7 +262,7 @@ if(isset($_GET["more"])) {
 						
 						<!-- ALL MAGIC SHOULD HAPPEN IN PROCESS.PHP's -->
 						<?php 
-							if(isset($_SESSION[])) {
+							if(isset($_SESSION["report"])) {
 								echo $_SESSION["report"];
 							} else {
 								echo "NO REPORT TO BE SHOWN";
