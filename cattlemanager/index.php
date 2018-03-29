@@ -2,6 +2,20 @@
 include_once('../auth.php');
 include_once('process.php');
 
+// cURL stuff for reports nav menu
+// set up URL
+$rURL = API_URL
+    ."reports"
+    ."?token=".API_SECRET;
+// using cURL
+$rch = curl_init();
+curl_setopt($rch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($rch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($rch, CURLOPT_URL, $rURL);
+$report = curl_exec($rch);
+curl_close($rch);
+// MORE at the nav menu
+
 // get record to be updated -> fills the form and changes the Add button to updated
 if(isset($_GET["edit"])) {
 	$cattleId = $_GET["edit"];
@@ -42,6 +56,48 @@ if(isset($_GET["edit"])) {
 		$pastureId = $line->pastureId;
 	}
 }
+
+// see more/full details of a cattle
+if(isset($_GET["more"])) {
+	$cattleId = $_GET["more"];
+	
+	// set up vars
+	$mURL = API_URL
+		."cattle"
+		."?token=".API_SECRET
+		."&cattleId=".$cattleId
+		."&userId=".$_SESSION["userId"];
+	// using cURL
+	$mch = curl_init();
+	curl_setopt($mch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($mch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($mch, CURLOPT_URL, $mURL);
+	$mresult = curl_exec($mch);
+	curl_close($mch);
+	// get php object
+	$mobj = json_decode($mresult);
+	foreach($mobj as $mline) {
+		$cattleName = $mline->cattleName;
+		$cattleSex = $mline->cattleSex;
+		$cattleTag = $mline->cattleTag;
+		$cattleRegisteredNumber = $mline->cattleRegisteredNumber;
+		$cattleElectronicId = $mline->cattleElectronicId;
+		$cattleAnimalType = $mline->cattleAnimalType;
+		$cattleSireName = $mline->cattleSireName;
+		$cattleDamName = $mline->cattleDamName;
+		$cattleDamRegisteredNumber = $mline->cattleDamRegisteredNumber;
+		$cattleSireRegisteredNumber = $mline->cattleSireRegisteredNumber;
+		$cattleDateOfBirth = $mline->cattleDateOfBirth;
+		$cattleContraception = $mline->cattleContraception;
+		$cattleBreeder = $mline->cattleBreeder;
+		$cattlePregnant = $mline->cattlePregnant;
+		$cattleHeight = $mline->cattleHeight;
+		$cattleWeight = $mline->cattleWeight;
+		$pastureId = $mline->pastureId;
+	}
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -103,6 +159,17 @@ if(isset($_GET["edit"])) {
                 <li>
                 <a href="../reports/bullsweight">Weight of all Bulls</a>
                 </li>
+				
+				<!-- Available reports -->
+				<?php 
+				// get php object and create the nav menu
+				$robj = json_decode($report);
+				foreach ($robj as $rline) { ?>
+					<li>
+						<a href="../reports/process.php?report="<?php echo "$rline->reportId"; ?>><?php echo "$rline->reportName"; ?></a>
+					</li>
+				<?php } ?>
+				
             </ul>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Settings">
@@ -231,7 +298,13 @@ if(isset($_GET["edit"])) {
                         <div id="myModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                <h2>Add Cattle</h2>
+								
+								<?php if($edit_state): ?>
+									<h2>Edit Cattle</h2>
+								<?php else: ?>
+									<h2>Add Cattle</h2>
+								<?php endif ?>
+								
 									<form method="POST" action="process.php">
 										<input type ="hidden" name="cattleId" value="<?php echo $cattleId; ?>">
 										<label type="text" class="form-control-label">User ID: <?php echo $_SESSION["userId"]; ?></label>
@@ -350,10 +423,10 @@ if(isset($_GET["edit"])) {
 											</div>
 										</div>
                                         <!-- From buttons -->
-										<?php if($edit_state == false): ?>
-											<button type="submit" class="form-control" id="add" name="add" class="btn">Add Cattle</button>
-										<?php else: ?>
+										<?php if($edit_state): ?>
 											<button type="submit" class="form-control" id="update" name="update" class="btn">Update Cattle</button>
+										<?php else: ?>
+											<button type="submit" class="form-control" id="add" name="add" class="btn">Add Cattle</button>
 										<?php endif ?>
                                         <a href="/cattlemanager" id="cancel" name="cancel" class="form-control btn">Cancel</a>
                                     </form>
@@ -375,25 +448,14 @@ if(isset($_GET["edit"])) {
                             <table class="table table-striped table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Sex</th>
                                         <th>Tag</th>
-                                        <th>Registered Number</th>
-                                        <th>Electronic ID</th>
-                                        <th>Animal Type</th>
+                                        <th>Sex</th>
                                         <th>Sire Name</th>
+                                        <th>Sire Registered Number</th>
                                         <th>Dam Name</th>
                                         <th>Dam Registered Number</th>
-                                        <th>Sire Registered Number</th>
                                         <th>Date of Birth</th>
-                                        <th>Contraception</th>
-                                        <th>Breeder</th>
-                                        <th>Pregnant</th>
-                                        <th>Height</th>
                                         <th>Weight</th>
-                                        <th>Pasture ID</th>
-                                        <th>User ID</th>
 										<th>Edit</th>
 										<th>Delete</th>
                                     </tr>
@@ -418,27 +480,16 @@ curl_close($ch);
 $obj = json_decode($result);
 foreach ($obj as $line) { ?>
     <tr>
-    <td><?php echo "$line->cattleId"; ?></td>
-    <td><?php echo "$line->cattleName</td>"; ?></td>
-    <td><?php echo "$line->cattleSex</td>"; ?></td>
-    <td><?php echo "$line->cattleTag</td>"; ?></td>
-    <td><?php echo "$line->cattleRegisteredNumber</td>"; ?></td>
-    <td><?php echo "$line->cattleElectronicId</td>"; ?></td>
-    <td><?php echo "$line->cattleAnimalType</td>"; ?></td>
-    <td><?php echo "$line->cattleSireName</td>"; ?></td>
-    <td><?php echo "$line->cattleDamName</td>"; ?></td>
-    <td><?php echo "$line->cattleDamRegisteredNumber</td>"; ?></td>
-    <td><?php echo "$line->cattleSireRegisteredNumber</td>"; ?></td>
-    <td><?php echo "$line->cattleDateOfBirth</td>"; ?></td>
-    <td><?php echo "$line->cattleContraception</td>"; ?></td>
-    <td><?php echo "$line->cattleBreeder</td>"; ?></td>
-    <td><?php echo "$line->cattlePregnant</td>"; ?></td>
-    <td><?php echo "$line->cattleHeight</td>"; ?></td>
-    <td><?php echo "$line->cattleWeight</td>"; ?></td>
-    <td><?php echo "$line->pastureId</td>"; ?></td>
-    <td><?php echo "$line->userId</td>"; ?></td>
-	<td><a class="edit_btn" href="index.php?edit=<?php echo $line->cattleId; ?>">Edit</a></td>
-	<td><a class="del_btn" href="process.php?del=<?php echo $line->cattleId; ?>">Delete</a></td>
+    <td><a class="btn btn-primary" href="index.php?more=<?php echo $line->cattleId; ?>"><?php echo "$line->cattleTag"; ?></a></td>
+    <td><?php echo "$line->cattleSex"; ?></td>
+    <td><?php echo "$line->cattleSireName"; ?></td>
+    <td><?php echo "$line->cattleSireRegisteredNumber"; ?></td>
+    <td><?php echo "$line->cattleDamName"; ?></td>
+    <td><?php echo "$line->cattleDamRegisteredNumber"; ?></td>
+    <td><?php echo "$line->cattleDateOfBirth"; ?></td>
+    <td><?php echo "$line->cattleWeight"; ?></td>
+	<td><a class="btn btn-secondary" href="index.php?edit=<?php echo $line->cattleId; ?>">Edit</a></td>
+	<td><a class="btn btn-primary" href="process.php?del=<?php echo $line->cattleId; ?>">Delete</a></td>
     </tr>
 <?php } ?>
                                 </tbody>
@@ -485,6 +536,123 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
     </div>
 </div>
 
+<!-- Cattle Details Modal -->
+<div class="modal fade" id="cattleModal" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title"><?php echo $cattleTag; ?> Full Details</h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button> 
+			</div>
+			<div class="modal-body">
+				<!-- Name, Sex, Animal Type details -->
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-md-4">
+							<label class="form-control-label"><strong>Name: </strong></label>
+							<label class="form-control-label"><?php echo $cattleName; ?></label>
+						</div>
+						<div class="col-md-4">
+							<label class="form-control-label"><strong>Sex: </strong></label>
+							<label class="form-control-label"><?php echo $cattleSex; ?></label>
+						</div>
+						<div class="col-md-4">
+							<label class="form-control-label"><strong>Animal Type: </strong></label>
+							<label class="form-control-label"><?php echo $cattleAnimalType; ?></label>
+						</div>
+					</div>
+				</div>
+				<!-- Tag, Reg Num, Elec ID details -->
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-md-4">
+							<label class="form-control-label"><strong>Tag: </strong></label>
+							<label class="form-control-label"><?php echo $cattleTag; ?></label>
+						</div>
+						<div class="col-md-4">
+							<label class="form-control-label"><strong>Registered Number: </strong></label>
+							<label class="form-control-label"><?php echo $cattleRegisteredNumber; ?></label>
+						</div>
+						<div class="col-md-4">
+							<label class="form-control-label"><strong>Electronic ID: </strong></label>
+							<label class="form-control-label"><?php echo $cattleElectronicId; ?></label>
+						</div>
+					</div>
+				</div>
+				<!-- Sire details -->
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-md-4">
+							<label class="form-control-label"><strong>Sire Name: </strong></label>
+							<label class="form-control-label"><?php echo $cattleSireName; ?></label>
+						</div>
+						<div class="col-md-8">
+							<label class="form-control-label"><strong>Sire Registered Number: </strong></label>
+							<label class="form-control-label"><?php echo $cattleSireRegisteredNumber; ?></label>
+						</div>
+					</div>
+				</div>
+				<!-- Dam details -->
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-md-4">
+							<label class="form-control-label"><strong>Dam Name: </strong></label>
+							<label class="form-control-label"><?php echo $cattleDamName; ?></label>
+						</div>
+						<div class="col-md-8">
+							<label class="form-control-label"><strong>Dam Registered Number: </strong></label>
+							<label class="form-control-label"><?php echo $cattleDamRegisteredNumber; ?></label>
+						</div>
+					</div>
+				</div>
+				<!-- DOB, Contraception, Breeder, Pregnant details -->
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-md-3">
+							<label class="form-control-label"><strong>Date of Birth: </strong></label>
+							<label class="form-control-label"><?php echo $cattleDateOfBirth; ?></label>
+						</div>
+						<div class="col-md-3">
+							<label class="form-control-label"><strong>Contraception: </strong></label>
+							<label class="form-control-label"><?php echo $cattleContraception; ?></label>
+						</div>
+						<div class="col-md-3">
+							<label class="form-control-label"><strong>Breeder: </strong></label>
+							<label class="form-control-label"><?php echo $cattleBreeder; ?></label>
+						</div>
+						<div class="col-md-3">
+							<label class="form-control-label"><strong>Pregnant: </strong></label>
+							<label class="form-control-label"><?php echo $cattlePregnant; ?></label>
+						</div>
+					</div>
+				</div>
+				<!-- Height, Weight, Pasture details -->
+                <div class="form-group">
+					<div class="form-row">
+						<div class="col-md-4">
+							<label class="form-control-label"><strong>Height: </strong></label>
+							<label class="form-control-label"><?php echo $cattleHeight; ?></label>
+						</div>
+						<div class="col-md-4">
+							<label class="form-control-label"><strong>Weight: </strong></label>
+							<label class="form-control-label"><?php echo $cattleWeight; ?></label>
+						</div>
+						<div class="col-md-4">
+							<label class="form-control-label"><strong>Pasture ID: </strong></label>
+							<label class="form-control-label"><?php echo $pastureId; ?></label>
+						</div>
+					</div>
+				</div>               
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" type="button" data-dismiss="modal">Finish</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -502,14 +670,22 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 <!-- Custom scripts for table pages-->
 <script src="js/sb-admin-datatables.min.js"></script>
 
-<!-- Edit usage -->
+<!-- Edit, More usage -->
 <?php
 if(isset($_GET["edit"])) {
-echo '<script type="text/javascript">';
-echo '    $(window).on(\'load\',function(){';
-echo '        $(\'#myModal\').modal(\'show\');';
-echo '    });';
-echo '</script>';
+	echo '<script type="text/javascript">';
+	echo '    $(window).on(\'load\',function(){';
+	echo '        $(\'#myModal\').modal(\'show\');';
+	echo '    });';
+	echo '</script>';
+}
+
+if(isset($_GET["more"])) {
+	echo '<script type="text/javascript">';
+	echo '    $(window).on(\'load\',function(){';
+	echo '        $(\'#cattleModal\').modal(\'show\');';
+	echo '    });';
+	echo '</script>';
 }
 ?>
 
