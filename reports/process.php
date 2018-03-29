@@ -34,7 +34,7 @@ if(isset($_GET["report"])) {
 		// set up URL
 		$URL = API_URL
 			."reports"
-			."?token=".API_SECRET;
+			."?token=".API_SECRET
 			."reportId=".$reportId;
 	
 		// using cURL
