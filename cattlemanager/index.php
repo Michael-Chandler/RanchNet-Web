@@ -77,23 +77,23 @@ if(isset($_GET["more"])) {
 	// get php object
 	$mobj = json_decode($mresult);
 	foreach($mobj as $mline) {
-		$cattleName = $mline->cattleName;
-		$cattleSex = $mline->cattleSex;
-		$cattleTag = $mline->cattleTag;
-		$cattleRegisteredNumber = $mline->cattleRegisteredNumber;
-		$cattleElectronicId = $mline->cattleElectronicId;
-		$cattleAnimalType = $mline->cattleAnimalType;
-		$cattleSireName = $mline->cattleSireName;
-		$cattleDamName = $mline->cattleDamName;
-		$cattleDamRegisteredNumber = $mline->cattleDamRegisteredNumber;
-		$cattleSireRegisteredNumber = $mline->cattleSireRegisteredNumber;
-		$cattleDateOfBirth = $mline->cattleDateOfBirth;
-		$cattleContraception = $mline->cattleContraception;
-		$cattleBreeder = $mline->cattleBreeder;
-		$cattlePregnant = $mline->cattlePregnant;
-		$cattleHeight = $mline->cattleHeight;
-		$cattleWeight = $mline->cattleWeight;
-		$pastureId = $mline->pastureId;
+		$mcattleName = $mline->cattleName;
+		$mcattleSex = $mline->cattleSex;
+		$mcattleTag = $mline->cattleTag;
+		$mcattleRegisteredNumber = $mline->cattleRegisteredNumber;
+		$mcattleElectronicId = $mline->cattleElectronicId;
+		$mcattleAnimalType = $mline->cattleAnimalType;
+		$mcattleSireName = $mline->cattleSireName;
+		$mcattleDamName = $mline->cattleDamName;
+		$mcattleDamRegisteredNumber = $mline->cattleDamRegisteredNumber;
+		$mcattleSireRegisteredNumber = $mline->cattleSireRegisteredNumber;
+		$mcattleDateOfBirth = $mline->cattleDateOfBirth;
+		$mcattleContraception = $mline->cattleContraception;
+		$mcattleBreeder = $mline->cattleBreeder;
+		$mcattlePregnant = $mline->cattlePregnant;
+		$mcattleHeight = $mline->cattleHeight;
+		$mcattleWeight = $mline->cattleWeight;
+		$mpastureId = $mline->pastureId;
 	}
 }
 
@@ -552,15 +552,15 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 					<div class="form-row">
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Name: </strong></label>
-							<label class="form-control-label"><?php echo $cattleName; ?></label>
+							<label class="form-control-label"><?php echo $mcattleName; ?></label>
 						</div>
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Sex: </strong></label>
-							<label class="form-control-label"><?php echo $cattleSex; ?></label>
+							<label class="form-control-label"><?php echo $mcattleSex; ?></label>
 						</div>
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Animal Type: </strong></label>
-							<label class="form-control-label"><?php echo $cattleAnimalType; ?></label>
+							<label class="form-control-label"><?php echo $mcattleAnimalType; ?></label>
 						</div>
 					</div>
 				</div>
@@ -569,15 +569,15 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 					<div class="form-row">
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Tag: </strong></label>
-							<label class="form-control-label"><?php echo $cattleTag; ?></label>
+							<label class="form-control-label"><?php echo $mcattleTag; ?></label>
 						</div>
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Registered Number: </strong></label>
-							<label class="form-control-label"><?php echo $cattleRegisteredNumber; ?></label>
+							<label class="form-control-label"><?php echo $mcattleRegisteredNumber; ?></label>
 						</div>
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Electronic ID: </strong></label>
-							<label class="form-control-label"><?php echo $cattleElectronicId; ?></label>
+							<label class="form-control-label"><?php echo $mcattleElectronicId; ?></label>
 						</div>
 					</div>
 				</div>
@@ -586,11 +586,11 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 					<div class="form-row">
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Sire Name: </strong></label>
-							<label class="form-control-label"><?php echo $cattleSireName; ?></label>
+							<label class="form-control-label"><?php echo $mcattleSireName; ?></label>
 						</div>
 						<div class="col-md-8">
 							<label class="form-control-label"><strong>Sire Registered Number: </strong></label>
-							<label class="form-control-label"><?php echo $cattleSireRegisteredNumber; ?></label>
+							<label class="form-control-label"><?php echo $mcattleSireRegisteredNumber; ?></label>
 						</div>
 					</div>
 				</div>
@@ -599,11 +599,11 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 					<div class="form-row">
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Dam Name: </strong></label>
-							<label class="form-control-label"><?php echo $cattleDamName; ?></label>
+							<label class="form-control-label"><?php echo $mcattleDamName; ?></label>
 						</div>
 						<div class="col-md-8">
 							<label class="form-control-label"><strong>Dam Registered Number: </strong></label>
-							<label class="form-control-label"><?php echo $cattleDamRegisteredNumber; ?></label>
+							<label class="form-control-label"><?php echo $mcattleDamRegisteredNumber; ?></label>
 						</div>
 					</div>
 				</div>
@@ -612,19 +612,19 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 					<div class="form-row">
 						<div class="col-md-3">
 							<label class="form-control-label"><strong>Date of Birth: </strong></label>
-							<label class="form-control-label"><?php echo $cattleDateOfBirth; ?></label>
+							<label class="form-control-label"><?php echo $mcattleDateOfBirth; ?></label>
 						</div>
 						<div class="col-md-3">
 							<label class="form-control-label"><strong>Contraception: </strong></label>
-							<label class="form-control-label"><?php echo $cattleContraception; ?></label>
+							<label class="form-control-label"><?php echo $mcattleContraception; ?></label>
 						</div>
 						<div class="col-md-3">
 							<label class="form-control-label"><strong>Breeder: </strong></label>
-							<label class="form-control-label"><?php echo $cattleBreeder; ?></label>
+							<label class="form-control-label"><?php echo $mcattleBreeder; ?></label>
 						</div>
 						<div class="col-md-3">
 							<label class="form-control-label"><strong>Pregnant: </strong></label>
-							<label class="form-control-label"><?php echo $cattlePregnant; ?></label>
+							<label class="form-control-label"><?php echo $mcattlePregnant; ?></label>
 						</div>
 					</div>
 				</div>
@@ -633,15 +633,15 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 					<div class="form-row">
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Height: </strong></label>
-							<label class="form-control-label"><?php echo $cattleHeight; ?></label>
+							<label class="form-control-label"><?php echo $mcattleHeight; ?></label>
 						</div>
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Weight: </strong></label>
-							<label class="form-control-label"><?php echo $cattleWeight; ?></label>
+							<label class="form-control-label"><?php echo $mcattleWeight; ?></label>
 						</div>
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Pasture ID: </strong></label>
-							<label class="form-control-label"><?php echo $pastureId; ?></label>
+							<label class="form-control-label"><?php echo $mpastureId; ?></label>
 						</div>
 					</div>
 				</div>               
@@ -694,6 +694,7 @@ if(isset($_GET["more"])) {
 
 </body>
 </html>
+
 
 
 

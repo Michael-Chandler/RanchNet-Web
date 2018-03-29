@@ -251,26 +251,13 @@ if(isset($_GET["more"])) {
 
 <div class="content-wrapper">
     <div class="container-fluid">
-        <h1 class="page-header">Cattle Manager</h1>
-				<!-- DataTables card -->
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <i class="fa fa-table"></i> Cattle Table</div>
-                    <div class="card-body">
-					
-						<!-- Cannot change any male cattle record: READ ONLY -->
-						
-						<!-- ALL MAGIC SHOULD HAPPEN IN PROCESS.PHP's -->
-						<?php 
-							if(isset($_SESSION["report"])) {
-								echo $_SESSION["report"];
-							} else {
-								echo "NO REPORT TO BE SHOWN";
-							}
-						?>
-						
-					</div>
-				</div>
+		<?php 
+		if(isset($_SESSION["report"])) {
+			echo $_SESSION["report"];
+		} else {
+			echo "NO REPORT TO BE SHOWN";
+		}
+		?>
 	</div>
 	<!-- /.container-fluid -->
 	
@@ -444,8 +431,22 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 <!-- Custom scripts for table pages-->
 <script src="js/sb-admin-datatables.min.js"></script>
 
+<!-- More usage -->
+<?php
+if(isset($_GET["more"])) {
+	echo '<script type="text/javascript">';
+	echo '    $(window).on(\'load\',function(){';
+	echo '        $(\'#cattleModal\').modal(\'show\');';
+	echo '    });';
+	echo '</script>';
+}
+?>
+
 </div>
 <!-- /.content-wrapper -->
 
 </body>
 </html>
+
+
+

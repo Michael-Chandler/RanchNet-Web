@@ -64,6 +64,7 @@ if(isset($_POST["update"])) {
 	header("Location: ".WEB_URL."/pasturemanager");
 }
 
+// DELETE - deletes chosen record
 if(isset($_GET["del"])) {
 	$pastureId = $_GET["del"];
 	$userId = $_SESSION["userId"];
@@ -90,4 +91,5 @@ if(isset($_GET["del"])) {
 }
 
 ?>
+
 

@@ -255,7 +255,7 @@ if(isset($_GET["edit"])) {
 											<!-- Pasture Name input -->
 											<div class="form-group">
 												<div class="form-row">
-													<div class="col-md-4">
+													<div class="col-md-12">
 														<label for="pastureName" class="form-control-label">Pasture Name: </label>
 														<input type="text" class="form-control" id="pastureName" name="pastureName" maxlength="64" value="<?php echo $pastureName; ?>" placeholder="Enter Pasture Name here">
 													</div>
@@ -399,5 +399,6 @@ echo '</script>';
 </body>
 
 </html>
+
 
 
