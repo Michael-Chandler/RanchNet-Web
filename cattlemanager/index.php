@@ -310,10 +310,14 @@ if(isset($_GET["more"])) {
 										<input type ="hidden" name="cattleId" value="<?php echo $cattleId; ?>">
 										<label type="text" class="form-control-label"><strong>User ID: <?php echo $_SESSION["userId"]; ?></strong></label>
 										<label type="text" class="form-control-label"><strong>Measurement System: 
-											<?php if(isset($_SESSION["measure"])): ?>
-												<?php echo $_SESSION["measure"]; ?></strong></label>
-											<?php else: ?>
-												<?php echo "English (default)"; ?></strong></label>
+										<?php 
+										if(isset($_SESSION["measure"])) {
+											echo $_SESSION["measure"];
+										} else {
+											echo "English (default)";
+										}
+										?>
+										</strong></label>
 										<!-- Name, Sex, Animal Type input -->
 										<div class="form-group">
 											<div class="form-row">
@@ -463,7 +467,7 @@ if(isset($_GET["more"])) {
                                         <th>Date of Birth</th>
                                         <th>Weight <!-- Check measurement system chosen -->
 										<?php 
-										if(isset($_SESSION["measure"] {
+										if(isset($_SESSION["measure"])) {
 											if($_SESSION["measure"] == "metric") {
 												echo "(kg.)";
 											} else {
@@ -689,7 +693,7 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 								} else {
 									echo $mcattleWeight;
 								}
-							} 
+							}
 							?>
 							</label>
 						</div>
@@ -748,6 +752,7 @@ if(isset($_GET["more"])) {
 
 </body>
 </html>
+
 
 
 
