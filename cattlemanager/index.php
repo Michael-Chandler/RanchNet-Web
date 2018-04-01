@@ -305,18 +305,24 @@ if(isset($_GET["more"])) {
 									<h2>Add Cattle</h2>
 								<?php endif ?>
 								
+									<!-- Cattle Input Form -->
 									<form method="POST" action="process.php">
 										<input type ="hidden" name="cattleId" value="<?php echo $cattleId; ?>">
-										<label type="text" class="form-control-label">User ID: <?php echo $_SESSION["userId"]; ?></label>
+										<label type="text" class="form-control-label"><strong>User ID: <?php echo $_SESSION["userId"]; ?></strong></label>
+										<label type="text" class="form-control-label"><strong>Measurement System: 
+											<?php if(isset($_SESSION["measure"])): ?>
+												<?php echo $_SESSION["measure"]; ?></strong></label>
+											<?php else: ?>
+												<?php echo "English (default)"; ?></strong></label>
 										<!-- Name, Sex, Animal Type input -->
 										<div class="form-group">
 											<div class="form-row">
 												<div class="col-md-4">
-													<label for="cattleName" class="form-control-label">Name: </label>
+													<label for="cattleName" class="form-control-label"><strong>Name: </strong></label>
 													<input type="text" class="form-control" id="cattleName" name="cattleName" maxlength="64" value="<?php echo $cattleName; ?>" placeholder="Enter Cattle Name here">
 												</div>
 												<div class="col-md-4">
-													<label for="cattleSex" class="form-control-label">Sex: </label>
+													<label for="cattleSex" class="form-control-label"><strong>Sex: </strong></label>
 													<select class="form-control" id="cattleSex" name="cattleSex">
 													<?php if($cattleSex == "M"): ?>
 														<option value="M" selected>M</option>
@@ -328,7 +334,7 @@ if(isset($_GET["more"])) {
 													</select>
 												</div>
 												<div class="col-md-4">
-													<label for="cattleAnimalType" class="form-control-label">Animal Type: </label>
+													<label for="cattleAnimalType" class="form-control-label"><strong>Animal Type: </strong></label>
 													<input type="text" class="form-control" id="cattleAnimalType" name="cattleAnimalType" maxlength="128" value="<?php echo $cattleAnimalType; ?>" placeholder="Enter Animal Type here">
 												</div>
 											</div>
@@ -337,15 +343,15 @@ if(isset($_GET["more"])) {
 										<div class="form-group">
 											<div class="form-row">
 												<div class="col-md-4">
-													<label for="cattleTag" class="form-control-label">Tag: </label>
+													<label for="cattleTag" class="form-control-label"><strong>Tag: </strong></label>
 													<input type="text" class="form-control" id="cattleTag" name="cattleTag" maxlength="128" value="<?php echo $cattleTag; ?>" placeholder="Enter Cattle Tag here"> 
 												</div>
 												<div class="col-md-4">
-													<label for="cattleRegisteredNumber" class="form-control-label">Registered Number: </label>
+													<label for="cattleRegisteredNumber" class="form-control-label"><strong>Registered Number: </strong></label>
 													<input type="text" class="form-control" id="cattleRegisteredNumber" name="cattleRegisteredNumber" maxlength="128" value="<?php echo $cattleRegisteredNumber; ?>" placeholder="Enter Cattle Registered Number here">
 												</div>
 												<div class="col-md-4">
-													<label for="cattleElectronicId" class="form-control-label">Electronic ID: </label>
+													<label for="cattleElectronicId" class="form-control-label"><strong>Electronic ID: </strong></label>
 													<input type="text" class="form-control" id="cattleElectronicId" name="cattleElectronicId" maxlength="128" value="<?php echo $cattleElectronicId; ?>" placeholder="Enter Cattle Electronic ID here">
 												</div>
 											</div>
@@ -354,11 +360,11 @@ if(isset($_GET["more"])) {
 										<div class="form-group">
 											<div class="form-row">
 												<div class="col-md-4">
-													<label for="cattleSireName" class="form-control-label">Sire Name: </label>
+													<label for="cattleSireName" class="form-control-label"><strong>Sire Name: </strong></label>
 													<input type="text" class="form-control" id="cattleSireName" name="cattleSireName" maxlength="64" value="<?php echo $cattleSireName; ?>" placeholder="Enter Sire Name here">
 												</div>
 												<div class="col-md-8">
-													<label for="cattleSireRegisteredNumber" class="form-control-label">Sire Registered Number: </label>
+													<label for="cattleSireRegisteredNumber" class="form-control-label"><strong>Sire Registered Number: </strong></label>
 													<input type="text" class="form-control" id="cattleSireRegisteredNumber" name="cattleSireRegisteredNumber" maxlength="128" value="<?php echo $cattleSireRegisteredNumber; ?>" placeholder="Enter Sire Registered Number here">
 												</div>
 											</div>
@@ -367,11 +373,11 @@ if(isset($_GET["more"])) {
 										<div class="form-group">
 											<div class="form-row">
 												<div class="col-md-4">
-													<label for="cattleDamName" class="form-control-label">Dam Name: </label>
+													<label for="cattleDamName" class="form-control-label"><strong>Dam Name: </strong></label>
 													<input type="text" class="form-control" id="cattleDamName" name="cattleDamName" maxlength="64" value="<?php echo $cattleDamName; ?>" placeholder="Enter Dam Name here">
 												</div>
 												<div class="col-md-8">
-													<label for="cattleDamRegisteredNumber" class="form-control-label">Dam Registered Number: </label>
+													<label for="cattleDamRegisteredNumber" class="form-control-label"><strong>Dam Registered Number: </strong></label>
 													<input type="text" class="form-control" id="cattleDamRegisteredNumber" name="cattleDamRegisteredNumber" maxlength="128" value="<?php echo $cattleDamRegisteredNumber; ?>" placeholder="Enter Dam Registered Number here">
 												</div>
 											</div>
@@ -380,26 +386,26 @@ if(isset($_GET["more"])) {
 										<div class="form-group">
 											<div class="form-row">
 												<div class="col-md-3">
-													<label for="cattleDateOfBirth" class="form-control-label">Date of Birth: </label>
+													<label for="cattleDateOfBirth" class="form-control-label"><strong>Date of Birth: </strong></label>
 													<input type="date" class="form-control" id="cattleDateOfBirth" name="cattleDateOfBirth" value="<?php echo date($cattleDateOfBirth); ?>">
 												</div>
 												<div class="col-md-3">
-													<label for="cattleContraception" class="form-control-label">Contraception: </label>
+													<label for="cattleContraception" class="form-control-label"><strong>Contraception: </strong></label>
 													<input type="text" class="form-control" id="cattleContraception" name="cattleContraception" maxlength="64" value="<?php echo $cattleContraception; ?>" placeholder="Enter Cattle Contraception here">
 												</div>
 												<div class="col-md-3">
-													<label for="cattleBreeder" class="form-control-label">Breeder: </label>
+													<label for="cattleBreeder" class="form-control-label"><strong>Breeder: </strong></label>
 													<input type="text" class="form-control" id="cattleBreeder" name="cattleBreeder" maxlength="64" value="<?php echo $cattleBreeder; ?>" placeholder="Enter Cattle Breeder here">
 												</div>
 												<div class="col-md-3">
-													<label for="cattlePregnant" class="form-control-label">Pregnant: </label>
+													<label for="cattlePregnant" class="form-control-label"><strong>Pregnant: </strong></label>
 													<select class="form-control" id="cattlePregnant" name="cattlePregnant">
 													<?php if($cattlePregnant == 0): ?>
-														<option value="0" selected>0</option>
-														<option value="1">1</option>
+														<option value="0" selected>No</option>
+														<option value="1">Yes</option>
 													<?php else: ?>
-														<option value="0">0</option>
-														<option value="1" selected>1</option>
+														<option value="0">No</option>
+														<option value="1" selected>Yes</option>
 													<?php endif ?>
 													</select>
 												</div>
@@ -409,15 +415,15 @@ if(isset($_GET["more"])) {
                                         <div class="form-group">
 											<div class="form-row">
 												<div class="col-md-4">
-													<label for="cattleHeight" class="form-control-label">Height: </label>
+													<label for="cattleHeight" class="form-control-label"><strong>Height: </strong></label>
 													<input type="text" class="form-control" id="cattleHeight" name="cattleHeight" maxlength="64" value="<?php echo $cattleHeight; ?>" placeholder="Enter Cattle Height here">
 												</div>
 												<div class="col-md-4">
-													<label for="cattleWeight" class="form-control-label">Weight: </label>
+													<label for="cattleWeight" class="form-control-label"><strong>Weight: </strong></label>
 													<input type="text" class="form-control" id="cattleWeight" name="cattleWeight" maxlength="64" value="<?php echo $cattleWeight; ?>" placeholder="Enter Cattle Weight here">
 												</div>
 												<div class="col-md-4">
-													<label for="pastureId" class="form-control-label">Pasture ID: </label>
+													<label for="pastureId" class="form-control-label"><strong>Pasture ID: </strong></label>
 													<input type="text" class="form-control" id="pastureId" name="pastureId" maxlength="11" value="<?php echo $pastureId; ?>" placeholder="Enter Pasture ID here">
 												</div>
 											</div>
@@ -455,7 +461,17 @@ if(isset($_GET["more"])) {
                                         <th>Dam Name</th>
                                         <th>Dam Registered Number</th>
                                         <th>Date of Birth</th>
-                                        <th>Weight</th>
+                                        <th>Weight <!-- Check measurement system chosen -->
+										<?php 
+										if(isset($_SESSION["measure"] {
+											if($_SESSION["measure"] == "metric") {
+												echo "(kg.)";
+											} else {
+												echo "(lbs.)";
+											}
+										}
+										?>
+										</th>
 										<th>Edit</th>
 										<th>Delete</th>
                                     </tr>
@@ -487,7 +503,17 @@ foreach ($obj as $line) { ?>
     <td><?php echo "$line->cattleDamName"; ?></td>
     <td><?php echo "$line->cattleDamRegisteredNumber"; ?></td>
     <td><?php echo "$line->cattleDateOfBirth"; ?></td>
-    <td><?php echo "$line->cattleWeight"; ?></td>
+    <td>
+	<?php
+	if(isset($_SESSION["measure"])) {
+		if($_SESSION["measure"] == "metric") {
+			echo $line->cattleWeight * 0.453592;
+		} else {
+			echo "$line->cattleWeight";
+		}
+	}
+	?>
+	</td>
 	<td><a class="btn btn-secondary" href="index.php?edit=<?php echo $line->cattleId; ?>">Edit</a></td>
 	<td><a class="btn btn-primary" href="process.php?del=<?php echo $line->cattleId; ?>">Delete</a></td>
     </tr>
@@ -624,7 +650,15 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 						</div>
 						<div class="col-md-3">
 							<label class="form-control-label"><strong>Pregnant: </strong></label>
-							<label class="form-control-label"><?php echo $mcattlePregnant; ?></label>
+							<label class="form-control-label">
+							<?php 
+							if($mcattlePregnant == 0) {
+								echo "No";
+							} else {
+								echo "Yes";
+							}
+							?>
+							</label>
 						</div>
 					</div>
 				</div>
@@ -633,11 +667,31 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 					<div class="form-row">
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Height: </strong></label>
-							<label class="form-control-label"><?php echo $mcattleHeight; ?></label>
+							<label class="form-control-label">
+							<?php 
+							if(isset($_SESSION["measure"])) {
+								if($_SESSION["measure"] == "metric") {
+									echo $mcattleHeight * 2.54;
+								} else {
+									echo $mcattleHeight;
+								}
+							}
+							?>
+							</label>
 						</div>
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Weight: </strong></label>
-							<label class="form-control-label"><?php echo $mcattleWeight; ?></label>
+							<label class="form-control-label">
+							<?php 
+							if(isset($_SESSION["measure"])) {
+								if($_SESSION["measure"] == "metric") {
+									echo $mcattleWeight * 0.453592;
+								} else {
+									echo $mcattleWeight;
+								}
+							} 
+							?>
+							</label>
 						</div>
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Pasture ID: </strong></label>

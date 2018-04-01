@@ -256,7 +256,7 @@ if(isset($_GET["edit"])) {
 											<div class="form-group">
 												<div class="form-row">
 													<div class="col-md-12">
-														<label for="pastureName" class="form-control-label">Pasture Name: </label>
+														<label for="pastureName" class="form-control-label"><strong>Pasture Name: </strong></label>
 														<input type="text" class="form-control" id="pastureName" name="pastureName" maxlength="64" value="<?php echo $pastureName; ?>" placeholder="Enter Pasture Name here">
 													</div>
 												</div>
@@ -267,7 +267,7 @@ if(isset($_GET["edit"])) {
 											<?php else: ?>
 												<button type="submit" class="form-control" id="add" name="add" class="btn">Add Pasture</button>
 											<?php endif ?>
-											<a href="/cattlemanager" id="cancel" name="cancel" class="form-control btn">Cancel</a>
+											<a href="/pasturemanager" id="cancel" name="cancel" class="form-control btn">Cancel</a>
 										</form>
 								</div>
 							</div>

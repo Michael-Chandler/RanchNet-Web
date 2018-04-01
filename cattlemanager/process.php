@@ -154,6 +154,14 @@ if(isset($_GET["del"])) {
 	header("Location: ".WEB_URL."/cattlemanager");
 }
 
+// user settings (measurement system, etc)
+if(isset($_POST["save"])) {
+	$_SESSION["measure"] = $_POST["save"];
+	
+	// return to cattle page
+	header("Location: ".WEB_URL."/cattlemanager"); 
+}
+
 ?>
 
 

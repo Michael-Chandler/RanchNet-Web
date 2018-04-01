@@ -1,6 +1,7 @@
 <?php
 include_once('../auth.php');
 include_once('process.php');
+include_once('../cattlemanager/process.php');
 
 // cURL stuff for reports nav menu
 // set up URL
@@ -130,7 +131,7 @@ if(isset($_GET["more"])) {
 				$obj = json_decode($result);
 				foreach ($obj as $line) { ?>
 					<li>
-						<a href="process.php?report="<?php echo "$line->reportId"; ?>><?php echo "$line->reportName"; ?></a>
+						<a href="process.php?report=<?php echo "$line->reportId"; ?>"><?php echo "$line->reportName"; ?></a>
 					</li>
 				<?php } ?>
 				
@@ -385,7 +386,15 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 						</div>
 						<div class="col-md-3">
 							<label class="form-control-label"><strong>Pregnant: </strong></label>
-							<label class="form-control-label"><?php echo $cattlePregnant; ?></label>
+							<label class="form-control-label">
+							<?php 
+							if($cattlePregnant == 0) {
+								echo "No";
+							} else {
+								echo "Yes";
+							}
+							?>
+							</label>
 						</div>
 					</div>
 				</div>
@@ -394,11 +403,31 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 					<div class="form-row">
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Height: </strong></label>
-							<label class="form-control-label"><?php echo $cattleHeight; ?></label>
+							<label class="form-control-label">
+							<?php 
+							if(isset($_SESSION["measure"])) {
+								if($_SESSION["measure"] == "metric") {
+									echo $cattleHeight * 2.54;
+								} else {
+									echo $cattleHeight;
+								}
+							}
+							?>
+							</label>
 						</div>
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Weight: </strong></label>
-							<label class="form-control-label"><?php echo $cattleWeight; ?></label>
+							<label class="form-control-label">
+							<?php 
+							if(isset($_SESSION["measure"])) {
+								if($_SESSION["measure"] == "metric") {
+									echo $cattleWeight * 0.453592;
+								} else {
+									echo $cattleWeight;
+								}
+							} 
+							?>
+							</label>
 						</div>
 						<div class="col-md-4">
 							<label class="form-control-label"><strong>Pasture ID: </strong></label>
