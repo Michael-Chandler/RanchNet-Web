@@ -1,64 +1,5 @@
 <?php
 include_once('../auth.php');
-include_once('process.php');
-include_once('../cattlemanager/process.php');
-
-// cURL stuff for reports nav menu
-// set up URL
-$URL = API_URL
-    ."reports"
-    ."?token=".API_SECRET;
-	
-// using cURL
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_URL, $URL);
-$result = curl_exec($ch);
-curl_close($ch);
-// MORE at the nav menu
-
-// see more/full details of a cattle
-if(isset($_GET["more"])) {
-	$cattleId = $_GET["more"];
-	
-	// set up vars
-	$mURL = API_URL
-		."cattle"
-		."?token=".API_SECRET
-		."&cattleId=".$cattleId
-		."&userId=".$_SESSION["userId"];
-	// using cURL
-	$mch = curl_init();
-	curl_setopt($mch, CURLOPT_SSL_VERIFYPEER, false);
-	curl_setopt($mch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($mch, CURLOPT_URL, $mURL);
-	$mresult = curl_exec($mch);
-	curl_close($mch);
-	// get php object
-	$mobj = json_decode($mresult);
-	foreach($mobj as $mline) {
-		$cattleName = $mline->cattleName;
-		$cattleSex = $mline->cattleSex;
-		$cattleTag = $mline->cattleTag;
-		$cattleRegisteredNumber = $mline->cattleRegisteredNumber;
-		$cattleElectronicId = $mline->cattleElectronicId;
-		$cattleAnimalType = $mline->cattleAnimalType;
-		$cattleSireName = $mline->cattleSireName;
-		$cattleDamName = $mline->cattleDamName;
-		$cattleDamRegisteredNumber = $mline->cattleDamRegisteredNumber;
-		$cattleSireRegisteredNumber = $mline->cattleSireRegisteredNumber;
-		$cattleDateOfBirth = $mline->cattleDateOfBirth;
-		$cattleContraception = $mline->cattleContraception;
-		$cattleBreeder = $mline->cattleBreeder;
-		$cattlePregnant = $mline->cattlePregnant;
-		$cattleHeight = $mline->cattleHeight;
-		$cattleWeight = $mline->cattleWeight;
-		$pastureId = $mline->pastureId;
-	}
-}
-
-
 ?>
 
 <!DOCTYPE html>
@@ -71,24 +12,20 @@ if(isset($_GET["more"])) {
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<title>RanchNet</title>
-
+	
 	<!-- Bootstrap core CSS-->
 	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+  
 	<!-- Custom fonts for this template-->
 	<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-	<!-- Page level plugin CSS-->
-	<link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-
+  
 	<!-- Custom styles for this template-->
 	<link href="css/sb-admin.css" rel="stylesheet">
-	
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 
-<!-- Navigation-->
+<!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <a class="navbar-brand" href="../cattlemanager">RanchNet</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -97,21 +34,17 @@ if(isset($_GET["more"])) {
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cattle Manager">
-            <a class="nav-link" href="../cattlemanager">
+            <a class="nav-link" href="/cattlemanager">
                 <i class="fa fa-fw fa-dashboard"></i>
                 <span class="nav-link-text">Cattle Manager</span>
             </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pasture Manager">
-            <a class="nav-link" href="../pasturemanager">
+            <a class="nav-link" href="/pasturemanager">
                 <i class="fa fa-fw fa-map"></i>
                 <span class="nav-link-text">Pasture Manager</span>
             </a>
             </li>
-			
-			<!-- Reports Navigation Menu 
-				1.) still cannot create the menu automatically (needs reportURL var in JSON)
-				2.) create manually -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reports">
             <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
                 <i class="fa fa-fw fa-sitemap"></i>
@@ -119,25 +52,13 @@ if(isset($_GET["more"])) {
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
                 <li>
-                <a href="../reports/pair">Pair Up</a>
+                <a href="../pair">Pair Up</a>
                 </li>
                 <li>
-                <a href="../reports/bullsweight">Weight of all Bulls</a>
+                <a href="../bullsweight">Weight of all Bulls</a>
                 </li>
-				
-				<!-- Available reports -->
-				<?php 
-				// get php object and create the nav menu
-				$obj = json_decode($result);
-				foreach ($obj as $line) { ?>
-					<li>
-						<a href="process.php?report=<?php echo "$line->reportId"; ?>"><?php echo "$line->reportName"; ?></a>
-					</li>
-				<?php } ?>
-				
             </ul>
             </li>
-			
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Settings">
             <a class="nav-link" href="../settings">
                 <i class="fa fa-fw fa-wrench"></i>
@@ -250,18 +171,54 @@ if(isset($_GET["more"])) {
     </div>
 </nav>
 
-<div class="content-wrapper">
-    <div class="container-fluid">
-		<?php 
-		if(isset($_SESSION["report"])) {
-			echo $_SESSION["report"];
-		} else {
-			echo "NO REPORT TO BE SHOWN";
-		}
-		?>
-	</div>
-	<!-- /.container-fluid -->
-	
+	<div class="content-wrapper">
+		<div class="container-fluid">
+			
+			<!-- Weight of all Bulls - Bar Chart -->
+			<div class="card mb-3">
+				<div class="card-header">
+					<i class="fa fa-bar-chart"></i> Weight of all Bulls
+				</div>
+				<div class="card-body">
+					<canvas id="barChart" width="100%" height="30"></canvas>
+					
+<!-- Gets all male cattle tags and weight for each-->
+<?php
+// init vars
+$cattleArray = array();
+$weightArray = array();
+
+// set up URL
+$URL = API_URL
+	."cattle"
+	."?token=".API_SECRET
+	."&cattleSex=M"
+	."&userId=".$_SESSION["userId"];
+
+// using cURL
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_URL, $URL);
+$result = curl_exec($ch);
+curl_close($ch);
+
+// get php object
+$obj = json_decode($result);
+foreach($obj as $line) {
+	$cattleArray[] = $line->cattleTag;
+	$weightArray[] = $line->cattleWeight;
+}
+?>
+					<p><?php var_dump($result); ?></p>
+					<p><?php var_dump($obj); ?></p>
+					<p><?php var_dump($cattleArray); ?></p>
+					<p><?php var_dump($weightArray); ?></p>
+				</div>
+			</div>
+			
+		</div>
+		
 <!-- Copyright footer -->
 <footer class="sticky-footer">
     <div class="container">
@@ -298,184 +255,63 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
     </div>
 </div>
 
-<!-- Cattle Details Modal -->
-<div class="modal fade" id="cattleModal" role="dialog">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title"><?php echo $cattleTag; ?> Full Details</h5>
-				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button> 
-			</div>
-			<div class="modal-body">
-				<!-- Name, Sex, Animal Type details -->
-				<div class="form-group">
-					<div class="form-row">
-						<div class="col-md-4">
-							<label class="form-control-label"><strong>Name: </strong></label>
-							<label class="form-control-label"><?php echo $cattleName; ?></label>
-						</div>
-						<div class="col-md-4">
-							<label class="form-control-label"><strong>Sex: </strong></label>
-							<label class="form-control-label"><?php echo $cattleSex; ?></label>
-						</div>
-						<div class="col-md-4">
-							<label class="form-control-label"><strong>Animal Type: </strong></label>
-							<label class="form-control-label"><?php echo $cattleAnimalType; ?></label>
-						</div>
-					</div>
-				</div>
-				<!-- Tag, Reg Num, Elec ID details -->
-				<div class="form-group">
-					<div class="form-row">
-						<div class="col-md-4">
-							<label class="form-control-label"><strong>Tag: </strong></label>
-							<label class="form-control-label"><?php echo $cattleTag; ?></label>
-						</div>
-						<div class="col-md-4">
-							<label class="form-control-label"><strong>Registered Number: </strong></label>
-							<label class="form-control-label"><?php echo $cattleRegisteredNumber; ?></label>
-						</div>
-						<div class="col-md-4">
-							<label class="form-control-label"><strong>Electronic ID: </strong></label>
-							<label class="form-control-label"><?php echo $cattleElectronicId; ?></label>
-						</div>
-					</div>
-				</div>
-				<!-- Sire details -->
-				<div class="form-group">
-					<div class="form-row">
-						<div class="col-md-4">
-							<label class="form-control-label"><strong>Sire Name: </strong></label>
-							<label class="form-control-label"><?php echo $cattleSireName; ?></label>
-						</div>
-						<div class="col-md-8">
-							<label class="form-control-label"><strong>Sire Registered Number: </strong></label>
-							<label class="form-control-label"><?php echo $cattleSireRegisteredNumber; ?></label>
-						</div>
-					</div>
-				</div>
-				<!-- Dam details -->
-				<div class="form-group">
-					<div class="form-row">
-						<div class="col-md-4">
-							<label class="form-control-label"><strong>Dam Name: </strong></label>
-							<label class="form-control-label"><?php echo $cattleDamName; ?></label>
-						</div>
-						<div class="col-md-8">
-							<label class="form-control-label"><strong>Dam Registered Number: </strong></label>
-							<label class="form-control-label"><?php echo $cattleDamRegisteredNumber; ?></label>
-						</div>
-					</div>
-				</div>
-				<!-- DOB, Contraception, Breeder, Pregnant details -->
-				<div class="form-group">
-					<div class="form-row">
-						<div class="col-md-3">
-							<label class="form-control-label"><strong>Date of Birth: </strong></label>
-							<label class="form-control-label"><?php echo $cattleDateOfBirth; ?></label>
-						</div>
-						<div class="col-md-3">
-							<label class="form-control-label"><strong>Contraception: </strong></label>
-							<label class="form-control-label"><?php echo $cattleContraception; ?></label>
-						</div>
-						<div class="col-md-3">
-							<label class="form-control-label"><strong>Breeder: </strong></label>
-							<label class="form-control-label"><?php echo $cattleBreeder; ?></label>
-						</div>
-						<div class="col-md-3">
-							<label class="form-control-label"><strong>Pregnant: </strong></label>
-							<label class="form-control-label">
-							<?php 
-							if($cattlePregnant == 0) {
-								echo "No";
-							} else {
-								echo "Yes";
-							}
-							?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<!-- Height, Weight, Pasture details -->
-                <div class="form-group">
-					<div class="form-row">
-						<div class="col-md-4">
-							<label class="form-control-label"><strong>Height: </strong></label>
-							<label class="form-control-label">
-							<?php 
-							if(isset($_SESSION["measure"])) {
-								if($_SESSION["measure"] == "metric") {
-									echo $cattleHeight * 2.54;
-								} else {
-									echo $cattleHeight;
-								}
-							}
-							?>
-							</label>
-						</div>
-						<div class="col-md-4">
-							<label class="form-control-label"><strong>Weight: </strong></label>
-							<label class="form-control-label">
-							<?php 
-							if(isset($_SESSION["measure"])) {
-								if($_SESSION["measure"] == "metric") {
-									echo $cattleWeight * 0.453592;
-								} else {
-									echo $cattleWeight;
-								}
-							} 
-							?>
-							</label>
-						</div>
-						<div class="col-md-4">
-							<label class="form-control-label"><strong>Pasture ID: </strong></label>
-							<label class="form-control-label"><?php echo $pastureId; ?></label>
-						</div>
-					</div>
-				</div>               
-			</div>
-			<div class="modal-footer">
-				<button class="btn btn-secondary" type="button" data-dismiss="modal">Finish</button>
-			</div>
-		</div>
+	<!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+	<!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    
+	<!-- Page level plugin JavaScript-->
+    <script src="vendor/chart.js/Chart.js"></script>
+    
+	<!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
+    
+	<!-- Custom scripts for this page-->
+    <script src="js/sb-admin-charts.js"></script>
+	
+	<!-- Charts.js usage -->
+	<script>
+		var canvas = document.getElementById("barChart");
+		var myBarChart = new Chart(canvas, {
+			type: 'bar',
+			data: {
+				labels: <?php echo json_encode($cattleArray); ?>,
+				datasets: [{
+					label: 'Weight of all Bulls',
+					backgroundColor: 'rgba(2,117,216,1)',
+					borderColor: 'rgba(2,117,216,1)',
+					data: <?php echo json_encode($weightArray); ?>
+				}]
+			},
+			options: {
+				scales: {
+					yAxes: [{
+						stacked: true,
+						gridLines: {
+							display: true
+						}
+					}],
+					xAxes: [{
+						gridLines: {
+							display: false
+						}
+					}]
+				},
+				legend: {
+					display: false
+				},
+				animation: {
+					duration: 1000
+				}
+			}
+		});
+	</script>
+	
 	</div>
-</div>
-
-<!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Page level plugin JavaScript-->
-<script src="vendor/datatables/jquery.dataTables.js"></script> 
-<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="js/sb-admin.min.js"></script>
-
-<!-- Custom scripts for table pages-->
-<script src="js/sb-admin-datatables.min.js"></script>
-
-<!-- More usage -->
-<?php
-if(isset($_GET["more"])) {
-	echo '<script type="text/javascript">';
-	echo '    $(window).on(\'load\',function(){';
-	echo '        $(\'#cattleModal\').modal(\'show\');';
-	echo '    });';
-	echo '</script>';
-}
-?>
-
-</div>
-<!-- /.content-wrapper -->
-
 </body>
-</html>
 
+</html>
 
 
