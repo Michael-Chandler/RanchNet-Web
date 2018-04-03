@@ -136,13 +136,13 @@ if(isset($_GET["more"])) {
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cattle Manager">
-            <a class="nav-link" href="../cattlemanager">
+            <a class="nav-link" href="/cattlemanager">
                 <i class="fa fa-fw fa-dashboard"></i>
                 <span class="nav-link-text">Cattle Manager</span>
             </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pasture Manager">
-            <a class="nav-link" href="../pasturemanager">
+            <a class="nav-link" href="/pasturemanager">
                 <i class="fa fa-fw fa-map"></i>
                 <span class="nav-link-text">Pasture Manager</span>
             </a>
@@ -173,13 +173,8 @@ if(isset($_GET["more"])) {
 													background-color: rgba(0,0,0,0);
 													padding: 0px;
 													
-													
-													
-													
-													
-													
 													"action="/reports<?php echo "$rline->reportUrl" ?>">
-							<input type="hidden" name="reportId" value="<?php echo "$rline->reportId"; ?>"/>
+							<input type="hidden" name="reportId" id="reportId" value="<?php echo "$rline->reportId"; ?>"/>
 						    <input type="submit" style="border-width: 0px;
 						    							color: #868e96;
 						    							color:hover: #adb5bd;
