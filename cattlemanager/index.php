@@ -153,12 +153,6 @@ if(isset($_GET["more"])) {
                 <span class="nav-link-text">Reports</span>
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
-                <li>
-                <a href="../reports/pair">Pair Up</a>
-                </li>
-                <li>
-                <a href="../reports/bullsweight">Weight of all Bulls</a>
-                </li>
 				
 				<!-- Available reports -->
 				<?php 
@@ -179,7 +173,9 @@ if(isset($_GET["more"])) {
 						    							color: #868e96;
 						    							color:hover: #adb5bd;
 														background: rgba(0,0,0,0);
-														padding: 0px;
+														padding-left: 0px;
+														padding-top: .5em;
+														padding-bottom: .5em;
 						    							" value="<?php echo "$rline->reportName"; ?>" />
 						</form>
 					</li>
