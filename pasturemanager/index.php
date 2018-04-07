@@ -97,12 +97,6 @@ if(isset($_GET["edit"])) {
                 <span class="nav-link-text">Reports</span>
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
-                <li>
-                <a href="../reports/pair">Pair Up</a>
-                </li>
-                <li>
-                <a href="../reports/bullsweight">Weight of all Bulls</a>
-                </li>
 				
 				<!-- Available reports -->
 				<?php 
@@ -110,7 +104,24 @@ if(isset($_GET["edit"])) {
 				$robj = json_decode($report);
 				foreach ($robj as $rline) { ?>
 					<li>
-						<a href="../reports/process.php?report="<?php echo "$rline->reportId"; ?>><?php echo "$rline->reportName"; ?></a>
+						<form method="POST" style=" margin-top: 1em;
+													margin-bottom: 1em;
+													border-width: 0px;
+													margin-left: 2.75em;
+													background-color: rgba(0,0,0,0);
+													padding: 0px;
+													
+													"action="/reports<?php echo "$rline->reportUrl" ?>">
+							<input type="hidden" name="reportId" id="reportId" value="<?php echo "$rline->reportId"; ?>"/>
+						    <input type="submit" style="border-width: 0px;
+						    							color: #868e96;
+						    							color:hover: #adb5bd;
+														background: rgba(0,0,0,0);
+														padding-left: 0px;
+														padding-top: .5em;
+														padding-bottom: .5em;
+						    							" value="<?php echo "$rline->reportName"; ?>" />
+						</form>
 					</li>
 				<?php } ?>
 				
@@ -399,6 +410,7 @@ echo '</script>';
 </body>
 
 </html>
+
 
 
 

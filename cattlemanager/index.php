@@ -320,6 +320,7 @@ if(isset($_GET["more"])) {
 									<form method="POST" action="process.php">
 										<input type ="hidden" name="cattleId" value="<?php echo $cattleId; ?>">
 										<label type="text" class="form-control-label"><strong>User ID: <?php echo $_SESSION["userId"]; ?></strong></label>
+										<br>
 										<label type="text" class="form-control-label"><strong>Measurement System: 
 										<?php 
 										if(isset($_SESSION["measure"])) {
@@ -479,6 +480,9 @@ if(isset($_GET["more"])) {
                                         <th>Weight <!-- Check measurement system chosen -->
 										<?php 
 										if(isset($_SESSION["measure"])) {
+											// test
+											echo $_SESSION["measure"];
+											
 											if($_SESSION["measure"] == "metric") {
 												echo "(kg.)";
 											} else {
@@ -763,6 +767,7 @@ if(isset($_GET["more"])) {
 
 </body>
 </html>
+
 
 
 

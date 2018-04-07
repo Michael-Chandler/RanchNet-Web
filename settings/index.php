@@ -1,5 +1,6 @@
 <?php
 include_once('../auth.php');
+include_once('../cattlemanager/process.php');
 
 // cURL stuff for reports nav menu
 // set up URL
@@ -43,20 +44,20 @@ curl_close($rch);
 
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="../cattlemanager">RanchNet</a>
+    <a class="navbar-brand" href="/cattlemanager">RanchNet</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cattle Manager">
-            <a class="nav-link" href="../cattlemanager">
+            <a class="nav-link" href="/cattlemanager">
                 <i class="fa fa-fw fa-dashboard"></i>
                 <span class="nav-link-text">Cattle Manager</span>
             </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pasture Manager">
-            <a class="nav-link" href="../pasturemanager">
+            <a class="nav-link" href="/pasturemanager">
                 <i class="fa fa-fw fa-map"></i>
                 <span class="nav-link-text">Pasture Manager</span>
             </a>
@@ -67,12 +68,6 @@ curl_close($rch);
                 <span class="nav-link-text">Reports</span>
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
-                <li>
-                <a href="../reports/pair">Pair Up</a>
-                </li>
-                <li>
-                <a href="../reports/bullsweight">Weight of all Bulls</a>
-                </li>
 				
 				<!-- Available reports -->
 				<?php 
@@ -80,7 +75,24 @@ curl_close($rch);
 				$robj = json_decode($report);
 				foreach ($robj as $rline) { ?>
 					<li>
-						<a href="../reports/process.php?report="<?php echo "$rline->reportId"; ?>><?php echo "$rline->reportName"; ?></a>
+						<form method="POST" style=" margin-top: 1em;
+													margin-bottom: 1em;
+													border-width: 0px;
+													margin-left: 2.75em;
+													background-color: rgba(0,0,0,0);
+													padding: 0px;
+													
+													"action="/reports<?php echo "$rline->reportUrl" ?>">
+							<input type="hidden" name="reportId" id="reportId" value="<?php echo "$rline->reportId"; ?>"/>
+						    <input type="submit" style="border-width: 0px;
+						    							color: #868e96;
+						    							color:hover: #adb5bd;
+														background: rgba(0,0,0,0);
+														padding-left: 0px;
+														padding-top: .5em;
+														padding-bottom: .5em;
+						    							" value="<?php echo "$rline->reportName"; ?>" />
+						</form>
 					</li>
 				<?php } ?>
 				
@@ -210,8 +222,8 @@ curl_close($rch);
 							<div class="col-md-6">
 								<label for="measure" class="form-control-label">Measurement System: </label>
 								<select class="form-control" id="measure" name="measure">
-									<option value="english" selected>English</option>
-									<option value="metric">Metric</option>
+									<option value="English">English</option>
+									<option value="Metric">Metric</option>
 								</select>
 							</div>
 						</div>
@@ -275,3 +287,6 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 </body>
 
 </html>
+
+
+

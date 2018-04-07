@@ -27,7 +27,7 @@ include_once('../auth.php');
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="../cattlemanager">RanchNet</a>
+    <a class="navbar-brand" href="/cattlemanager">RanchNet</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -51,12 +51,34 @@ include_once('../auth.php');
                 <span class="nav-link-text">Reports</span>
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
-                <li>
-                <a href="../pair">Pair Up</a>
-                </li>
-                <li>
-                <a href="../bullsweight">Weight of all Bulls</a>
-                </li>
+				
+				<!-- Available reports -->
+				<?php 
+				// get php object and create the nav menu
+				$robj = json_decode($report);
+				foreach ($robj as $rline) { ?>
+					<li>
+						<form method="POST" style=" margin-top: 1em;
+													margin-bottom: 1em;
+													border-width: 0px;
+													margin-left: 2.75em;
+													background-color: rgba(0,0,0,0);
+													padding: 0px;
+													
+													"action="/reports<?php echo "$rline->reportUrl" ?>">
+							<input type="hidden" name="reportId" id="reportId" value="<?php echo "$rline->reportId"; ?>"/>
+						    <input type="submit" style="border-width: 0px;
+						    							color: #868e96;
+						    							color:hover: #adb5bd;
+														background: rgba(0,0,0,0);
+														padding-left: 0px;
+														padding-top: .5em;
+														padding-bottom: .5em;
+						    							" value="<?php echo "$rline->reportName"; ?>" />
+						</form>
+					</li>
+				<?php } ?>
+				
             </ul>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Settings">
@@ -247,7 +269,7 @@ foreach($obj as $line) {
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 <?php
-echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
+echo "<a class=\"btn btn-primary\" href=\"/logout\">Logout</a>";
 ?>
 
             </div>
@@ -313,5 +335,6 @@ echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
 </body>
 
 </html>
+
 
 
