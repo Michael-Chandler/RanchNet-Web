@@ -1,5 +1,7 @@
 <?php
 include_once('../../auth.php');
+include_once('process.php');
+
 // cURL stuff for reports nav menu
 // set up URL
 $rURL = API_URL
@@ -21,9 +23,10 @@ if(isset($_GET["edit"])) {
 	
 	// set up vars
 	$URL = API_URL
-		."reports"
+		."cattle"
 		."?token=".API_SECRET
-		."&reportId=".$reportId;
+		."&cattleId=".$cattleId
+		."&userId=".$_SESSION["userId"];
 	// using cURL
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -331,7 +334,7 @@ if(isset($_GET["more"])) {
 											<div class="form-row">
 												<div class="col-md-4">
 													<label for="cattleName" class="form-control-label"><strong>Name: </strong></label>
-													<input type="text" class="form-control" id="cattleName" name="cattleName" maxlength="64" value="<?php echo $cattleName; ?>" placeholder="Enter Cattle Name here">
+													<input type="text" class="form-control" id="cattleName" name="cattleName" maxlength="64" value="<?php echo $cattleName; ?>" placeholder="Enter Cattle Name here" required>
 												</div>
 												<div class="col-md-4">
 													<label for="cattleSex" class="form-control-label"><strong>Sex: </strong></label>
@@ -436,7 +439,13 @@ if(isset($_GET["more"])) {
 												</div>
 												<div class="col-md-4">
 													<label for="pastureId" class="form-control-label"><strong>Pasture ID: </strong></label>
-													<input type="text" class="form-control" id="pastureId" name="pastureId" maxlength="11" value="<?php echo $pastureId; ?>" placeholder="Enter Pasture ID here">
+													<input type="text" class="form-control" id="pastureId" name="pastureId" maxlength="11" 
+														value="<?php 
+																if(!isset($pastureId)) {
+																	echo 1;
+																} else {
+																	echo $pastureId;
+																}?>" placeholder="Enter Pasture ID here">
 												</div>
 											</div>
 										</div>
@@ -475,12 +484,10 @@ if(isset($_GET["more"])) {
                                         <th>Date of Birth</th>
                                         <th>Weight <!-- Check measurement system chosen -->
 										<?php 
-										if(isset($_SESSION["measure"])) {
-											if($_SESSION["measure"] == "metric") {
-												echo "(kg.)";
-											} else {
-												echo "(lbs.)";
-											}
+										if(isset($_SESSION["measure"]) && $_SESSION["measure"] == "Metric") {
+											echo "(kg.)";
+										} else {
+											echo "(lbs.)";
 										}
 										?>
 										</th>
@@ -517,12 +524,10 @@ foreach ($obj as $line) { ?>
     <td><?php echo "$line->cattleDateOfBirth"; ?></td>
     <td>
 	<?php
-	if(isset($_SESSION["measure"])) {
-		if($_SESSION["measure"] == "metric") {
-			echo $line->cattleWeight * 0.453592;
-		} else {
-			echo "$line->cattleWeight";
-		}
+	if(isset($_SESSION["measure"]) && $_SESSION["measure"] == "Metric") {
+		echo $line->cattleWeight * 0.453592;
+	} else {
+		echo "$line->cattleWeight";
 	}
 	?>
 	</td>
@@ -681,12 +686,10 @@ echo "<a class=\"btn btn-primary\" href=\"/logout\">Logout</a>";
 							<label class="form-control-label"><strong>Height: </strong></label>
 							<label class="form-control-label">
 							<?php 
-							if(isset($_SESSION["measure"])) {
-								if($_SESSION["measure"] == "metric") {
-									echo $mcattleHeight * 2.54;
-								} else {
-									echo $mcattleHeight;
-								}
+							if(isset($_SESSION["measure"]) && $_SESSION["measure"] == "Metric") {
+								echo $mcattleHeight * 2.54;
+							} else {
+								echo $mcattleHeight;
 							}
 							?>
 							</label>
@@ -695,12 +698,10 @@ echo "<a class=\"btn btn-primary\" href=\"/logout\">Logout</a>";
 							<label class="form-control-label"><strong>Weight: </strong></label>
 							<label class="form-control-label">
 							<?php 
-							if(isset($_SESSION["measure"])) {
-								if($_SESSION["measure"] == "metric") {
-									echo $mcattleWeight * 0.453592;
-								} else {
-									echo $mcattleWeight;
-								}
+							if(isset($_SESSION["measure"]) && $_SESSION["measure"] == "Metric") {
+								echo $mcattleWeight * 0.453592;
+							} else {
+								echo $mcattleWeight;
 							}
 							?>
 							</label>
@@ -760,6 +761,7 @@ if(isset($_GET["more"])) {
 
 </body>
 </html>
+
 
 
 

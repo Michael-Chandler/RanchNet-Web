@@ -158,11 +158,14 @@ if(isset($_GET["del"])) {
 if(isset($_POST["save"])) {
 	$_SESSION["measure"] = $_POST["save"];
 	
+	$_SESSION["msg"] = "Measurement system changed to" . $_SESSION["measure"];
+	
 	// return to cattle page
 	header("Location: ".WEB_URL."/cattlemanager"); 
 }
 
 ?>
+
 
 
 

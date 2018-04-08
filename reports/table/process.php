@@ -23,23 +23,23 @@ $pastureId = 0;
 
 // POST - creates a new record
 if(isset($_POST["add"])) {
-	$cattleName = urlencode($_POST["cattleName"]);
-	$cattleSex = urlencode($_POST["cattleSex"]);
-	$cattleTag = urlencode($_POST["cattleTag"]);
-	$cattleRegisteredNumber = urlencode($_POST["cattleRegisteredNumber"]);
-	$cattleElectronicId = urlencode($_POST["cattleElectronicId"]);
-	$cattleAnimalType = urlencode($_POST["cattleAnimalType"]);
-	$cattleSireName = urlencode($_POST["cattleSireName"]);
-	$cattleDamName = urlencode($_POST["cattleDamName"]);
-	$cattleDamRegisteredNumber = urlencode($_POST["cattleDamRegisteredNumber"]);
-	$cattleSireRegisteredNumber = urlencode($_POST["cattleSireRegisteredNumber"]);
-	$cattleDateOfBirth = urlencode($_POST["cattleDateOfBirth"]);
-	$cattleContraception = urlencode($_POST["cattleContraception"]);
-	$cattleBreeder = urlencode($_POST["cattleBreeder"]);
-	$cattlePregnant = urlencode($_POST["cattlePregnant"]);
-	$cattleHeight = urlencode($_POST["cattleHeight"]);
-	$cattleWeight = urlencode($_POST["cattleWeight"]);
-	$pastureId = urlencode($_POST["pastureId"]);
+	$cattleName = $_POST["cattleName"];
+	$cattleSex = $_POST["cattleSex"];
+	$cattleTag = $_POST["cattleTag"];
+	$cattleRegisteredNumber = $_POST["cattleRegisteredNumber"];
+	$cattleElectronicId = $_POST["cattleElectronicId"];
+	$cattleAnimalType = $_POST["cattleAnimalType"];
+	$cattleSireName = $_POST["cattleSireName"];
+	$cattleDamName = $_POST["cattleDamName"];
+	$cattleDamRegisteredNumber = $_POST["cattleDamRegisteredNumber"];
+	$cattleSireRegisteredNumber = $_POST["cattleSireRegisteredNumber"];
+	$cattleDateOfBirth = $_POST["cattleDateOfBirth"];
+	$cattleContraception = $_POST["cattleContraception"];
+	$cattleBreeder = $_POST["cattleBreeder"];
+	$cattlePregnant = $_POST["cattlePregnant"];
+	$cattleHeight = $_POST["cattleHeight"];
+	$cattleWeight = $_POST["cattleWeight"];
+	$pastureId = $_POST["pastureId"];
 	
 	// POST request to API (starting URL)
 	$URL = API_URL
@@ -72,8 +72,8 @@ if(isset($_POST["add"])) {
 	
 	$_SESSION["msg"] = "New Cattle added";
 	
-	// return to cattle page
-	header("Location: ".WEB_URL."/cattlemanager");
+	// return to table page
+	header("Location: ".WEB_URL."/reports/table");
 }
 
 // PUT - updates chosen record
@@ -124,8 +124,8 @@ if(isset($_POST["update"])) {
 	
 	$_SESSION["msg"] = "Cattle updated";
 	
-	// return to cattle page
-	header("Location: ".WEB_URL."/cattlemanager");
+	// return to table page
+	header("Location: ".WEB_URL."/reports/table");
 }
 
 // DELETE - deletes chosen record
@@ -150,8 +150,8 @@ if(isset($_GET["del"])) {
 	
 	$_SESSION["msg"] = "Cattle deleted";
 	
-	// return to cattle page
-	header("Location: ".WEB_URL."/cattlemanager");
+	// return to table page
+	header("Location: ".WEB_URL."/reports/table");
 }
 
 // user settings (measurement system, etc)
@@ -163,6 +163,7 @@ if(isset($_POST["save"])) {
 }
 
 ?>
+
 
 
 

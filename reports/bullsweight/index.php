@@ -1,5 +1,21 @@
 <?php
 include_once('../auth.php');
+
+// cURL stuff for reports nav menu
+// set up URL
+$rURL = API_URL
+    ."reports"
+    ."?token=".API_SECRET;
+// using cURL
+$rch = curl_init();
+curl_setopt($rch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($rch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($rch, CURLOPT_URL, $rURL);
+$report = curl_exec($rch);
+curl_close($rch);
+// MORE at the nav menu
+
+
 ?>
 
 <!DOCTYPE html>
@@ -335,6 +351,7 @@ echo "<a class=\"btn btn-primary\" href=\"/logout\">Logout</a>";
 </body>
 
 </html>
+
 
 
 
