@@ -48,7 +48,7 @@
     </ul>
     </li>
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Settings">
-    <a class="nav-link" href="../settings">
+    <a class="nav-link" href="/settings">
         <i class="fa fa-fw fa-wrench"></i>
         <span class="nav-link-text">Settings</span>
     </a>

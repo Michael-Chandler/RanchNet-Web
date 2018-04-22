@@ -14,6 +14,7 @@ curl_setopt($rch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($rch, CURLOPT_URL, $rURL);
 $report = curl_exec($rch);
 curl_close($rch);
+// MORE at the nav menu
 
 // get all pastures to list
 $URL = API_URL
@@ -31,7 +32,6 @@ curl_close($ch);
 
 // get php object
 $pastures = json_decode($result);
-// MORE at the nav menu
 
 // get record to be updated -> fills the form and changes the Add button to updated
 if(isset($_GET["edit"])) {
@@ -236,7 +236,7 @@ foreach ($obj as $line) { ?>
     <td><?php echo "$line->cattleSireRegisteredNumber"; ?></td>
     <td><?php echo "$line->cattleDamName"; ?></td>
     <td><?php echo "$line->cattleDamRegisteredNumber"; ?></td>
-    <td><?php echo "$line->cattleDateOfBirth"; ?></td>
+    <td><?php echo date("m.d/Y", strtotime($line->cattleDateOfBirth)); ?></td>
     <td>
 	<?php
 	if(isset($_SESSION["measure"]) && $_SESSION["measure"] == "Metric") {
@@ -476,6 +476,7 @@ if(isset($_GET["more"])) {
 
 </body>
 </html>
+
 
 
 

@@ -38,7 +38,7 @@
 					<div class="form-row">
 						<div class="col-md-4">
 							<label for="cattleName" class="form-control-label"><strong>Name: </strong></label>
-							<input type="text" class="form-control" id="cattleName" name="cattleName" maxlength="64" value="<?php echo $cattleName; ?>" placeholder="Enter Cattle Name here" required>
+							<input type="text" class="form-control" id="cattleName" name="cattleName" maxlength="64" value="<?php echo $cattleName; ?>" placeholder="Cattle Name here" required>
 						</div>
 						<div class="col-md-4">
 							<label for="cattleSex" class="form-control-label"><strong>Sex: </strong></label>
@@ -54,7 +54,7 @@
 						</div>
 						<div class="col-md-4">
 							<label for="cattleAnimalType" class="form-control-label"><strong>Animal Type: </strong></label>
-							<input type="text" class="form-control" id="cattleAnimalType" name="cattleAnimalType" maxlength="128" value="<?php echo $cattleAnimalType; ?>" placeholder="Enter Animal Type here">
+							<input type="text" class="form-control" id="cattleAnimalType" name="cattleAnimalType" maxlength="128" value="<?php echo $cattleAnimalType; ?>" placeholder="Animal Type here">
 						</div>
 					</div>
 				</div>
@@ -63,15 +63,15 @@
 					<div class="form-row">
 						<div class="col-md-4">
 							<label for="cattleTag" class="form-control-label"><strong>Tag: </strong></label>
-							<input type="text" class="form-control" id="cattleTag" name="cattleTag" maxlength="128" value="<?php echo $cattleTag; ?>" placeholder="Enter Cattle Tag here"> 
+							<input type="text" class="form-control" id="cattleTag" name="cattleTag" maxlength="128" value="<?php echo $cattleTag; ?>" placeholder="Cattle Tag here" required> 
 						</div>
 						<div class="col-md-4">
 							<label for="cattleRegisteredNumber" class="form-control-label"><strong>Registered Number: </strong></label>
-							<input type="text" class="form-control" id="cattleRegisteredNumber" name="cattleRegisteredNumber" maxlength="128" value="<?php echo $cattleRegisteredNumber; ?>" placeholder="Enter Cattle Registered Number here">
+							<input type="text" class="form-control" id="cattleRegisteredNumber" name="cattleRegisteredNumber" maxlength="128" value="<?php echo $cattleRegisteredNumber; ?>" placeholder="Cattle Registered Number here">
 						</div>
 						<div class="col-md-4">
 							<label for="cattleElectronicId" class="form-control-label"><strong>Electronic ID: </strong></label>
-							<input type="text" class="form-control" id="cattleElectronicId" name="cattleElectronicId" maxlength="128" value="<?php echo $cattleElectronicId; ?>" placeholder="Enter Cattle Electronic ID here">
+							<input type="text" class="form-control" id="cattleElectronicId" name="cattleElectronicId" maxlength="128" value="<?php echo $cattleElectronicId; ?>" placeholder="Cattle Electronic ID here">
 						</div>
 					</div>
 				</div>
@@ -80,11 +80,11 @@
 					<div class="form-row">
 						<div class="col-md-4">
 							<label for="cattleSireName" class="form-control-label"><strong>Sire Name: </strong></label>
-							<input type="text" class="form-control" id="cattleSireName" name="cattleSireName" maxlength="64" value="<?php echo $cattleSireName; ?>" placeholder="Enter Sire Name here">
+							<input type="text" class="form-control" id="cattleSireName" name="cattleSireName" maxlength="64" value="<?php echo $cattleSireName; ?>" placeholder="Sire Name here">
 						</div>
 						<div class="col-md-8">
 							<label for="cattleSireRegisteredNumber" class="form-control-label"><strong>Sire Registered Number: </strong></label>
-							<input type="text" class="form-control" id="cattleSireRegisteredNumber" name="cattleSireRegisteredNumber" maxlength="128" value="<?php echo $cattleSireRegisteredNumber; ?>" placeholder="Enter Sire Registered Number here">
+							<input type="text" class="form-control" id="cattleSireRegisteredNumber" name="cattleSireRegisteredNumber" maxlength="128" value="<?php echo $cattleSireRegisteredNumber; ?>" placeholder="Sire Registered Number here">
 						</div>
 					</div>
 				</div>
@@ -93,11 +93,11 @@
 					<div class="form-row">
 						<div class="col-md-4">
 							<label for="cattleDamName" class="form-control-label"><strong>Dam Name: </strong></label>
-							<input type="text" class="form-control" id="cattleDamName" name="cattleDamName" maxlength="64" value="<?php echo $cattleDamName; ?>" placeholder="Enter Dam Name here">
+							<input type="text" class="form-control" id="cattleDamName" name="cattleDamName" maxlength="64" value="<?php echo $cattleDamName; ?>" placeholder="Dam Name here">
 						</div>
 						<div class="col-md-8">
 							<label for="cattleDamRegisteredNumber" class="form-control-label"><strong>Dam Registered Number: </strong></label>
-							<input type="text" class="form-control" id="cattleDamRegisteredNumber" name="cattleDamRegisteredNumber" maxlength="128" value="<?php echo $cattleDamRegisteredNumber; ?>" placeholder="Enter Dam Registered Number here">
+							<input type="text" class="form-control" id="cattleDamRegisteredNumber" name="cattleDamRegisteredNumber" maxlength="128" value="<?php echo $cattleDamRegisteredNumber; ?>" placeholder="Dam Registered Number here">
 						</div>
 					</div>
 				</div>
@@ -106,15 +106,15 @@
 					<div class="form-row">
 						<div class="col-md-3">
 							<label for="cattleDateOfBirth" class="form-control-label"><strong>Date of Birth: </strong></label>
-							<input type="date" class="form-control" id="cattleDateOfBirth" name="cattleDateOfBirth" value="<?php echo date($cattleDateOfBirth); ?>">
+							<input type="date" class="form-control" id="cattleDateOfBirth" name="cattleDateOfBirth" value="<?php echo date("m/d/Y", strtotime($cattleDateOfBirth)); ?>">
 						</div>
 						<div class="col-md-3">
 							<label for="cattleContraception" class="form-control-label"><strong>Contraception: </strong></label>
-							<input type="text" class="form-control" id="cattleContraception" name="cattleContraception" maxlength="64" value="<?php echo $cattleContraception; ?>" placeholder="Enter Cattle Contraception here">
+							<input type="text" class="form-control" id="cattleContraception" name="cattleContraception" maxlength="64" value="<?php echo $cattleContraception; ?>" placeholder="Cattle Contraception here">
 						</div>
 						<div class="col-md-3">
 							<label for="cattleBreeder" class="form-control-label"><strong>Breeder: </strong></label>
-							<input type="text" class="form-control" id="cattleBreeder" name="cattleBreeder" maxlength="64" value="<?php echo $cattleBreeder; ?>" placeholder="Enter Cattle Breeder here">
+							<input type="text" class="form-control" id="cattleBreeder" name="cattleBreeder" maxlength="64" value="<?php echo $cattleBreeder; ?>" placeholder="Cattle Breeder here">
 						</div>
 						<div class="col-md-3">
 							<label for="cattlePregnant" class="form-control-label"><strong>Pregnant: </strong></label>
@@ -135,11 +135,11 @@
 					<div class="form-row">
 						<div class="col-md-4">
 							<label for="cattleHeight" class="form-control-label"><strong>Height: </strong></label>
-							<input type="text" class="form-control" id="cattleHeight" name="cattleHeight" maxlength="64" value="<?php echo $cattleHeight; ?>" placeholder="Enter Cattle Height here">
+							<input type="text" class="form-control" id="cattleHeight" name="cattleHeight" maxlength="64" value="<?php echo $cattleHeight; ?>" placeholder="Cattle Height here">
 						</div>
 						<div class="col-md-4">
 							<label for="cattleWeight" class="form-control-label"><strong>Weight: </strong></label>
-							<input type="text" class="form-control" id="cattleWeight" name="cattleWeight" maxlength="64" value="<?php echo $cattleWeight; ?>" placeholder="Enter Cattle Weight here">
+							<input type="text" class="form-control" id="cattleWeight" name="cattleWeight" maxlength="64" value="<?php echo $cattleWeight; ?>" placeholder="Cattle Weight here">
 						</div>
 						<div class="col-md-4">
 							<label for="pastureId" class="form-control-label"><strong>Pasture ID: </strong></label>
