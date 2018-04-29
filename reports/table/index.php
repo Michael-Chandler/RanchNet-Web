@@ -214,7 +214,8 @@ if(isset($_GET["more"])) {
 $URL = API_URL
 	."reports"
 	."?token=".API_SECRET
-	."&reportId=".$_POST['reportId'];
+	."&reportId=".$_POST['reportId']
+    ."&userId=".$_SESSION["userId"];
 
 // using cURL
 $ch = curl_init();
