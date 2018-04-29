@@ -70,11 +70,11 @@ include_once('../../blocks/detailscattlemodal.php');
 
 <div class="content-wrapper">
     <div class="container-fluid">
-        <h1 class="page-header">All Male Cattle</h1>
+        <h1 class="page-header">Cattle Report</h1>
 				<!-- DataTables card -->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i> All Male Cattle Table</div>
+                        <i class="fa fa-table"></i> Report Table</div>
                     <div class="card-body">
 					
                         <!-- Input Form -->
