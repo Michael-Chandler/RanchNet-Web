@@ -111,6 +111,7 @@ if(isset($_GET["more"])) {
 		$mcattleHeight = $mline->cattleHeight;
 		$mcattleWeight = $mline->cattleWeight;
 		$mpastureId = $mline->pastureId;
+		$mpastureName = $mline->pastureName;
 	}
 }
 
@@ -206,6 +207,7 @@ if(isset($_GET["more"])) {
 										}
 										?>
 										</th>
+										<th>Pasture</th>
 										<th>Edit</th>
 										<th>Delete</th>
                                     </tr>
@@ -246,6 +248,7 @@ foreach ($obj as $line) { ?>
 	}
 	?>
 	</td>
+	<td><?php echo "$line->pastureName"; ?></td>
 	<td><a class="btn btn-secondary" href="index.php?edit=<?php echo $line->cattleId; ?>">Edit</a></td>
 	<td><a class="btn btn-primary" href="process.php?del=<?php echo $line->cattleId; ?>">Delete</a></td>
     </tr>
