@@ -71,26 +71,25 @@ include_once('../../blocks/detailscattlemodal.php');
 <div class="content-wrapper">
 	<div class="container-fluid">
         <h1 class="page-header">Cattle Pairing</h1>
-		
-		<!-- Cattle ID Input form -->
-		<form method="POST" action="index.php">
-			<div class="form-group">
-				<div class="form-row">
-					<div class="col-md-6">
-						<label for="cattleId">Cattle ID: </label>
-						<input class="form-control" id="cattleId" name="cattleId" type="text" aria-describedby="nameHelp" placeholder="Cattle ID here">
-					</div>
-				</div>
-			</div>
-			<button type="submit" class="btn btn-secondary form-control" id="pair" name="pair">Find Pair</button>
-		</form>
-				
 				<!-- DataTables card -->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i> Cattle Pairs</div>
+                        <i class="fa fa-table"></i> Cattle Pairs <?php echo $_POST["pair"]?></div>
                     <div class="card-body">
 				<div class="table-responsive">
+				
+				<!-- Cattle ID Input form -->
+				<form method="POST" action="index.php">
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-md-6">
+							<label for="cattleId">Cattle ID: </label>
+							<input class="form-control" id="cattleId" name="cattleId" type="text" aria-describedby="nameHelp" placeholder="Cattle ID here">
+						</div>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-secondary form-control" id="pair" name="pair">Find Pair</button>
+				</form>
 				
 					<?php if(isset($_SESSION["msg"])): ?>
 						<div class="msg">
@@ -241,5 +240,6 @@ if(isset($_GET["more"])) {
 
 </body>
 </html>
+
 
 
