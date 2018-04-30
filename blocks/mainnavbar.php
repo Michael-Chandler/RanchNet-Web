@@ -1,19 +1,19 @@
 <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cattle Manager">
     <a class="nav-link" href="/cattlemanager">
-        <i class="fa fa-fw fa-dashboard"></i>
+        <i class="fa fa-fw fa-table"></i>
         <span class="nav-link-text">Cattle Manager</span>
     </a>
     </li>
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pasture Manager">
     <a class="nav-link" href="/pasturemanager">
-        <i class="fa fa-fw fa-map"></i>
+        <i class="fa fa-fw fa-home"></i>
         <span class="nav-link-text">Pasture Manager</span>
     </a>
     </li>
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reports">
     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
-        <i class="fa fa-fw fa-sitemap"></i>
+        <i class="fa fa-fw fa-th-list"></i>
         <span class="nav-link-text">Reports</span>
     </a>
     <ul class="sidenav-second-level collapse" id="collapseComponents">
@@ -47,10 +47,10 @@
 		
     </ul>
     </li>
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Settings">
-    <a class="nav-link" href="/settings">
-        <i class="fa fa-fw fa-wrench"></i>
-        <span class="nav-link-text">Settings</span>
+	<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cattle Pairing">
+    <a class="nav-link" href="/cattlepairing">
+        <i class="fa fa-fw fa-check"></i>
+        <span class="nav-link-text">Cattle Pairing</span>
     </a>
     </li>
 </ul>

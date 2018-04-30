@@ -70,7 +70,7 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Features</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <h3 class="section-subheading text-muted">Cattle Manager, Pasture Manager, Reports, and Cattle Pairing</h3>
             </div>
         </div>
         <div class="row text-center">
@@ -80,7 +80,7 @@
                     <i class="fa fa-archive fa-stack-1x fa-inverse"></i>
                 </span>
                 <h4 class="service-heading">Archive Your Cattle Records</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <p class="text-muted">Save your cattle data through our Cattle Manager page!</p>
             </div>
             <div class="col-md-4">
                 <span class="fa-stack fa-4x">
@@ -88,7 +88,7 @@
                     <i class="fa fa-user fa-stack-1x fa-inverse"></i>
                 </span>
                 <h4 class="service-heading">User Friendly Design</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <p class="text-muted">Based on user feedback and needs</p>
             </div>
             <div class="col-md-4">
                 <span class="fa-stack fa-4x">
@@ -96,7 +96,7 @@
                     <i class="fa fa-credit-card fa-stack-1x fa-inverse"></i>
                 </span>
                 <h4 class="service-heading">Affordable Pricing</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <p class="text-muted">Coming soon!</p>
             </div>
         </div>
     </div>
@@ -108,12 +108,15 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">About</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <h3 class="section-subheading text-muted">RanchNet - Cattle Record Keeping Solution</h3>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur malesuada mauris at dictum gravida. Nulla imperdiet purus aliquam ante rhoncus, eu dignissim ligula hendrerit. Vestibulum eget auctor nulla. Nulla quis maximus diam, sit amet sagittis justo. Duis eu ex justo.</p>
+                <p>For all cattle owners who need an efficient and affordable record keeping application, 
+				the RanchNet is an effective and practical archiving application that provides robust record 
+				management system and high quality customer support. Unlike commercial archiving products out 
+				there, RanchNet is carefully developed and incredibly affordable.</p>
             </div>
         </div>
     </div>
@@ -125,7 +128,7 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Our Team</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <h3 class="section-subheading text-muted">Computer Science students from LSU-Shreveport</h3>
             </div>
         </div>
         <div class="row">
@@ -133,11 +136,21 @@
                 <div class="team-member">
                     <img class="mx-auto rounded-circle" src="img/team/1.jpg" alt="">
                     <h4>Michael Chandler</h4>
-                    <p class="text-muted">Developer</p>
+                    <p class="text-muted">Web API Developer</p>
                     <ul class="list-inline social-buttons">
                         <li class="list-inline-item">
                         <a href="#">
-                            <i class="fa fa-google-plus"></i>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        </li>
+                        <li class="list-inline-item">
+                        <a href="#">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        </li>
+                        <li class="list-inline-item">
+                        <a href="#">
+                            <i class="fa fa-linkedin"></i>
                         </a>
                         </li>
                     </ul>
@@ -147,7 +160,7 @@
                 <div class="team-member">
                     <img class="mx-auto rounded-circle" src="img/team/2.jpg" alt="">
                     <h4>Adriane Aytona</h4>
-                    <p class="text-muted">Developer</p>
+                    <p class="text-muted">Web Developer</p>
                     <ul class="list-inline social-buttons">
                         <li class="list-inline-item">
                         <a href="#">
@@ -170,8 +183,8 @@
             <div class="col-sm-4">
                 <div class="team-member">
                     <img class="mx-auto rounded-circle" src="img/team/3.jpg" alt="">
-                    <h4>Logan Ghandy</h4>
-                    <p class="text-muted">Developer</p>
+                    <h4>Logan Gandy</h4>
+                    <p class="text-muted">iOS Developer</p>
                     <ul class="list-inline social-buttons">
                         <li class="list-inline-item">
                         <a href="#">
@@ -194,7 +207,7 @@
         </div>
         <div class="row">
             <div class="col-lg-8 mx-auto text-center">
-                <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+                <p class="large text-muted">The team that brings RanchNet to life!</p>
             </div>
         </div>
     </div>
@@ -206,7 +219,7 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Contact Us</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <h3 class="section-subheading text-muted">Coming soon!</h3>
             </div>
         </div>
         <div class="row">

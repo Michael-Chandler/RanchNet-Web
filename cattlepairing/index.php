@@ -16,8 +16,8 @@ $report = curl_exec($rch);
 curl_close($rch);
 // MORE at the nav menu
 
-include_once('../blocks/editcattlemodal.php');
-include_once('../blocks/detailscattlemodal.php');
+include_once('../../blocks/editcattlemodal.php');
+include_once('../../blocks/detailscattlemodal.php');
 ?>
 
 <!DOCTYPE html>
@@ -49,16 +49,17 @@ include_once('../blocks/detailscattlemodal.php');
 
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="../cattlemanager">RanchNet</a>
+    <a class="navbar-brand" href="/cattlemanager">RanchNet</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
     	
-    	<!-- Main Navigation Bar -->
-    	<?php include_once('../blocks/mainnavbar.php'); ?>
+        <!-- Main Navigation Bar -->
+    	<?php include_once('../../blocks/mainnavbar.php'); ?>
     	
         <ul class="navbar-nav ml-auto">
+            </li>
             <li class="nav-item">
             <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
                 <i class="fa fa-fw fa-sign-out"></i>Logout</a>
@@ -68,77 +69,86 @@ include_once('../blocks/detailscattlemodal.php');
 </nav>
 
 <div class="content-wrapper">
-    <div class="container-fluid">
-        <h1 class="page-header">Cattle Manager</h1>
-				<!-- DataTables card -->
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <i class="fa fa-table"></i> Cattle Table</div>
-                    <div class="card-body">
+	<div class="container-fluid">
+		<div class="card card-register mx-auto mt-5">
+			<div class="card-header"> Pairing Cattle</div>
+			<div class="card-body">
+			
+				<!-- Cattle ID Input form -->
+				<form method="POST" action="index.php">
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6">
+								<label for="cattleId">Cattle ID: </label>
+								<input class="form-control" id="cattleId" name="cattleId" type="text" aria-describedby="nameHelp" placeholder="Cattle ID here">
+							</div>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-secondary form-control" id="pair" name="pair">Find Pair</button>
+				</form>
+				
+				<div class="table-responsive">
+				
+					<?php if(isset($_SESSION["msg"])): ?>
+						<div class="msg">
+							<?php
+								echo $_SESSION["msg"];
+								unset($_SESSION["msg"]);
+							?>
+						</div>
+					<?php endif ?>
 					
-                        <!-- Input Form -->
-                        <?php include_once('../blocks/cattlemodal.php'); ?>
-						
-                        <div class="table-responsive">
-						
-							<?php if(isset($_SESSION["msg"])): ?>
-								<div class="msg">
-									<?php
-										echo $_SESSION["msg"];
-										unset($_SESSION["msg"]);
-									?>
-								</div>
-							<?php endif ?>
-							
-                            <table class="table table-striped table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Tag</th>
-                                        <th>Sex</th>
-                                        <th>Sire Name</th>
-                                        <th>Sire Registered Number</th>
-                                        <th>Dam Name</th>
-                                        <th>Dam Registered Number</th>
-                                        <th>Date of Birth</th>
-                                        <th>Weight (lbs.)</th>
-										<th>Pasture</th>
-										<th>Edit</th>
-										<th>Delete</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+					<table class="table table-striped table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+						<thead>
+							<tr>
+								<th>Tag</th>
+                                <th>Sex</th>
+                                <th>Sire Name</th>
+                                <th>Sire Registered Number</th>
+                                <th>Dam Name</th>
+                                <th>Dam Registered Number</th>
+                                <th>Date of Birth</th>
+                                <th>Weight (lbs.)</th>
+								<th>Edit</th>
+								<th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 <?php
 // set up vars
-$URL = API_URL
-    ."cattle"
+if(isset($_POST["pair"])) {
+	$URL = API_URL
+    ."pairing"
     ."?token=".API_SECRET
-    ."&userId=".$_SESSION["userId"];
+    ."&userId=".$_SESSION["userId"]
+	."&cattleId=".$_POST["pair"];
 
-// using cURL
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_URL, $URL);
-$result = curl_exec($ch);
-curl_close($ch);
+	// using cURL
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, $URL);
+	$result = curl_exec($ch);
+	curl_close($ch);
 
-// get php object
-$obj = json_decode($result);
-foreach ($obj as $line) { ?>
-    <tr>
-    <td><a class="btn btn-primary" href="index.php?more=<?php echo $line->cattleId; ?>"><?php echo "$line->cattleTag"; ?></a></td>
-    <td><?php echo "$line->cattleSex"; ?></td>
-    <td><?php echo "$line->cattleSireName"; ?></td>
-    <td><?php echo "$line->cattleSireRegisteredNumber"; ?></td>
-    <td><?php echo "$line->cattleDamName"; ?></td>
-    <td><?php echo "$line->cattleDamRegisteredNumber"; ?></td>
-    <td><?php echo date("m-d-Y", strtotime($line->cattleDateOfBirth)); ?></td>
-    <td><?php echo "$line->cattleWeight"; ?></td>
-	<td><?php echo "$line->pastureName"; ?></td>
-	<td><a class="btn btn-secondary" href="index.php?edit=<?php echo $line->cattleId; ?>">Edit</a></td>
-	<td><a class="btn btn-primary" href="process.php?del=<?php echo $line->cattleId; ?>">Delete</a></td>
-    </tr>
-<?php } ?>
+	// get php object
+	$obj = json_decode($result);
+	foreach ($obj as $line) { ?>
+		<tr>
+		<td><a class="btn btn-primary" href="index.php?more=<?php echo $line->cattleId; ?>"><?php echo "$line->cattleTag"; ?></a></td>
+		<td><?php echo "$line->cattleSex"; ?></td>
+		<td><?php echo "$line->cattleSireName"; ?></td>
+		<td><?php echo "$line->cattleSireRegisteredNumber"; ?></td>
+		<td><?php echo "$line->cattleDamName"; ?></td>
+		<td><?php echo "$line->cattleDamRegisteredNumber"; ?></td>
+		<td><?php echo date("m-d-Y", strtotime($line->cattleDateOfBirth)); ?></td>
+		<td><?php echo "$line->cattleWeight"; ?></td>
+		<td><a class="btn btn-secondary" href="index.php?edit=<?php echo $line->cattleId; ?>">Edit</a></td>
+		<td><a class="btn btn-primary" href="process.php?del=<?php echo $line->cattleId; ?>">Delete</a></td>
+		</tr>
+	<?php } ?>
+}
+
                                 </tbody>
                             </table>
                         </div>
@@ -175,7 +185,7 @@ foreach ($obj as $line) { ?>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 <?php
-echo "<a class=\"btn btn-primary\" href=".WEB_URL."/logout>Logout</a>";
+echo "<a class=\"btn btn-primary\" href=\"/logout\">Logout</a>";
 ?>
 
             </div>
@@ -227,12 +237,5 @@ if(isset($_GET["more"])) {
 
 </body>
 </html>
-
-
-
-
-
-
-
 
 
