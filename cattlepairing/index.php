@@ -74,7 +74,7 @@ include_once('../../blocks/detailscattlemodal.php');
 				<!-- DataTables card -->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i> Cattle Pairs <?php echo $_POST["pair"]?></div>
+                        <i class="fa fa-table"></i> Cattle Pairs <?php echo $_POST["cattleId"]?></div>
                     <div class="card-body">
 				<div class="table-responsive">
 				
@@ -123,7 +123,7 @@ if(isset($_POST["pair"])) {
     ."pairing"
     ."?token=".API_SECRET
     ."&userId=".$_SESSION["userId"]
-	."&cattleId=".$_POST["pair"];
+	."&cattleId=".$_POST["cattleId"];
 
 	// using cURL
 	$ch = curl_init();
