@@ -132,7 +132,7 @@ foreach ($obj as $line) { ?>
     <td><?php echo "$line->cattleSireRegisteredNumber"; ?></td>
     <td><?php echo "$line->cattleDamName"; ?></td>
     <td><?php echo "$line->cattleDamRegisteredNumber"; ?></td>
-    <td><?php echo date("m-d-Y", strtotime($line->cattleDateOfBirth)); ?></td>
+    <td><?php echo date("Y-m-d", strtotime($line->cattleDateOfBirth)); ?></td>
     <td><?php echo "$line->cattleWeight"; ?></td>
 	<td><?php echo "$line->pastureName"; ?></td>
 	<td><a class="btn btn-secondary" href="index.php?edit=<?php echo $line->cattleId; ?>">Edit</a></td>

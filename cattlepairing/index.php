@@ -141,13 +141,14 @@ if(isset($_POST["pair"])) {
 		<td><?php echo "$line->cattleSireRegisteredNumber"; ?></td>
 		<td><?php echo "$line->cattleDamName"; ?></td>
 		<td><?php echo "$line->cattleDamRegisteredNumber"; ?></td>
-		<td><?php echo date("m-d-Y", strtotime($line->cattleDateOfBirth)); ?></td>
+		<td><?php echo date("Y-m-d", strtotime($line->cattleDateOfBirth)); ?></td>
 		<td><?php echo "$line->cattleWeight"; ?></td>
 		<td><a class="btn btn-secondary" href="index.php?edit=<?php echo $line->cattleId; ?>">Edit</a></td>
 		<td><a class="btn btn-primary" href="process.php?del=<?php echo $line->cattleId; ?>">Delete</a></td>
 		</tr>
 	<?php } ?>
-}
+<?php } ?>
+
 
                                 </tbody>
                             </table>
