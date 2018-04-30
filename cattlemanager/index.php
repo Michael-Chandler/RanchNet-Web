@@ -229,10 +229,3 @@ if(isset($_GET["more"])) {
 </html>
 
 
-
-
-
-
-
-
-
