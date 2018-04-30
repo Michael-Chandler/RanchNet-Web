@@ -84,11 +84,11 @@ include_once('../../blocks/detailscattlemodal.php');
 					<div class="form-row">
 						<div class="col-md-6">
 							<label for="cattleId">Cattle ID: </label>
-							<input class="form-control" id="cattleId" name="cattleId" type="text" aria-describedby="nameHelp" placeholder="Cattle ID here">
+							<input style="height:200px;width:200px" class="form-control" id="cattleId" name="cattleId" type="text" aria-describedby="nameHelp" placeholder="Cattle ID here">
 						</div>
 					</div>
 				</div>
-				<button type="submit" class="btn btn-secondary form-control" id="pair" name="pair">Find Pair</button>
+				<button style="height:200px;width:200px" type="submit" class="btn btn-secondary form-control" id="pair" name="pair">Find Pair</button>
 				</form>
 				
 					<?php if(isset($_SESSION["msg"])): ?>
