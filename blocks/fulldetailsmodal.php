@@ -73,7 +73,7 @@
 					<div class="form-row">
 						<div class="col-md-3">
 							<label class="form-control-label"><strong>Date of Birth: </strong></label>
-							<label class="form-control-label"><?php echo date("m-d-Y", strtotime($mcattleDateOfBirth)); ?></label>
+							<label class="form-control-label"><?php echo date("Y-m-d", strtotime($mcattleDateOfBirth)); ?></label>
 						</div>
 						<div class="col-md-3">
 							<label class="form-control-label"><strong>Contraception: </strong></label>
@@ -132,7 +132,8 @@
 				</div>               
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-secondary" type="button" data-dismiss="modal">Finish</button>
+				<a class="btn btn-secondary" href="index.php?edit=<?php echo $mcattleId; ?>">Edit</a>
+				<a class="btn btn-primary" href="process.php?del=<?php echo $mcattleId; ?>">Delete</a>
 			</div>
 		</div>
 	</div>

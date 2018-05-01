@@ -19,6 +19,7 @@ if(isset($_GET["more"])) {
 	// get php object
 	$mobj = json_decode($mresult);
 	foreach($mobj as $mline) {
+		$mcattleId = $mline->cattleId;
 		$mcattleName = $mline->cattleName;
 		$mcattleSex = $mline->cattleSex;
 		$mcattleTag = $mline->cattleTag;
