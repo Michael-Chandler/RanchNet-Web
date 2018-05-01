@@ -140,17 +140,17 @@
                     <ul class="list-inline social-buttons">
                         <li class="list-inline-item">
                         <a href="#">
-                            <i class="fa fa-twitter"></i>
+                            <i class="fa fa-twitter" style="line-height: 2em;"></i>
                         </a>
                         </li>
                         <li class="list-inline-item">
                         <a href="#">
-                            <i class="fa fa-facebook"></i>
+                            <i class="fa fa-facebook" style="line-height: 2em;"></i>
                         </a>
                         </li>
                         <li class="list-inline-item">
                         <a href="#">
-                            <i class="fa fa-linkedin"></i>
+                            <i class="fa fa-linkedin" style="line-height: 2em;"></i>
                         </a>
                         </li>
                     </ul>
@@ -164,17 +164,17 @@
                     <ul class="list-inline social-buttons">
                         <li class="list-inline-item">
                         <a href="#">
-                            <i class="fa fa-twitter"></i>
+                            <i class="fa fa-twitter" style="line-height: 2em;"></i>
                         </a>
                         </li>
                         <li class="list-inline-item">
                         <a href="#">
-                            <i class="fa fa-facebook"></i>
+                            <i class="fa fa-facebook" style="line-height: 2em;"></i>
                         </a>
                         </li>
                         <li class="list-inline-item">
                         <a href="#">
-                            <i class="fa fa-linkedin"></i>
+                            <i class="fa fa-linkedin" style="line-height: 2em;"></i>
                         </a>
                         </li>
                     </ul>
@@ -188,17 +188,17 @@
                     <ul class="list-inline social-buttons">
                         <li class="list-inline-item">
                         <a href="#">
-                            <i class="fa fa-twitter"></i>
+                            <i class="fa fa-twitter" style="line-height: 2em;"></i>
                         </a>
                         </li>
                         <li class="list-inline-item">
                         <a href="#">
-                            <i class="fa fa-facebook"></i>
+                            <i class="fa fa-facebook" style="line-height: 2em;"></i>
                         </a>
                         </li>
                         <li class="list-inline-item">
                         <a href="#">
-                            <i class="fa fa-linkedin"></i>
+                            <i class="fa fa-linkedin" style="line-height: 2em;"></i>
                         </a>
                         </li>
                     </ul>
@@ -269,17 +269,17 @@
                 <ul class="list-inline social-buttons">
                     <li class="list-inline-item">
                     <a href="#">
-                        <i class="fa fa-twitter"></i>
+                        <i class="fa fa-twitter" style="line-height: 2em;"></i>
                     </a>
                     </li>
                     <li class="list-inline-item">
                     <a href="#">
-                        <i class="fa fa-facebook"></i>
+                        <i class="fa fa-facebook" style="line-height: 2em;"></i>
                     </a>
                     </li>
                     <li class="list-inline-item">
                     <a href="#">
-                        <i class="fa fa-linkedin"></i>
+                        <i class="fa fa-linkedin" style="line-height: 2em;"></i>
                     </a>
                     </li>
                 </ul>
