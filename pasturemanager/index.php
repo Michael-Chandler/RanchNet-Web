@@ -126,11 +126,11 @@ if(isset($_GET["edit"])) {
 											</div>
 											<!-- Form buttons -->
 											<?php if($edit_state): ?>
-												<button type="submit" class="form-control" id="update" name="update" class="btn">Update Pasture</button>
+												<button onclick="location.href='/pasturemanager'" type="submit" class="form-control" id="update" name="update" class="btn">Update Pasture</button>
 											<?php else: ?>
-												<button type="submit" class="form-control" id="add" name="add" class="btn">Add Pasture</button>
+												<button onclick="location.href='/pasturemanager'" type="submit" class="form-control" id="add" name="add" class="btn">Add Pasture</button>
 											<?php endif ?>
-											<a href="/pasturemanager" id="cancel" name="cancel" class="form-control btn">Cancel</a>
+												<a href="/pasturemanager" id="cancel" name="cancel" class="form-control btn">Cancel</a>
 										</form>
 								</div>
 							</div>
@@ -140,7 +140,7 @@ if(isset($_GET["edit"])) {
 							
 							<!-- New pasture message (needs  -->
 							<?php if(isset($_SESSION['msg'])): ?>
-								<div class="msg">
+								<div class="msg" style="margin-bottom: 0px; margin-top: 0px;">
 									<?php
 										echo $_SESSION["msg"];
 										unset($_SESSION["msg"]);

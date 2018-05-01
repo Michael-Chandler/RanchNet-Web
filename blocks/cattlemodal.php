@@ -149,11 +149,11 @@
 				</div>
                 <!-- From buttons -->
 				<?php if($edit_state): ?>
-					<button type="submit" class="form-control" id="update" name="update" class="btn">Update Cattle</button>
+					<button onclick="location.href='/cattlemanager'" type="submit" class="form-control" id="update" name="update" class="btn">Update Cattle</button>
 				<?php else: ?>
-					<button type="submit" class="form-control" id="add" name="add" class="btn">Add Cattle</button>
+					<button onclick="location.href='/cattlemanager'" type="submit" class="form-control" id="add" name="add" class="btn">Add Cattle</button>
 				<?php endif ?>
-				<button class="form-control btn" type="button" data-dismiss="modal">Cancel</button>
+                	<a href="/cattlemanager" id="cancel" name="cancel" class="form-control btn">Cancel</a>
             </form>
         </div>
     </div>

@@ -16,8 +16,8 @@ $report = curl_exec($rch);
 curl_close($rch);
 // MORE at the nav menu
 
-include_once('../../blocks/editcattlemodal.php');
-include_once('../../blocks/detailscattlemodal.php');
+include_once('../blocks/editcattlemodal.php');
+include_once('../blocks/detailscattlemodal.php');
 ?>
 
 <!DOCTYPE html>

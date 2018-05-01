@@ -82,7 +82,7 @@ include_once('../blocks/detailscattlemodal.php');
                         <div class="table-responsive">
 						
 							<?php if(isset($_SESSION["msg"])): ?>
-								<div class="msg">
+								<div class="msg" style="margin-bottom: 0px; margin-top: 0px;">
 									<?php
 										echo $_SESSION["msg"];
 										unset($_SESSION["msg"]);

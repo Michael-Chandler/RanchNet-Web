@@ -184,7 +184,7 @@ echo "<a class=\"btn btn-primary\" href=\"/logout\">Logout</a>";
 </div>
 
 <!-- Cattle Details Modal -->
-<?php include_once('../blocks/fulldetailsmodal.php'); ?>
+<?php include_once('../../blocks/fulldetailsmodal.php'); ?>
 
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
